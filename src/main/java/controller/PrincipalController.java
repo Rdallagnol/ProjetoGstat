@@ -34,14 +34,56 @@ public class PrincipalController {
 
     }
 
+    
+    @Path("/funcaoPrincipal")
+    public void funcaoPrincipal() {
+
+        try {
+
+            Process process = Runtime.getRuntime()
+                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script_KO.r");
+
+            try {
+                final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = null;
+                List<String> listaRetorno = new ArrayList<>();
+                
+               
+                while ((line = reader.readLine()) != null) {
+                    
+                    /** Função que remove indentificador string */
+                    int inicioString = line.indexOf("[");
+                    int fimString = line.indexOf("]");
+                    String textSubs = "";
+                    String alterarPor = line.substring(inicioString, fimString+1);    
+                    
+                    listaRetorno.add(line.replace(alterarPor, textSubs));
+                    System.out.println("LINE " + line.replace(alterarPor, textSubs));
+
+                }
+                result.include("mensagem", listaRetorno);
+                reader.close();
+            } catch (final Exception e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+    }
+    
+    
+    
+    
     @Path("/insereBanco")
     public void insereBanco() {
 
         try {
 
             Process process = Runtime.getRuntime()
-                    .exec("C:\\Program Files\\R\\R-3.2.3\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\scriptTeste.r 8 9");
+                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe " 
+                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\scriptTeste.r 8 9");
 
             try {
                 final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -67,10 +109,10 @@ public class PrincipalController {
     public void exibeImagem() {
         try {
             Process process = Runtime.getRuntime()
-                    .exec("C:\\Program Files\\R\\R-3.2.3\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\script.r");           
+                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script.r");           
             String path = "Rodrigo .png";
-            result.include("path", "./file/" + path);
+            result.include("path", "/file/" + path);
 
         } catch (IOException e1) {
             // TODO Auto-generated catch block
@@ -91,8 +133,8 @@ public class PrincipalController {
                 try {
 
                     Process process = Runtime.getRuntime()
-                            .exec("C:\\Program Files\\R\\R-3.2.3\\bin\\x64\\Rscript.exe "
-                                    + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\scriptTeste.r " + x1 + " " + x2);
+                            .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                                    + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\scriptTeste.r " + x1 + " " + x2);
 
                     try {
                         final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

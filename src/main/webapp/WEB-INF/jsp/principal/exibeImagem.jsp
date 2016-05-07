@@ -1,3 +1,3 @@
 <%@include file="../template/header.jsp" %>
-<img src="${path}">
+<img src="${pageContext.servletContext.contextPath}${path}">
 <%@include file="../template/footer.jsp" %>

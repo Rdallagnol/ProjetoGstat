@@ -68,6 +68,9 @@
                                         <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
                                             <a href="<c:url value="/passaParametros"/>">Passa Parametros</a>
                                         </li>
+                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
+                                            <a href="<c:url value="/funcaoPrincipal"/>">Analise geoestatística</a>
+                                        </li>
                                     </div>
                                 </ul>
                             </div>                                                    

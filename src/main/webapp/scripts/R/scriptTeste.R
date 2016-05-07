@@ -12,9 +12,4 @@ args<-commandArgs(TRUE)
 x1<-as.numeric(args[1])
 x2<-as.numeric(args[2])
 
-sql_command <- paste("INSERT INTO users(username, password, role)VALUES ('Rodrigo',",x1,", ",x2,")")
 
-dbGetQuery(con, sql_command)
-out=dbGetQuery(con, "select * from users")
-
-out
