@@ -5,7 +5,8 @@
 --%>
 
 <%@page import="java.io.IOException"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -70,6 +71,9 @@
                                         </li>
                                         <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
                                             <a href="<c:url value="/funcaoPrincipal"/>">Analise geoestatística</a>
+                                        </li>
+                                         <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
+                                            <a href="<c:url value="/template"/>">Template</a>
                                         </li>
                                     </div>
                                 </ul>

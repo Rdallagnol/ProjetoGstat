@@ -34,7 +34,6 @@ public class PrincipalController {
 
     }
 
-    
     @Path("/funcaoPrincipal")
     public void funcaoPrincipal() {
 
@@ -48,16 +47,17 @@ public class PrincipalController {
                 final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line = null;
                 List<String> listaRetorno = new ArrayList<>();
-                
-               
+
                 while ((line = reader.readLine()) != null) {
-                    
-                    /** Função que remove indentificador string */
+
+                    /**
+                     * Função que remove indentificador string
+                     */
                     int inicioString = line.indexOf("[");
                     int fimString = line.indexOf("]");
                     String textSubs = "";
-                    String alterarPor = line.substring(inicioString, fimString+1);    
-                    
+                    String alterarPor = line.substring(inicioString, fimString + 1);
+
                     listaRetorno.add(line.replace(alterarPor, textSubs));
                     System.out.println("LINE " + line.replace(alterarPor, textSubs));
 
@@ -72,17 +72,14 @@ public class PrincipalController {
             e1.printStackTrace();
         }
     }
-    
-    
-    
-    
+
     @Path("/insereBanco")
     public void insereBanco() {
 
         try {
 
             Process process = Runtime.getRuntime()
-                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe " 
+                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
                             + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\scriptTeste.r 8 9");
 
             try {
@@ -110,7 +107,7 @@ public class PrincipalController {
         try {
             Process process = Runtime.getRuntime()
                     .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script.r");           
+                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script.r");
             String path = "Rodrigo .png";
             result.include("path", "/file/" + path);
 
@@ -158,6 +155,53 @@ public class PrincipalController {
             }
         }
 
+    }
+
+    @Path("/template")
+    public void template() {
+
+        request.getParameter("area");
+        request.getParameter("amostra");
+        request.getParameter("desc");
+        request.getParameter("interpolador");
+        request.getParameter("tamx");
+        request.getParameter("tamy");
+        request.getParameter("expoente");
+        request.getParameter("vizinhos");
+        request.getParameter("estimador");
+        request.getParameter("nlags");
+        request.getParameter("npares");
+
+        if (request.getMethod().equals("POST")) {
+
+            try {
+
+                Process process = Runtime.getRuntime()
+                        .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\principal.r "
+                                + request.getParameter("area") + " " + request.getParameter("amostra")
+                                + " " + request.getParameter("desc").replace(" ", "") + " " + request.getParameter("interpolador") + " " + request.getParameter("tamx")
+                                + " " + request.getParameter("tamy") + " " + request.getParameter("expoente") + " " + request.getParameter("vizinhos")
+                                + " " + request.getParameter("estimador") + " " + request.getParameter("nlags") + " " + request.getParameter("npares"));
+
+                try {
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    List<String> listaRetorno = new ArrayList<>();
+                    while ((line = reader.readLine()) != null) {
+                        listaRetorno.add(line);
+                        System.out.println(line);
+                    }
+                    result.include("retorno", listaRetorno);
+                    reader.close();
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
     }
 
 }
