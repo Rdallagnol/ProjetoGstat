@@ -171,6 +171,8 @@ public class PrincipalController {
         request.getParameter("estimador");
         request.getParameter("nlags");
         request.getParameter("npares");
+        request.getParameter("nalcance");
+        request.getParameter("ncontribuicao");
 
         if (request.getMethod().equals("POST")) {
 
@@ -180,9 +182,10 @@ public class PrincipalController {
                         .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
                                 + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\principal.r "
                                 + request.getParameter("area") + " " + request.getParameter("amostra")
-                                + " " + request.getParameter("desc").replace(" ", "") + " " + request.getParameter("interpolador") + " " + request.getParameter("tamx")
+                                + " " + request.getParameter("desc").replace(" ", "_") + " " + request.getParameter("interpolador") + " " + request.getParameter("tamx")
                                 + " " + request.getParameter("tamy") + " " + request.getParameter("expoente") + " " + request.getParameter("vizinhos")
-                                + " " + request.getParameter("estimador") + " " + request.getParameter("nlags") + " " + request.getParameter("npares"));
+                                + " " + request.getParameter("estimador") + " " + request.getParameter("nlags") + " " + request.getParameter("npares")
+                                + " " + request.getParameter("nalcance")+ " " + request.getParameter("ncontribuicao"));
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
