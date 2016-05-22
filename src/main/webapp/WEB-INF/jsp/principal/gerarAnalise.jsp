@@ -1,13 +1,13 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" >
-    <form action="template" method="post">
+    <form action="gerarAnalise" method="post">
         <div class="row-fluid" style="">
 
             <div class="bs-docs-example form-inline">
                 <div class="bs-docs-text"> Informações </div>
                 <div>
                     Usuário : <b>Rodrigo</b>
-                    <input id="user" type="hidden" name="user" value="1" class="input-mini"/>
+                    <input id="user" type="hidden" name="user" value="Rodrigo_1" class="input-mini"/>
                 </div>
                 <hr>
                 <div class="row-fluid">

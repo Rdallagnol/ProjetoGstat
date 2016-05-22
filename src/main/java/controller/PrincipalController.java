@@ -157,9 +157,9 @@ public class PrincipalController {
 
     }
 
-    @Path("/template")
-    public void template() {
-
+    @Path("/gerarAnalise")
+    public void gerarAnalise() {
+       
         request.getParameter("area");
         request.getParameter("amostra");
         request.getParameter("desc");
@@ -173,7 +173,9 @@ public class PrincipalController {
         request.getParameter("npares");
         request.getParameter("nalcance");
         request.getParameter("ncontribuicao");
-
+        request.getParameter("user");
+         
+       
         if (request.getMethod().equals("POST")) {
 
             try {
@@ -185,7 +187,7 @@ public class PrincipalController {
                                 + " " + request.getParameter("desc").replace(" ", "_") + " " + request.getParameter("interpolador") + " " + request.getParameter("tamx")
                                 + " " + request.getParameter("tamy") + " " + request.getParameter("expoente") + " " + request.getParameter("vizinhos")
                                 + " " + request.getParameter("estimador") + " " + request.getParameter("nlags") + " " + request.getParameter("npares")
-                                + " " + request.getParameter("nalcance")+ " " + request.getParameter("ncontribuicao"));
+                                + " " + request.getParameter("nalcance")+ " " + request.getParameter("ncontribuicao")+ " " + request.getParameter("user"));
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -201,10 +203,13 @@ public class PrincipalController {
                     e.printStackTrace();
                 }
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
+               e1.printStackTrace();
             }
         }
     }
 
+    @Path("/visualizarAnalises")
+    public void visualizarAnalises(){
+         System.out.println("########################" + System.getProperty("user.dir"));
+    }
 }

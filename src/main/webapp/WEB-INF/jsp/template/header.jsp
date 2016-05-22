@@ -59,21 +59,12 @@
                             <div class="menu-fundo" style="padding-top: 15px;">
 
                                 <ul class="nav nav-pills ">
-                                    <div id="teste"  class="collapse in ">
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/insereBanco"/>">Insere Banco</a>
-                                        </li>
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/exibeImagem"/>">Exibe Imagem</a>
-                                        </li>
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/passaParametros"/>">Passa Parametros</a>
-                                        </li>
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/funcaoPrincipal"/>">Analise geoestatística</a>
-                                        </li>
+                                    <div id="teste"  class="collapse in ">                                       
                                          <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/template"/>">Template</a>
+                                            <a href="<c:url value="/gerarAnalise"/>">Gerar Analise</a>
+                                        </li>
+                                          <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
+                                            <a href="<c:url value="/visualizarAnalises"/>">Visualizar Analises</a>
                                         </li>
                                     </div>
                                 </ul>
