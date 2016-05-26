@@ -58,11 +58,14 @@ ifelse(!dir.exists(file.path(mainDir, subDir)), dir.create(file.path(mainDir, su
 require(geoR)
 require(splancs)
 require(classInt)
+require(sp)
 library(stats)
 require(MASS)
 library(e1071)
 require(gstat)
-sapply(c("gstat", "sp", "geoR", "RColorBrewer"), require, character.only=T)
+library(ade4)
+library(spdep)
+library(RPostgreSQL)
 
 arquivo_dados = "D:/ProjetoGstat/src/main/webapp/scripts/dados/Tasca_RSP 0-10 2013_UTM.txt"
 arquivo_contorno = "D:/ProjetoGstat/src/main/webapp/scripts/dados/Tasca_contorno_UTM.txt"

@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <meta http-equiv="Content-Style-Type" content="text/css">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +22,7 @@
 
         <script src="<c:url value="./js/jquery-1.10.2.min.js"></c:url>"></script>
         <script src="<c:url value="./js/bootstrap.min.js"></c:url>"></script>
+        <script src="<c:url value="./js/frComponentes.js"></c:url>"></script>
         <link href="<c:url value="./css/bootstrap.min.css"/>" rel="stylesheet"/>
         <link href="<c:url value="./css/bootstrap-responsive.css"/>" rel="stylesheet"/>
         <link rel="shortcut icon" href="./img/favicon.ico">

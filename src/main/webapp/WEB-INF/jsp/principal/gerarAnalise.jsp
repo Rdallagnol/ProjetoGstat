@@ -3,7 +3,7 @@
     <form action="gerarAnalise" method="post">
         <div class="row-fluid" style="">
 
-            <div class="bs-docs-example form-inline">
+            <div class="bs-docs-example">
                 <div class="bs-docs-text"> Informações </div>
                 <div>
                     Usuário : <b>Rodrigo</b>
@@ -12,21 +12,23 @@
                 <hr>
                 <!-- SERÁ NECESSÁRIO UMA CONEXÃO COM O BANCO DE DADOS PARA BUSCAR ESSAS INFORMAÇÕES-->
                 <div class="row-fluid">
-                    <div class="span3">
-                        <label for="area">Área:</label>
-                        <select name="area">
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                        </select> 
-                    </div>
-                    <div class="span3">
-                        <label for="amostra">Amostra:</label>
-                        <select name="amostra">
-                            <option value="1">Cálcio</option>
-                            <option value="2">Produção</option>
-                            <option value="3">PH</option>
-                        </select>
+                    <div class="">
+                        <div class="span3">
+                            <label for="area">Área:</label>
+                            <select name="area">
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                            </select> 
+                        </div>
+                        <div class="span3">
+                            <label for="amostra">Amostra:</label>
+                            <select name="amostra">
+                                <option value="1">Cálcio</option>
+                                <option value="2">Produção</option>
+                                <option value="3">PH</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,7 +46,8 @@
                     </div>
                     <div class="span9">
                         <label for="interpolador">Interpolador:</label>
-                        <select name="interpolador">
+                        <select name="interpolador" required="TRUE">
+                            <option value=""></option>
                             <option value="KO">Krigagem Ordinária</option>
                             <option value="ID">Inverso da Distância</option>
                             <option value="MM">MM(Verificar)</option>
@@ -58,7 +61,7 @@
                 <div class="row-fluid">
 
                     <!-- ESTRUTURA INTERNA COMEÇA AQUI DA KRIGAGEM-->
-                    <div class="bs-docs-example span12" style="margin-left: 0px">
+                    <div class="bs-docs-example span12" id="krigdiv" name="krigdiv" style="margin-left: 0px;display: none;" >
 
                         <div class="bs-docs-text">Krigagem Ordinária</div> 
                         <div class="tabbable"> 
@@ -143,7 +146,7 @@
 
                     </div>
 
-                    <div class="bs-docs-example span12" style="margin-left: 0px;" >
+                    <div class="bs-docs-example span12" id="ivdiv" name="ivdiv"  style="margin-left: 0px; display: none;" >
 
                         <div class="bs-docs-text">Inverso da Distância</div> 
                         <div class="tabbable"> 
@@ -201,6 +204,7 @@
 
                     <!-- FIM DAS INFORMAÇÕES DOS OUTROS METODOS -->
 
+
                 </div>  
             </div>
         </div>
@@ -215,23 +219,6 @@
 
     </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%@include file="../template/footer.jsp" %>
 
