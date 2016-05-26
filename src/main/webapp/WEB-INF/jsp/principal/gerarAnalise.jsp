@@ -40,7 +40,7 @@
                 <div class="">
                     <div class="span3">
                         <label for="desc">Descrição:</label>
-                        <input id="desc" type="text" name="desc"/>
+                        <input id="desc" type="text" name="desc" required="true"/>
                     </div>
                     <div class="span9">
                         <label for="interpolador">Interpolador:</label>
@@ -143,7 +143,7 @@
 
                     </div>
 
-                    <div class="bs-docs-example span12" style="margin-left: 0px">
+                    <div class="bs-docs-example span12" style="margin-left: 0px;" >
 
                         <div class="bs-docs-text">Inverso da Distância</div> 
                         <div class="tabbable"> 
@@ -162,8 +162,8 @@
                                             <label for="vizinhos">N° Vizinhos</label>
                                             <input id="vizinhos" type="text" name="vizinhos" class="input-mini" value="10"/>
                                         </div>
-                                        
-                                         <div class="span2">
+
+                                        <div class="span2">
                                             <label for="expoente">Expoente Inicial</label>
                                             <input id="expoini" type="text" name="expoini" class="input-mini" value="0.5"/>
 
@@ -205,6 +205,15 @@
             </div>
         </div>
 
+
+        <div class="btn span11" style="visibility: hidden"></div>
+        <div class="navbar navbar-fixed-bottom">
+            <center>
+                <button class="btn btn-large btn-primary" type="submit">Enviar</button>
+            </center>
+        </div>
+
+    </form>
 </div>
 
 
@@ -217,15 +226,8 @@
 
 
 
-<div class="btn span11" style="visibility: hidden"></div>
-<div class="navbar navbar-fixed-bottom">
-    <center>
-        <button class="btn btn-large btn-primary" type="submit">Enviar</button>
-    </center>
-</div>
 
-</form>
-</div>
+
 
 
 

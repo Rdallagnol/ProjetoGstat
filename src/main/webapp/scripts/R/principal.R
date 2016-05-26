@@ -20,7 +20,7 @@ metodoajust<-args[18]
 pesos<-args[19]
 expoini<-as.numeric(args[20])
 expofinal<-as.numeric(args[21])
-expoinv<-as.numeric(args[21])
+expoinv<-as.numeric(args[22])
 
 area
 amostra
