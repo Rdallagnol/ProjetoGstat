@@ -12,18 +12,22 @@
                 <hr>
                 <!-- SERÁ NECESSÁRIO UMA CONEXÃO COM O BANCO DE DADOS PARA BUSCAR ESSAS INFORMAÇÕES-->
                 <div class="row-fluid">
-                    <label for="area">Área:</label>
-                    <select name="area">
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                        <option value="3">C</option>
-                    </select> 
-                    <label for="amostra">Amostra:</label>
-                    <select name="amostra">
-                        <option value="1">Cálcio</option>
-                        <option value="2">Produção</option>
-                        <option value="3">PH</option>
-                    </select>
+                    <div class="span3">
+                        <label for="area">Área:</label>
+                        <select name="area">
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                        </select> 
+                    </div>
+                    <div class="span3">
+                        <label for="amostra">Amostra:</label>
+                        <select name="amostra">
+                            <option value="1">Cálcio</option>
+                            <option value="2">Produção</option>
+                            <option value="3">PH</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,23 +37,27 @@
 
             <div class="bs-docs-example span12" >                       
                 <div class="bs-docs-text "> Configurações </div>
-                <div class=" form-inline">
-                    <label for="desc">Descrição:</label>
-                    <input id="desc" type="text" name="desc"/>
-                    <label for="interpolador">Interpolador:</label>
-                    <select name="interpolador">
-                        <option value="KO">Krigagem Ordinária</option>
-                        <option value="ID">Inverso da Distância</option>
-                        <option value="MM">MM(Verificar)</option>
-                        <option value="VMP">Vizinho mais próximo</option>
-                    </select> 
+                <div class="">
+                    <div class="span3">
+                        <label for="desc">Descrição:</label>
+                        <input id="desc" type="text" name="desc"/>
+                    </div>
+                    <div class="span9">
+                        <label for="interpolador">Interpolador:</label>
+                        <select name="interpolador">
+                            <option value="KO">Krigagem Ordinária</option>
+                            <option value="ID">Inverso da Distância</option>
+                            <option value="MM">MM(Verificar)</option>
+                            <option value="VMP">Vizinho mais próximo</option>
+                        </select> 
+                    </div>
                 </div>
-                <hr>
+
 
 
                 <div class="row-fluid">
-                    <!-- ESTRUTURA INTERNA COMEÇA AQUI -->
 
+                    <!-- ESTRUTURA INTERNA COMEÇA AQUI DA KRIGAGEM-->
                     <div class="bs-docs-example span12" style="margin-left: 0px">
 
                         <div class="bs-docs-text">Krigagem Ordinária</div> 
@@ -112,13 +120,7 @@
                                                     <option value="green">Verde</option>
                                                     <option value="red">Vermelho</option>                                                                                        
                                                 </select>
-                                            </div>
-                                            <div class="span2">
-                                                <label for="nalcance">Intervalo Alcance</label>
-                                                <input id="npares" type="text" name="nalcance" class="input-mini" value="20"/>
-                                                <label for="ncontribuicao">Intervalo Contribuição</label>
-                                                <input id="npares" type="text" name="ncontribuicao" class="input-mini" value="20"/>
-                                            </div>
+                                            </div>                                          
                                             <div class="span2">
                                                 <label for="nalcance">Método de Ajuste</label>
                                                 <select name="metodoajust" class="input-small">
@@ -128,7 +130,7 @@
                                                 <select name="pesos" class="input-small">
                                                     <option value="pesos">equals - OLS</option>                                                                                                                                            
                                                 </select>
-                                             
+
                                             </div>
 
                                         </div>
@@ -139,39 +141,65 @@
 
                         </div>
 
+                    </div>
 
-                        <div class="bs-docs-example span4" style="margin-left: 0px">
+                    <div class="bs-docs-example span12" style="margin-left: 0px">
 
-                            <div class="bs-docs-text">Pixel</div>
-                            <div class=" form-inline">
-                                <label for="tamx">Tam. X</label>
-                                <input id="tamx" type="text" name="tamx" class="input-mini" value="5"/>
+                        <div class="bs-docs-text">Inverso da Distância</div> 
+                        <div class="tabbable"> 
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#invtab1" data-toggle="tab">Parametrôs</a></li>
 
-                                <label for="tamy">Tam. Y</label>
-                                <input id="tamy" type="text" name="tamy" class="input-mini" value="5"/>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="invtab1">
+                                    <div class="row-fluid" style="">
+                                        <div class="span2">
+                                            <label for="expoente">Expoente</label>
+                                            <input id="expoente" type="text" name="expoente" class="input-mini" value="1"/>
+
+                                            <label for="vizinhos">N° Vizinhos</label>
+                                            <input id="vizinhos" type="text" name="vizinhos" class="input-mini" value="10"/>
+                                        </div>
+                                        
+                                         <div class="span2">
+                                            <label for="expoente">Expoente Inicial</label>
+                                            <input id="expoini" type="text" name="expoini" class="input-mini" value="0.5"/>
+
+                                            <label for="expofinal">Expoente Final</label>
+                                            <input id="expofinal" type="text" name="expofinal" class="input-mini" value="4.0"/>
+                                        </div>
+                                        <div class="span2">
+                                            <label for="expoente">Intervalo Expoentes</label>
+                                            <input id="expoinv" type="text" name="expoinv" class="input-mini" value="0.5"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
-                        <div class="bs-docs-example span8"  >
 
-                            <div class="bs-docs-text">Variaveis</div>
-                            <div class="form-inline">
-                                <label for="expoente">Expoente</label>
-                                <input id="expoente" type="text" name="expoente" class="input-mini" value="2"/>
-
-                                <label for="vizinhos">N° Vizinhos</label>
-
-                                <input id="vizinhos" type="text" name="vizinhos" class="input-mini" value="10"/>
-                            </div>
-
-                        </div>
-
-
-                        <!-- ESTRUTURA INTERNA FECHA AQUI -->
                     </div>
 
 
+                    <!-- ESTRUTURA INTERNA FECHA AQUI DA KRIGAGEM-->
 
+                    <!-- AQUIO SÃO INFORMAÇÕES DOS OUTROS METODOS -->
+                    <div class="bs-docs-example span4" style="margin-left: 0px">
+
+                        <div class="bs-docs-text">Pixel</div>
+                        <div class=" form-inline">
+                            <label for="tamx">Tam. X</label>
+                            <input id="tamx" type="text" name="tamx" class="input-mini" value="5"/>
+
+                            <label for="tamy">Tam. Y</label>
+                            <input id="tamy" type="text" name="tamy" class="input-mini" value="5"/>
+                        </div>
+
+                    </div>
+
+                    <!-- FIM DAS INFORMAÇÕES DOS OUTROS METODOS -->
 
                 </div>  
             </div>

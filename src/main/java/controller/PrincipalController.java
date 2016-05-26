@@ -159,25 +159,9 @@ public class PrincipalController {
 
     @Path("/gerarAnalise")
     public void gerarAnalise() {
-        System.out.println("teste");
-        request.getParameter("area");
-        request.getParameter("amostra");
-        request.getParameter("desc");
-        request.getParameter("interpolador");
-        request.getParameter("tamx");
-        request.getParameter("tamy");
-        request.getParameter("expoente");
-        request.getParameter("vizinhos");
-        request.getParameter("estimador");
-        request.getParameter("nlags");
-        request.getParameter("npares");
-        request.getParameter("nalcance");
-        request.getParameter("ncontribuicao");
-        request.getParameter("user");
-         
-       
+ 
         if (request.getMethod().equals("POST")) {
-
+                   System.out.println(request.getParameter("desc"));
             try {
 
                 Process process = Runtime.getRuntime()
@@ -189,11 +173,11 @@ public class PrincipalController {
                                 + " " + request.getParameter("expoente")+ " " + request.getParameter("vizinhos")
                                 + " " + request.getParameter("estimador") + " " + request.getParameter("nlags")
                                 + " " + request.getParameter("npares") + " " + request.getParameter("nalcance")
-                                + " " + request.getParameter("ncontribuicao") + " " + request.getParameter("user")
+                                + " " + request.getParameter("ncontri") + " " + request.getParameter("user")
                                 + " " + request.getParameter("modelo")+ " " + request.getParameter("vlkappa")
-                                + " " + request.getParameter("ncontri")+ " " + request.getParameter("nalcance")
                                 + " " + request.getParameter("semicorlinha")+ " " + request.getParameter("metodoajust")
-                                + " " + request.getParameter("pesos")+ " " + request.getParameter("metodoajust"));
+                                + " " + request.getParameter("pesos")+ " " + request.getParameter("expoini")
+                                + " " + request.getParameter("expofinal")+ " " + request.getParameter("expoinv"));
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

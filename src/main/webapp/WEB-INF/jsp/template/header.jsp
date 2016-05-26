@@ -6,7 +6,7 @@
 
 <%@page import="java.io.IOException"%>
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html; charset=iso-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">    
         
-        <title>SAG - Sistema de Analise GeoestatÃ­stica</title>  
+        <title>SAG - Sistema de Analise Geoestatística</title>  
 
         <script src="<c:url value="./js/jquery-1.10.2.min.js"></c:url>"></script>
         <script src="<c:url value="./js/bootstrap.min.js"></c:url>"></script>
@@ -37,7 +37,7 @@
                                 <li>
                                     <div style="padding: 4px;"> <img src="./img/logoMenu.png">  </div> </li>
                                 <li class="active">
-                                    <a href="<c:url value="/"/>">InÃ­cio</a>
+                                    <a href="<c:url value="/"/>">Início</a>
                                       
                                 </li>
                             </ul>

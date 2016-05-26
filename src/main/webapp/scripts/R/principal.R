@@ -10,16 +10,17 @@ vizinhos<-as.numeric(args[8])
 estimador<-args[9]
 nlags<-as.numeric(args[10])
 npares<-as.numeric(args[11])  
-nro_intervalos_alc<-as.numeric(args[12])
-nro_intervalos_contr<-as.numeric(args[13])
+nalcance<-as.numeric(args[12])
+ncontri<-as.numeric(args[13])
 usuario<-args[14]
 modelo<-args[15]
 vlkappa<-as.numeric(args[16])
-ncontri<-as.numeric(args[17])
-nalcance<-as.numeric(args[18])
-semicorlinha<-args[19]
-metodoajust<-args[20]
-pesos<-args[21]
+semicorlinha<-args[17]
+metodoajust<-args[18]
+pesos<-args[19]
+expoini<-as.numeric(args[20])
+expofinal<-as.numeric(args[21])
+expoinv<-as.numeric(args[21])
 
 area
 amostra
@@ -31,17 +32,18 @@ expoente
 vizinhos
 estimador
 nlags
-npares
-nro_intervalos_alc
-nro_intervalos_contr
+npares 
+nalcance
+ncontri
 usuario
 modelo
 vlkappa
-ncontri
-nalcance
 semicorlinha
 metodoajust
 pesos
+expoini
+expofinal
+expoinv
 
 #MAPEAR O LUGAR NO SERVIDOR AONDE VÃO FICAR AS PASTAS COM AS ANALISES
 mainDir <- "D:/ProjetoGstat/src/main/webapp/file"
