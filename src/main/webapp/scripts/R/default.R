@@ -3,25 +3,47 @@ area<-as.numeric(args[1])
 amostra<-as.numeric(args[2])
 desc<-args[3]
 interpolador<-args[4]
-tam_pixel_x<-as.numeric(args[5])
-tam_pixel_y<-as.numeric(args[6])
+tamx<-as.numeric(args[5])
+tamy<-as.numeric(args[6])
 expoente<-as.numeric(args[7])
 vizinhos<-as.numeric(args[8])
 estimador<-args[9]
-nro_lags<-as.numeric(args[10])
-nro_pares<-as.numeric(args[11])  
-nro_intervalos_alc<-as.numeric(args[12])
-nro_intervalos_contr<-as.numeric(args[13])
+nlags<-as.numeric(args[10])
+npares<-as.numeric(args[11])  
+nalcance<-as.numeric(args[12])
+ncontri<-as.numeric(args[13])
 usuario<-args[14]
 modelo<-args[15]
-vlr_kappa<-as.numeric(args[16])
-cor_linha<-args[17]
+vlkappa<-as.numeric(args[16])
+semicorlinha<-args[17]
 metodoajust<-args[18]
 pesos<-args[19]
 expoini<-as.numeric(args[20])
 expofinal<-as.numeric(args[21])
 expoinv<-as.numeric(args[22])
 
+area
+amostra
+desc
+interpolador
+tamx
+tamy
+expoente
+vizinhos
+estimador
+nlags
+npares 
+nalcance
+ncontri
+usuario
+modelo
+vlkappa
+semicorlinha
+metodoajust
+pesos
+expoini
+expofinal
+expoinv
 
 #MAPEAR O LUGAR NO SERVIDOR AONDE VÃO FICAR AS PASTAS COM AS ANALISES
 mainDir <- "D:/ProjetoGstat/src/main/webapp/file"
@@ -47,30 +69,14 @@ require(gstat)
 library(ade4)
 library(spdep)
 library(RPostgreSQL)
-###########################################################################
+
 arquivo_dados = "D:/ProjetoGstat/src/main/webapp/scripts/dados/Tasca_RSP 0-10 2013_UTM.txt"
 arquivo_contorno = "D:/ProjetoGstat/src/main/webapp/scripts/dados/Tasca_contorno_UTM.txt"
 dados= read.geodata(arquivo_dados,head=T,coords.col=1:2,data.col=3) 
-
 
 x=paste("boxplot",".png",sep = "")
 png(x)
 plot(dados)
 boxplot(dados$data,main='Gráfico Boxplot')
 dev.off()
-############################################################################
-#variáveis para gráfico Semivariograma
-legenda_x_semiv = "Distância"
-legenda_y_semiv = "Semivariância"
-titulo_semiv = "Semivariograma experimental"
-#Variáveis do gráfico Mapa de dispersão dos pontos amostrais
-titulo_pamostrais = "Mapa de dispersão dos pontos amostrais"
-fonte_pamostrais = 3
-leg_x_pamostrais ="O - L"
-leg_y_pamostrais ="S - N"
 
-titulo_BoxPlot = "Gráfico Boxplot"
-titulo_PostPlot = "Gráfico Postplot"
-
-#número de classe no mapa (intervalos)
-classes = 5;

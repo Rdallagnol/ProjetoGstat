@@ -166,7 +166,7 @@ public class PrincipalController {
 
                 Process process = Runtime.getRuntime()
                         .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\principal.r "
+                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\default.r "
                                 + request.getParameter("area") + " " + request.getParameter("amostra")
                                 + " " + request.getParameter("desc").replace(" ", "_") + " " + request.getParameter("interpolador") 
                                 + " " + request.getParameter("tamx") + " " + request.getParameter("tamy") 
