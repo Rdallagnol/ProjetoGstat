@@ -185,27 +185,64 @@
 
                     </div>
 
+                    <div class="bs-docs-example span12" id="mmdiv" name="mmdiv"  style="margin-left: 0px; display: none;" >
+
+                        <div class="bs-docs-text">Máximo Minimo</div> 
+                        <div class="tabbable"> 
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#mmtab1" data-toggle="tab">Parametrôs</a></li>
+
+
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="mmtab1">
+                                    <div class="row-fluid" style="">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="bs-docs-example span12" id="vmpdiv" name="vmpdiv"  style="margin-left: 0px; display: none;" >
+                        <div class="bs-docs-text">Vizinho mais próximo</div> 
+                        <div class="tabbable"> 
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#vmptab1" data-toggle="tab">Parametrôs</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="vmptab1">
+                                    <div class="row-fluid" style="">                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- ESTRUTURA INTERNA FECHA AQUI DA KRIGAGEM-->
 
                     <!-- AQUIO SÃO INFORMAÇÕES DOS OUTROS METODOS -->
-                    <div class="bs-docs-example span4" style="margin-left: 0px">
 
-                        <div class="bs-docs-text">Pixel</div>
-                        <div class=" form-inline">
-                            <label for="tamx">Tam. X</label>
-                            <input id="tamx" type="text" name="tamx" class="input-mini" value="5"/>
-
-                            <label for="tamy">Tam. Y</label>
-                            <input id="tamy" type="text" name="tamy" class="input-mini" value="5"/>
-                        </div>
-
-                    </div>
 
                     <!-- FIM DAS INFORMAÇÕES DOS OUTROS METODOS -->
 
 
                 </div>  
+
+            </div>
+            <div class="bs-docs-example span4" id="defaultdiv" name="defaultdiv" style="margin-left: 0px; display: none;">
+
+                <div class="bs-docs-text">Pixel</div>
+                <div class=" form-inline">
+                    <label for="tamx">Tam. X</label>
+                    <input id="tamx" type="text" name="tamx" class="input-mini" value="5"/>
+
+                    <label for="tamy">Tam. Y</label>
+                    <input id="tamy" type="text" name="tamy" class="input-mini" value="5"/>
+                </div>
+
             </div>
         </div>
 
