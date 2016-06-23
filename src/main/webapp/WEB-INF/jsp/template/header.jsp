@@ -18,7 +18,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">    
         
-        <title>SAG - Sistema de Analise Geoestatística</title>  
+        <title>SAG - Sistema de Analise Geoestat?stica</title>  
 
         <script src="<c:url value="./js/jquery-1.10.2.min.js"></c:url>"></script>
         <script src="<c:url value="./js/bootstrap.min.js"></c:url>"></script>
@@ -39,7 +39,7 @@
                                 <li>
                                     <div style="padding: 4px;"> <img src="./img/logoMenu.png">  </div> </li>
                                 <li class="active">
-                                    <a href="<c:url value="/"/>">Início</a>
+                                    <a href="<c:url value="/"/>">In?cio</a>
                                       
                                 </li>
                             </ul>
