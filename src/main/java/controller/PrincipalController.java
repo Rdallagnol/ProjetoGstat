@@ -34,6 +34,49 @@ public class PrincipalController {
 
     }
 
+    
+    @Path("/funcaoGeo")
+    public void funcaoGeo(){
+        
+        try{
+        Process process = Runtime.getRuntime()
+                .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script_geo.r");
+        
+        try {
+                final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = null;
+                List<String> listaRetorno = new ArrayList<>();
+
+                while ((line = reader.readLine()) != null) {
+
+                    /**
+                     * Função que remove indentificador string
+                     */
+                    int inicioString = line.indexOf("[");
+                    int fimString = line.indexOf("]");
+                    String textSubs = "";
+                    String alterarPor = line.substring(inicioString, fimString + 1);
+
+                    listaRetorno.add(line.replace(alterarPor, textSubs));
+                    System.out.println("LINE " + line.replace(alterarPor, textSubs));
+
+                }
+                result.include("mensagem", listaRetorno);
+                reader.close();
+            } catch (final Exception e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        
+    }
+    
+    
+    
+    
     @Path("/funcaoPrincipal")
     public void funcaoPrincipal() {
 

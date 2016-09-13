@@ -6,7 +6,7 @@
 
 <%@page import="java.io.IOException"%>
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
-<%@page contentType="text/html; charset=iso-8859-1"%>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">    
         
-        <title>SAG - Sistema de Analise Geoestat?stica</title>  
+        <title>SAG - Sistema de Analise Geoestatística</title>  
 
         <script src="<c:url value="./js/jquery-1.10.2.min.js"></c:url>"></script>
         <script src="<c:url value="./js/bootstrap.min.js"></c:url>"></script>
@@ -39,7 +39,7 @@
                                 <li>
                                     <div style="padding: 4px;"> <img src="./img/logoMenu.png">  </div> </li>
                                 <li class="active">
-                                    <a href="<c:url value="/"/>">In?cio</a>
+                                    <a href="<c:url value="/"/>">Início</a>
                                       
                                 </li>
                             </ul>
@@ -63,7 +63,7 @@
                                 <ul class="nav nav-pills ">
                                     <div id="teste"  class="collapse in ">                                       
                                          <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/gerarAnalise"/>">Gerar Analise</a>
+                                            <a href="<c:url value="/funcaoGeo"/>">Gerar Analise</a>
                                         </li>
                                           <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
                                             <a href="<c:url value="/visualizarAnalises"/>">Visualizar Analises</a>
