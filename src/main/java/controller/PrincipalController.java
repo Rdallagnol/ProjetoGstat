@@ -34,48 +34,81 @@ public class PrincipalController {
 
     }
 
-    
     @Path("/funcaoGeo")
-    public void funcaoGeo(){
-        
-        try{
-        Process process = Runtime.getRuntime()
-                .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script_geo.r");
-        
-        try {
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line = null;
-                List<String> listaRetorno = new ArrayList<>();
+    public void funcaoGeo() {
 
-                while ((line = reader.readLine()) != null) {
+        if (request.getMethod().equals("POST")) {
+            try {
+                Process process = Runtime.getRuntime()
+                        .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r");
 
-                    /**
-                     * Função que remove indentificador string
-                     */
-                    int inicioString = line.indexOf("[");
-                    int fimString = line.indexOf("]");
-                    String textSubs = "";
-                    String alterarPor = line.substring(inicioString, fimString + 1);
-
-                    listaRetorno.add(line.replace(alterarPor, textSubs));
-                    System.out.println("LINE " + line.replace(alterarPor, textSubs));
-
+                try {
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    List<String> listaRetorno = new ArrayList<>();
+                    while ((line = reader.readLine()) != null) {
+                        listaRetorno.add(line);
+                        System.out.println(line);
+                    }
+                    result.include("retorno", listaRetorno);
+                    reader.close();
+                } catch (final Exception e) {
+                    e.printStackTrace();
                 }
-                result.include("mensagem", listaRetorno);
-                reader.close();
-            } catch (final Exception e) {
-                e.printStackTrace();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         }
-        
     }
+
     
-    
-    
+    @Path("/gerarAnalise")
+    public void gerarAnalise() {
+
+        if (request.getMethod().equals("POST")) {
+            System.out.println(request.getParameter("desc"));
+            try {
+
+                Process process = Runtime.getRuntime()
+                        .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
+                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\principal.r "
+                                + request.getParameter("area") + " " + request.getParameter("amostra")
+                                + " " + request.getParameter("desc").replace(" ", "_") + " " + request.getParameter("interpolador")
+                                + " " + request.getParameter("tamx") + " " + request.getParameter("tamy")
+                                + " " + request.getParameter("expoente") + " " + request.getParameter("vizinhos")
+                                + " " + request.getParameter("estimador") + " " + request.getParameter("nlags")
+                                + " " + request.getParameter("npares") + " " + request.getParameter("nalcance")
+                                + " " + request.getParameter("ncontri") + " " + request.getParameter("user")
+                                + " " + request.getParameter("modelo") + " " + request.getParameter("vlkappa")
+                                + " " + request.getParameter("semicorlinha") + " " + request.getParameter("metodoajust")
+                                + " " + request.getParameter("pesos") + " " + request.getParameter("expoini")
+                                + " " + request.getParameter("expofinal") + " " + request.getParameter("expoinv"));
+
+                try {
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    List<String> listaRetorno = new ArrayList<>();
+                    while ((line = reader.readLine()) != null) {
+                        listaRetorno.add(line);
+                        System.out.println(line);
+                    }
+                    result.include("retorno", listaRetorno);
+                    reader.close();
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    @Path("/visualizarAnalises")
+    public void visualizarAnalises() {
+        System.out.println("########################" + System.getProperty("user.dir"));
+    }
     
     @Path("/funcaoPrincipal")
     public void funcaoPrincipal() {
@@ -200,49 +233,5 @@ public class PrincipalController {
 
     }
 
-    @Path("/gerarAnalise")
-    public void gerarAnalise() {
- 
-        if (request.getMethod().equals("POST")) {
-                   System.out.println(request.getParameter("desc"));
-            try {
-
-                Process process = Runtime.getRuntime()
-                        .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\principal.r "
-                                + request.getParameter("area") + " " + request.getParameter("amostra")
-                                + " " + request.getParameter("desc").replace(" ", "_") + " " + request.getParameter("interpolador") 
-                                + " " + request.getParameter("tamx") + " " + request.getParameter("tamy") 
-                                + " " + request.getParameter("expoente")+ " " + request.getParameter("vizinhos")
-                                + " " + request.getParameter("estimador") + " " + request.getParameter("nlags")
-                                + " " + request.getParameter("npares") + " " + request.getParameter("nalcance")
-                                + " " + request.getParameter("ncontri") + " " + request.getParameter("user")
-                                + " " + request.getParameter("modelo")+ " " + request.getParameter("vlkappa")
-                                + " " + request.getParameter("semicorlinha")+ " " + request.getParameter("metodoajust")
-                                + " " + request.getParameter("pesos")+ " " + request.getParameter("expoini")
-                                + " " + request.getParameter("expofinal")+ " " + request.getParameter("expoinv"));
-
-                try {
-                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line = null;
-                    List<String> listaRetorno = new ArrayList<>();
-                    while ((line = reader.readLine()) != null) {
-                        listaRetorno.add(line);
-                        System.out.println(line);
-                    }
-                    result.include("retorno", listaRetorno);
-                    reader.close();
-                } catch (final Exception e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e1) {
-               e1.printStackTrace();
-            }
-        }
-    }
-
-    @Path("/visualizarAnalises")
-    public void visualizarAnalises(){
-         System.out.println("########################" + System.getProperty("user.dir"));
-    }
+    
 }
