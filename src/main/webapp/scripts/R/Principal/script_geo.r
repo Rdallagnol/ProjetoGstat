@@ -47,3 +47,12 @@ amostra
 desc
 tam_pixel_x
 tam_pixel_y
+#############################################################################################
+######## INICIO 1° ETAPA - VARIAVEIS ############
+
+## ESCOLHA DO INDICE DE (PEDIR DETALHES ????) PARA ESCOLHA DO MELHOR MODELO (ISI OU ICE)
+# PARAMETRO DE TELA = ? (SIM,NÃO)
+ISI = TRUE	#ISI = FALSE	
+
+ISI
+
