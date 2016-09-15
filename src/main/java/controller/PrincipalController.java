@@ -44,6 +44,7 @@ public class PrincipalController {
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S  
                         + Constantes.ENDERECO_FILE + " "
+                        + request.getParameter("user")+ " "                       
                         + request.getParameter("area")+ " "
                         + request.getParameter("amostra")+ " "
                         + request.getParameter("desc")+ " "

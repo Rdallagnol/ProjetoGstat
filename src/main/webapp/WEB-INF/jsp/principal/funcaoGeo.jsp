@@ -7,7 +7,7 @@
                 <div class="bs-docs-text"> Informações </div>
                 <div>
                     Usuário : <b>Rodrigo</b>
-                    <input id="user" type="hidden" name="user" value="Rodrigo_1" class="input-mini"/>
+                    <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
                 </div>
                 <hr>
                 <!-- SERÁ NECESSÁRIO UMA CONEXÃO COM O BANCO DE DADOS PARA BUSCAR ESSAS INFORMAÇÕES-->
