@@ -48,6 +48,11 @@ public class PrincipalController {
                         + request.getParameter("area")+ " "
                         + request.getParameter("amostra")+ " "
                         + request.getParameter("desc")+ " "
+                        + request.getParameter("isi")+ " "
+                        + request.getParameter("v_lambda")+ " "
+                        + request.getParameter("auto_lags")+ " "
+                        + request.getParameter("estimador")+ " "
+                        + request.getParameter("cutoff")+ " "
                         + request.getParameter("tamx")+ " "
                         + request.getParameter("tamy")+ " ");
 

@@ -31,7 +31,7 @@
                         </div>
                     </div>               
                 </div>
-               
+
                 <div class="row-fluid">
                     <div class="span3">
                         <label for="desc">Descrição:</label>
@@ -58,6 +58,49 @@
                         </div>
                     </div>                 
                 </div>
+
+                <div class="">
+                    <div class="bs-docs-example span12" style="margin-left: 0px;">
+                        <div class="bs-docs-text">Avançado</div>
+
+                        <div class="row-fluid" style="">
+                            <div class="span3">
+                                <label for="auto_lags">ISI</label>
+                                <select id="isi" name="isi" class="input-mini">
+                                    <option value="true" selected="selected">Sim</option>
+                                    <option value="false">Não</option>                                 
+                                </select>
+
+                                <label for="v_lambda">Valor Lambda</label>
+                                <input id="v_lambda" type="text" name="v_lambda" class="input-mini" value="1"/>
+                            </div>
+                            <div class="span3">
+                                <label for="auto_lags">Lags Automáticos</label>
+                                <select id="auto_lags" name="auto_lags" class="input-mini">
+                                    <option value="true" selected="selected">Sim</option>
+                                    <option value="false">Não</option>                                 
+                                </select>
+
+                                <label for="nro_lags">Nº De Lags</label>
+                                <input id="nro_lags" type="text" name="nro_lags" class="input-mini" value="11"/>
+
+                            </div>
+                            <div class="span3">
+                                <label for="estimador">Estimador</label>
+                                <select id="estimador" name="estimador" class="input-large">
+                                    <option value="classical" selected="selected">Matheron - Classical</option>
+                                    <option value="modulus">Cressie - Modulus</option>                                 
+                                </select>
+
+                                <label for="cutoff">Cutoff</label>
+                                <input id="cutoff" type="text" name="cutoff" class="input-mini" value="50"/>
+                            </div>
+                            
+                        </div>
+
+                    </div>                 
+                </div>
+
             </div>
         </div>
 
@@ -70,6 +113,8 @@
         </div>
 
     </form>
+    
+    
 </div>
 
 <%@include file="../template/footer.jsp" %>

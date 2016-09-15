@@ -6,8 +6,15 @@ usuario<-as.numeric(args[2])
 area<-as.numeric(args[3])
 amostra<-as.numeric(args[4])
 desc<-args[5]
-tam_pixel_x<-as.numeric(args[6])
-tam_pixel_y<-as.numeric(args[7])
+
+ISI<-args[6]
+v_lambda<-as.numeric(args[7])
+auto_lags<-args[8]
+estimador<-args[9]
+cutoff<-as.numeric(args[10])
+tam_pixel_x<-as.numeric(args[11])
+tam_pixel_y<-as.numeric(args[12])
+
 #### FIM BLOCO QUE RECEBERA OS ARGUMENTOS DA TELA E REALIZARA OS TRATAMENTOS ####
 
 ###### INICIO ETAPA DE DEFINIÇÃO DE CONFIGURAÇÃO #############
@@ -23,6 +30,21 @@ ifelse(!dir.exists(file.path(mainDir, subDir)), dir.create(file.path(mainDir, su
 #AQUI DEFINE A PASTA QUE DEVE SER ARMAZENADO OS GRÁFICOS
 setwd(paste(paste(mainDir,"/",sep = ""),subDir,sep = ""))
 ############ FIM ETAPA DE DEFINIÇÃO DE CONFIGURAÇÃO #############################
+
+mainDir
+usuario
+area
+amostra
+desc
+
+ISI
+v_lambda
+auto_lags
+estimador
+cutoff
+tam_pixel_x
+tam_pixel_y
+
 
 require(geoR)
 require(splancs)
@@ -169,10 +191,3 @@ dev.off()
 dbDisconnect(con)
 
 
-mainDir
-usuario
-area
-amostra
-desc
-tam_pixel_x
-tam_pixel_y	
