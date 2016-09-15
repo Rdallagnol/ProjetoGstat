@@ -5,6 +5,7 @@
  */
 package controller;
 
+import config.Constantes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
@@ -39,9 +40,15 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
+                System.out.println(Constantes.ENDERECO_FILE);
                 Process process = Runtime.getRuntime()
-                        .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                                + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r");
+                        .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S  
+                        + Constantes.ENDERECO_FILE + " "
+                        + request.getParameter("area")+ " "
+                        + request.getParameter("amostra")+ " "
+                        + request.getParameter("desc")+ " "
+                        + request.getParameter("tamx")+ " "
+                        + request.getParameter("tamy")+ " ");
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
