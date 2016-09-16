@@ -51,6 +51,7 @@ public class PrincipalController {
                         + request.getParameter("isi")+ " "
                         + request.getParameter("v_lambda")+ " "
                         + request.getParameter("auto_lags")+ " "
+                        + request.getParameter("nro_lags")+ " "
                         + request.getParameter("estimador")+ " "
                         + request.getParameter("cutoff")+ " "
                         + request.getParameter("tamx")+ " "

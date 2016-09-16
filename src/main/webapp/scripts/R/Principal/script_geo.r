@@ -10,10 +10,11 @@ desc<-args[5]
 ISI<-args[6]
 v_lambda<-as.numeric(args[7])
 auto_lags<-args[8]
-estimador<-args[9]
-cutoff<-as.numeric(args[10])
-tam_pixel_x<-as.numeric(args[11])
-tam_pixel_y<-as.numeric(args[12])
+nro_lags<-as.numeric(args[9])
+estimador<-args[10]
+cutoff<-as.numeric(args[11])
+tam_pixel_x<-as.numeric(args[12])
+tam_pixel_y<-as.numeric(args[13])
 
 #### FIM BLOCO QUE RECEBERA OS ARGUMENTOS DA TELA E REALIZARA OS TRATAMENTOS ####
 
@@ -38,18 +39,19 @@ amostra
 desc
 
 if (ISI == "true") {
-   ISI<-TRUE
+   ISI <- TRUE
 } else {
-   ISI<-FALSE
+   ISI <- FALSE
 }
 ISI
 v_lambda
 if (auto_lags == "true") {
-   auto_lags<-TRUE
+   auto_lags <- TRUE
 } else {
-   auto_lags<-FALSE
+   auto_lags <- FALSE
 }
 auto_lags
+nro_lags
 estimador
 cutoff
 tam_pixel_x
@@ -82,7 +84,7 @@ ISI = TRUE	#ISI = FALSE
 v_lambda = 1 # 1 = dados NÃO transformados,
 	     # 0 = dados transformados
 
-auto_lags= TRUE		# parametro que define automaticamente o nro de lags
+auto_lags= auto_lags		# parametro que define automaticamente o nro de lags
 
 nro_lags = 11 		# parametro semivariograma KO que estipula o nro de lags arbitrariamente
 
