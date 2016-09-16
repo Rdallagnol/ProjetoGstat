@@ -41,13 +41,15 @@ public class PrincipalController {
         if (request.getMethod().equals("POST")) {
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
+                
+                
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S  
                         + Constantes.ENDERECO_FILE + " "
                         + request.getParameter("user")+ " "                       
                         + request.getParameter("area")+ " "
                         + request.getParameter("amostra")+ " "
-                        + request.getParameter("desc")+ " "
+                        + '"'+request.getParameter("desc")+'"'+ " "
                         + request.getParameter("isi")+ " "
                         + request.getParameter("v_lambda")+ " "
                         + request.getParameter("auto_lags")+ " "
