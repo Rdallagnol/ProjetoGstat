@@ -100,7 +100,7 @@
                                 <label for="nro_intervalos_alc">Nº Intervalo Alcance</label>
                                 <input id="nro_intervalos_alc" type="text" name="nro_intervalos_alc" class="input-mini" value="5"/>
 
-                                <label for="nro_intervalos_contr">Nº Intervalo Contribuiçao</label>
+                                <label for="nro_intervalos_contr">Nº Intervalo Contribuição</label>
                                 <input id="nro_intervalos_contr" type="text" name="nro_intervalos_contr" class="input-mini" value="5"/>
 
                             </div>
