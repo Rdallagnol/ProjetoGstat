@@ -37,8 +37,18 @@ area
 amostra
 desc
 
+if (ISI == "true") {
+   ISI<-TRUE
+} else {
+   ISI<-FALSE
+}
 ISI
 v_lambda
+if (auto_lags == "true") {
+   auto_lags<-TRUE
+} else {
+   auto_lags<-FALSE
+}
 auto_lags
 estimador
 cutoff

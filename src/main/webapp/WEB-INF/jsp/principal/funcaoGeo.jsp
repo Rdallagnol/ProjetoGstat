@@ -43,7 +43,6 @@
 
 
         <div class="row-fluid" style="">
-
             <div class="bs-docs-example span12" >                       
                 <div class="bs-docs-text "> Configurações </div>
                 <div class="">
@@ -95,12 +94,9 @@
                                 <label for="cutoff">Cutoff</label>
                                 <input id="cutoff" type="text" name="cutoff" class="input-mini" value="50"/>
                             </div>
-                            
                         </div>
-
                     </div>                 
                 </div>
-
             </div>
         </div>
 
@@ -113,8 +109,8 @@
         </div>
 
     </form>
-    
-    
+
+
 </div>
 
 <%@include file="../template/footer.jsp" %>
