@@ -166,34 +166,7 @@ public class PrincipalController {
         }
     }
 
-    @Path("/insereBanco")
-    public void insereBanco() {
-
-        try {
-
-            Process process = Runtime.getRuntime()
-                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\scriptTeste.r 8 9");
-
-            try {
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line = null;
-                List<String> listaRetorno = new ArrayList<>();
-                while ((line = reader.readLine()) != null) {
-                    listaRetorno.add(line);
-                    System.out.println("LINE " + line);
-
-                }
-                result.include("mensagem", listaRetorno);
-                reader.close();
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-    }
+    
 
     @Path("/exibeImagem")
     public void exibeImagem() {
@@ -208,47 +181,7 @@ public class PrincipalController {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
-    }
-
-    @Path("/passaParametros")
-    public void passaParametros() {
-        String x1 = request.getParameter("x1");
-        String x2 = request.getParameter("x2");
-        System.out.println(request.getMethod());
-        System.out.println(x1);
-        System.out.println(x2);
-        if (request.getMethod().equals("POST")) {
-
-            if (x1 != null && x2 != null) {
-                try {
-
-                    Process process = Runtime.getRuntime()
-                            .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                                    + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\scriptTeste.r " + x1 + " " + x2);
-
-                    try {
-                        final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                        String line = null;
-                        List<String> listaRetorno = new ArrayList<>();
-                        while ((line = reader.readLine()) != null) {
-                            listaRetorno.add(line);
-
-                        }
-                        result.include("retorno", listaRetorno);
-                        reader.close();
-                    } catch (final Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            } else {
-                result.include("retorno", "NÃO FOI POSSÍVEL INSERIR");
-            }
-        }
-
-    }
+    }  
 
     
 }
