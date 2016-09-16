@@ -15,6 +15,19 @@ estimador<-args[10]
 cutoff<-as.numeric(args[11])
 tam_pixel_x<-as.numeric(args[12])
 tam_pixel_y<-as.numeric(args[13])
+nro_intervalos_alc<-as.numeric(args[14])
+nro_intervalos_contr<-as.numeric(args[15])
+
+if (ISI == "true") {
+   ISI <- TRUE
+} else {
+   ISI <- FALSE
+}
+if (auto_lags == "true") {
+   auto_lags <- TRUE
+} else {
+   auto_lags <- FALSE
+}
 
 #### FIM BLOCO QUE RECEBERA OS ARGUMENTOS DA TELA E REALIZARA OS TRATAMENTOS ####
 
@@ -38,26 +51,19 @@ area
 amostra
 desc
 
-if (ISI == "true") {
-   ISI <- TRUE
-} else {
-   ISI <- FALSE
-}
 ISI
 v_lambda
-if (auto_lags == "true") {
-   auto_lags <- TRUE
-} else {
-   auto_lags <- FALSE
-}
 auto_lags
 nro_lags
 estimador
 cutoff
 tam_pixel_x
 tam_pixel_y
+nro_intervalos_alc
+nro_intervalos_contr
 
 
+## BIBLIOTECAS UTULIZADAS ##
 require(geoR)
 require(splancs)
 require(classInt)
@@ -78,27 +84,27 @@ require (nortest)
 
 ## ESCOLHA DO INDICE DE (PEDIR DETALHES ????) PARA ESCOLHA DO MELHOR MODELO (ISI OU ICE)
 # PARAMETRO DE TELA = ? (SIM,NÃO)
-ISI = TRUE	#ISI = FALSE	
+ISI = ISI	#ISI = FALSE	
 
 ## VARIAVEIS PARA SEMIVARIOGRAMA	 
-v_lambda = 1 # 1 = dados NÃO transformados,
+v_lambda = v_lambda # 1 = dados NÃO transformados,
 	     # 0 = dados transformados
 
 auto_lags= auto_lags		# parametro que define automaticamente o nro de lags
 
-nro_lags = 11 		# parametro semivariograma KO que estipula o nro de lags arbitrariamente
+nro_lags = nro_lags		# parametro semivariograma KO que estipula o nro de lags arbitrariamente
 
-estimador = "classical" #parametro semivariograma KO = Matheron
+estimador = estimador #parametro semivariograma KO = Matheron
 #estimador = "modulus"	#parametro semivariograma OK = Cressie
 
 # PARAMETRO SEMIVARIOGRAMA KO
-cutoff = 50		# porcentagem da distancia maxima entre os pontos
+cutoff = cutoff		# porcentagem da distancia maxima entre os pontos
 
-nro_pares = 30 
+nro_pares = nro_pares 
 
-nro_intervalos_alc= 5 	#parametro Alcance parametros do semivariograma (KO)
+nro_intervalos_alc= nro_intervalos_alc 	#parametro Alcance parametros do semivariograma (KO)
 
-nro_intervalos_contr= 5 #parametro Contribuição parametros do semivariograma (KO)
+nro_intervalos_contr= nro_intervalos_contr #parametro Contribuição parametros do semivariograma (KO)
 
 #parâmetros adicionados em 13/07/2016 (bt) # par
 #parâmetros do expand.grid para criar vals da matriz de contribuição/alcance

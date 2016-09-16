@@ -55,7 +55,9 @@ public class PrincipalController {
                         + request.getParameter("estimador")+ " "
                         + request.getParameter("cutoff")+ " "
                         + request.getParameter("tamx")+ " "
-                        + request.getParameter("tamy")+ " ");
+                        + request.getParameter("tamy")+ " "
+                        + request.getParameter("nro_intervalos_alc")+ " "
+                        + request.getParameter("nro_intervalos_contr")+ " ");
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

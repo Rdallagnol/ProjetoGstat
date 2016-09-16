@@ -94,6 +94,16 @@
                                 <label for="cutoff">Cutoff</label>
                                 <input id="cutoff" type="text" name="cutoff" class="input-mini" value="50"/>
                             </div>
+                            
+                            
+                            <div class="span3">
+                                <label for="nro_intervalos_alc">Nº Intervalo Alcance</label>
+                                <input id="nro_intervalos_alc" type="text" name="nro_intervalos_alc" class="input-mini" value="5"/>
+
+                                <label for="nro_intervalos_contr">Nº Intervalo Contribuiçao</label>
+                                <input id="nro_intervalos_contr" type="text" name="nro_intervalos_contr" class="input-mini" value="5"/>
+
+                            </div>
                         </div>
                     </div>                 
                 </div>
