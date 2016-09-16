@@ -63,7 +63,7 @@ nro_intervalos_alc
 nro_intervalos_contr
 
 
-## BIBLIOTECAS UTULIZADAS ##
+## BIBLIOTECAS UTILIZADAS ##
 require(geoR)
 require(splancs)
 require(classInt)
@@ -182,9 +182,17 @@ skewness(dados$data)
 kurtosis(dados$data)
 length(dados$data)
 
-# GRÁFICOS DESCRITIVOS 
-plot(dados) 
+# GRÁFICOS DESCRITIVOS  
+x=paste("plot",".png",sep = "")
+png(x)
+plot(dados)
+dev.off()
+
 hist(dados$data)
+x=paste("histograma",".png",sep = "")
+png(x)
+hist(dados$data)
+dev.off()
 
 #EXIBIR GRÁFICO (ARMAZENAR)
 x=paste("boxplot",".png",sep = "")
