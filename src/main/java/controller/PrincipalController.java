@@ -121,11 +121,6 @@ public class PrincipalController {
             }
         }
     }
-
-    @Path("/visualizarAnalises")
-    public void visualizarAnalises() {
-        System.out.println("########################" + System.getProperty("user.dir"));
-    }
     
     @Path("/funcaoPrincipal")
     public void funcaoPrincipal() {
