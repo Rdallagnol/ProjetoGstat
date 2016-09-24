@@ -18,12 +18,12 @@
     </form>
 
 </div>
-
-
-<div class="row-fluid bs-docs-example">
-    <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/boxplot.png">
-    <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/histograma.png">
-    <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/postplot.png">
-    <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/plot.png">
-</div>
+<c:if test="${not empty userID}">
+    <div class="row-fluid bs-docs-example">
+        <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/boxplot.png">
+        <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/histograma.png">
+        <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/postplot.png">
+        <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/plot.png">
+    </div>
+</c:if>
 <%@include file="../template/footer.jsp" %>
