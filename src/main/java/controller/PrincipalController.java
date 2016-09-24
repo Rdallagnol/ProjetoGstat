@@ -58,7 +58,8 @@ public class PrincipalController {
                         + request.getParameter("tamx")+ " "
                         + request.getParameter("tamy")+ " "
                         + request.getParameter("nro_intervalos_alc")+ " "
-                        + request.getParameter("nro_intervalos_contr")+ " ");
+                        + request.getParameter("nro_intervalos_contr")+ " "
+                        + request.getParameter("nro_pares")+ " ");
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

@@ -63,47 +63,58 @@
                         <div class="bs-docs-text">Avançado</div>
 
                         <div class="row-fluid" style="">
-                            <div class="span3">
+                            <div class="span4">
                                 <label for="auto_lags">ISI</label>
                                 <select id="isi" name="isi" class="input-mini">
                                     <option value="true" selected="selected">Sim</option>
                                     <option value="false">Não</option>                                 
                                 </select>
 
-                                <label for="v_lambda">Valor Lambda</label>
-                                <input id="v_lambda" type="text" name="v_lambda" class="input-mini" value="1"/>
-                            </div>
-                            <div class="span3">
+                                <label for="v_lambda">Transformar dados?</label>
+                                <select id="v_lambda" name="v_lambda" class="input-mini">
+                                    <option value="1" selected="selected">Sim</option>
+                                    <option value="0">Não</option>                                 
+                                </select>
+                                
+                                
                                 <label for="auto_lags">Lags Automáticos</label>
                                 <select id="auto_lags" name="auto_lags" class="input-mini">
                                     <option value="true" selected="selected">Sim</option>
                                     <option value="false">Não</option>                                 
                                 </select>
+                            </div>
+                            <div class="span4">
+                                
 
                                 <label for="nro_lags">Nº De Lags</label>
                                 <input id="nro_lags" type="text" name="nro_lags" class="input-mini" value="11"/>
 
-                            </div>
-                            <div class="span3">
-                                <label for="estimador">Estimador</label>
+                                
+                                 <label for="nro_pares">Nº De Pares</label>
+                                <input id="nro_pares" type="text" name="nro_pares" class="input-mini" value="30"/>
+                                
+                                 <label for="estimador">Estimador</label>
                                 <select id="estimador" name="estimador" class="input-large">
                                     <option value="classical" selected="selected">Matheron - Classical</option>
                                     <option value="modulus">Cressie - Modulus</option>                                 
                                 </select>
+                            </div>
+                            <div class="span4">
+                               
 
                                 <label for="cutoff">Cutoff</label>
                                 <input id="cutoff" type="text" name="cutoff" class="input-mini" value="50"/>
-                            </div>
-                            
-                            
-                            <div class="span3">
-                                <label for="nro_intervalos_alc">Nº Intervalo Alcance</label>
+                                
+                                 <label for="nro_intervalos_alc">Nº Intervalo Alcance</label>
                                 <input id="nro_intervalos_alc" type="text" name="nro_intervalos_alc" class="input-mini" value="5"/>
 
                                 <label for="nro_intervalos_contr">Nº Intervalo Contribuição</label>
                                 <input id="nro_intervalos_contr" type="text" name="nro_intervalos_contr" class="input-mini" value="5"/>
 
                             </div>
+                            
+                            
+                         
                         </div>
                     </div>                 
                 </div>

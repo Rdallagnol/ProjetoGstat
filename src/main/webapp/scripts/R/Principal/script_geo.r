@@ -17,6 +17,7 @@ tam_pixel_x<-as.numeric(args[12])
 tam_pixel_y<-as.numeric(args[13])
 nro_intervalos_alc<-as.numeric(args[14])
 nro_intervalos_contr<-as.numeric(args[15])
+nro_pares<-as.numeric(args[16])
 
 if (ISI == "true") {
    ISI <- TRUE
@@ -89,7 +90,7 @@ ISI = ISI	#ISI = FALSE
 ## VARIAVEIS PARA SEMIVARIOGRAMA	 
 v_lambda = v_lambda # 1 = dados NÃO transformados,
 	     # 0 = dados transformados
-
+v_lambda
 auto_lags= auto_lags		# parametro que define automaticamente o nro de lags
 
 nro_lags = nro_lags		# parametro semivariograma KO que estipula o nro de lags arbitrariamente
@@ -100,11 +101,11 @@ estimador = estimador #parametro semivariograma KO = Matheron
 # PARAMETRO SEMIVARIOGRAMA KO
 cutoff = cutoff		# porcentagem da distancia maxima entre os pontos
 
-nro_pares = nro_pares 
+nro_pares = nro_pares
 
-nro_intervalos_alc= nro_intervalos_alc 	#parametro Alcance parametros do semivariograma (KO)
+nro_intervalos_alc = nro_intervalos_alc 	#parametro Alcance parametros do semivariograma (KO)
 
-nro_intervalos_contr= nro_intervalos_contr #parametro Contribuição parametros do semivariograma (KO)
+nro_intervalos_contr = nro_intervalos_contr #parametro Contribuição parametros do semivariograma (KO)
 
 #parâmetros adicionados em 13/07/2016 (bt) # par
 #parâmetros do expand.grid para criar vals da matriz de contribuição/alcance
