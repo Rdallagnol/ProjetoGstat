@@ -66,7 +66,7 @@
                                             <a href="<c:url value="/funcaoGeo"/>">Gerar Analise</a>
                                         </li>
                                           <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/visualizarAnalises"/>">Visualizar Analises</a>
+                                            <a href="<c:url value="/visualizaGeo"/>">Visualizar Analises</a>
                                         </li>
                                     </div>
                                 </ul>
