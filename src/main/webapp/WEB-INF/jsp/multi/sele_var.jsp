@@ -67,27 +67,33 @@
 
                     </div>
 
-                    <div class="span3"   >
+                    <div class="span3" >
                         <label for="var">Variáveis selecionadas</label>
                         <select multiple size="10" >
-
+                            <option value="argila">Argila</option>
+                            <option value="rsp">RSP 0-10</option>
+                            <option value="SPC3">SPC 3</option>
                         </select>
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-minus-sign"></i></button>
+
+
                     </div>
+                    <div class="span3" >
+                        <label for="desc">Percentual mínimo da variância</label>
+                        <input id="perc" type="number" name="perc" value="5"class="input-mini" required="true"/>
+                    </div>
+
                 </div>
-
-
             </div>
-        </div>
 
 
-        <div class="btn span11" style="visibility: hidden"></div>
-        <div class="navbar navbar-fixed-bottom">
-            <center>
-                <button class="btn btn-large btn-primary" type="submit">Enviar</button>
-            </center>
-        </div>
+            <div class="btn span11" style="visibility: hidden"></div>
+            <div class="navbar navbar-fixed-bottom">
+                <center>
+                    <button class="btn btn-large btn-primary" type="submit">Enviar</button>
+                </center>
+            </div>
 
     </form>
 
