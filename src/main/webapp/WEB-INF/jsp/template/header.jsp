@@ -81,10 +81,10 @@
                                 <ul class="nav nav-pills ">
                                     <div id="menuZ"  class="collapse in ">                                       
                                         <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/p1"/>">P1</a>
+                                            <a href="<c:url value="/sele_var"/>">Sel. variáveis agrupamento</a>
                                         </li>
                                         <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/p2"/>">P2</a>
+                                            <a href="<c:url value="/p2"/>">Exec. métodos agrupamento</a>
                                         </li>
                                     </div>
                                 </ul>

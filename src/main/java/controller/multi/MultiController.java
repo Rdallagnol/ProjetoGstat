@@ -26,8 +26,8 @@ public class MultiController {
     private HttpServletRequest request;
 
 
-    @Path("/p1")
-    public void p1() {
+    @Path("/sele_var")
+    public void sele_var() {
 
     }
 }
