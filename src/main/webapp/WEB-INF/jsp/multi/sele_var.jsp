@@ -80,9 +80,16 @@
 
                     </div>
                     <div class="span3" >
-                        <label for="desc">Percentual mínimo da variância</label>
-                        <input id="perc" type="number" name="perc" value="5"class="input-mini" required="true"/>
+                        <div>
+                            <label for="perc">Percentual mínimo da variância</label>
+                            <input id="perc" type="number" name="perc" value="5"class="input-mini" required="true"/>
+                        </div>
+                        <div id="raio_dv">
+                            <label for="raio">Raio de vizinhança (<span class="label label-info">Metros</span>)</label>
+                            <input id="raio" type="number" name="raio" value="5"class="input-mini" />
+                        </div>
                     </div>
+
 
                 </div>
             </div>
