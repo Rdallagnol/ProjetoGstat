@@ -78,7 +78,8 @@ public class PrincipalController {
                 }
                 System.out.println(userID);
                 System.out.println(analiseDesc);
-                result.redirectTo(PrincipalController.class).visualizaGeo();
+                
+                //result.redirectTo(PrincipalController.class).visualizaGeo();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
