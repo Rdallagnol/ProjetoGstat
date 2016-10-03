@@ -216,9 +216,7 @@ dev.off()
 max_dist <- max(dist(dados$coords))
 min_dist <- min(dist(dados$coords))
 vlr_cutoff <- max_dist*cutoff/100 
-max_dist
-min_dist
-vlr_cutoff
+
 
 if (auto_lags==TRUE){
     nro_lags = round(vlr_cutoff/min_dist)	## menor distancia das variancias
@@ -228,7 +226,7 @@ if (auto_lags==TRUE){
 dados.var <- variog(dados,coords=dados$coords, data=dados$data,
 		uvec=seq(min_dist,vlr_cutoff,l=nro_lags), lambda=v_lambda,
 	 	estimator.type=estimador, max.dist=vlr_cutoff, pairs.min=nro_pares) 
-dados.var
+
 
 x=paste("semi_experi",".png",sep = "")
 png(x)
@@ -253,7 +251,6 @@ if (min_seq_contr==0){
     min_seq_contr = min_var		
 }
 
-min_seq_alc
 vals <- expand.grid(seq(min_seq_contr,max_var, l=nro_intervalos_contr), 
 seq(min_seq_alc, vlr_cutoff, l=nro_intervalos_alc))
 
@@ -270,13 +267,8 @@ dimnames = list(c(),c("modelo","metodo","min_ice", "melhor_contrib", "melhor_alc
 
 vetor_ice = c()  ### vetor para armazenar o menor ice de cada molelo
 
-t_modelos
-t_kappa 
 j=0
-j
-nro_modelo
 metodo="wl"
-
 
 while (j<nro_modelo)
     {
@@ -302,30 +294,21 @@ while (j<nro_modelo)
 	vetor_sdae=c()
 
 	j=j+1
-	j
+	
 	modelo = t_modelos$V1[j]
 	vlr_kappa = as.numeric(t_kappa$V1[j])
 	cor_linha_ols = t_cor_linha_ols$V1[j]
 	metodo = t_metodo$V1[j]
 	
-
-
-	modelo
-	vlr_kappa
-	metodo
-	i=0
-	i
-	cont
+	i=0	
 	t_cont = 0  # zera a variável que armazena o tamanho da tabela table_ice de cada modelo# bt 23/05/2016
 
 	while (i<cont)
 	{
-            i= i+1
-            i
+            i= i+1         
             contrib = as.numeric(vals$Var1[i])
             alcance = as.numeric(vals$Var2[i])
-            contrib
-            alcance
+          
             if (modelo=="matern"){
                 if (metodo=="ols"){
                     variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
@@ -344,7 +327,6 @@ while (j<nro_modelo)
 	    
             #armazena informções da validação cruzada em variáveis
 	    vc=xvalid(dados,model=variograma.ols,micro.scale=0)
-            vc
             emr=1
             dp_emr =1
             dp_emr_1 = 0
@@ -357,8 +339,7 @@ while (j<nro_modelo)
             }
 	    vc$error
             em = round(mean (vc$error),digits=20) #erro médio
-            em
-        
+                 
             ##### DPem  calculado - bt - 08/07/2016  ###########
             nro_amostras = length(vc$error)   #conta o número de elementos
             n = 0
@@ -370,23 +351,17 @@ while (j<nro_modelo)
             }
             media_em2 = somatorio / nro_amostras   	#média dos erros médios ao quadrado
             dp_em = sqrt(media_em2)				#raiz quadrada da média dos erros médios ao quadrado
-            media_em2
-            dp_em
             ###########################################
 
             ea=round(sum(abs(vc$predicted-vc$data)),digits=20)  	#armazenar informções do erro absoluto
 
-            ############# BT 09/06/2016 # ISI
-	    vc
+            ############# BT 09/06/2016 # ISI	   
 	    vc$data
-	    vc$predicted
-	    em
-            dif = (vc$data - vc$predicted)^2
-	    dif
-	    media_dif = mean(dif)
-            media_dif
+	    vc$predicted	   
+            dif = (vc$data - vc$predicted)^2	  
+	    media_dif = mean(dif)          
             sdae = sqrt(media_dif)
-            sdae
+         
             ###################################
 
             #popula vetores com informações da validação cruzada
@@ -404,16 +379,12 @@ while (j<nro_modelo)
 	    vetor_sdae = rbind(vetor_sdae,c(sdae))
 
 	    #popula matriz com informações da validação cruzada
-	    matriz_vc<-rbind(matriz_vc,c(modelo,em,emr,dp_em,dp_emr,dp_emr_1,ea,metodo,sdae))
-	    matriz_vc
+	    matriz_vc<-rbind(matriz_vc,c(modelo,em,emr,dp_em,dp_emr,dp_emr_1,ea,metodo,sdae))	 
 
             t_cont = t_cont +1    ###variável para armazenar o tamanho da tabela table_ice # bt 23/05/2016
 
 	}
         
-        matriz_vc
-
-
         ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
 	if (ISI==TRUE)
 	{
@@ -422,10 +393,7 @@ while (j<nro_modelo)
             #####################
             max_abs_em = max (abs(vetor_em))
             min_abs_sdae = min (abs(vetor_sdae))
-            max_abs_sdae = max (abs(vetor_sdae))
-            max_abs_em
-            min_abs_sdae
-            max_abs_sdae
+            max_abs_sdae = max (abs(vetor_sdae))       
 
             A = (abs(vetor_em))/max_abs_em
             B = ((abs(vetor_sdae)) - min_abs_sdae)/ max_abs_sdae
@@ -436,25 +404,21 @@ while (j<nro_modelo)
             #####################
             max_abs_emr = max (abs(vetor_emr))
             max_abs_dp_emr_1 = max (abs(vetor_dp_emr_1))
-            max_abs_dp_emr_1
-            max_abs_emr		
+      
             A = (abs(vetor_emr))/max_abs_emr
             B = (abs(vetor_dp_emr_1))/max_abs_dp_emr_1
 	}
 
-	A
-	B
+
 	ice = round(A + B, digits=20)
-        ice
+    
         ##################################################################
         ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
         ##################################################################
 	
 	min_ice=min(ice)
-        min_ice
-	
+
         table_ice <- data.table(cbind(ice, vetor_contr, vetor_alcance, vetor_modelo, vetor_metodo, vetor_vlr_kappa, vetor_em, vetor_dp_em))
-	table_ice
 
 	i=0
 
@@ -473,21 +437,14 @@ while (j<nro_modelo)
             } 
 	}
 
-	table_ice
-	melhor_contrib
-	melhor_alcance
-	melhor_modelo
-	melhor_metodo
-	melhor_vlr_kappa
-	melhor_em
-	melhor_dp_em
+	
 	a= "aaaaaaaaaaaaaaaaaaaaa"
         a
 	#popula matriz com informações do melhor ICE de cada modelo
 	matriz_ice<-rbind(matriz_ice,c(modelo, metodo, min_ice, melhor_contrib, melhor_alcance, melhor_vlr_kappa, j, melhor_em, melhor_dp_em))
-	matriz_ice
+	
 	vetor_ice = rbind(vetor_ice,c(min_ice))  ### vetor para armazenar o menor ice de cada molelo
-	vetor_ice
+
     }
 
 ## FIM 3° ETAPA ###

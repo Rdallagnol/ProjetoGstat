@@ -1,6 +1,6 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" >
-    <form action="funcaoGeo" method="post">
+    <form action="" method="post">
         <div class="row-fluid" style="">
 
             <div class="bs-docs-example">
@@ -36,7 +36,7 @@
 
         <div class="row-fluid" style="">
             <div class="bs-docs-example span12" >                       
-                <div class="bs-docs-text "> Configurações </div>
+                <div class="bs-docs-text "> Etapa 1 </div>
                 <div class="row-fluid">
                     <div class="span3">
                         <label for="metodo">Métodos de seleção de variáveis</label>
@@ -92,20 +92,77 @@
 
 
                 </div>
+                <div class="">
+                    <center>
+                        <button class="btn btn-large btn-primary" type="submit">Enviar</button>
+                    </center>
+                </div>
             </div>
 
 
-            <div class="btn span11" style="visibility: hidden"></div>
-            <div class="navbar navbar-fixed-bottom">
-                <center>
-                    <button class="btn btn-large btn-primary" type="submit">Enviar</button>
-                </center>
-            </div>
+        </div>
+
+        
+
 
     </form>
 
+</div>    
+
+
+
+
+<!-- Segunda tela --> 
+<div class="row-fluid" >
+    <div class="row-fluid" style="">
+        <div class="bs-docs-example span12" >                       
+            <div class="bs-docs-text "> Etapa 2 </div>
+
+
+            <form action="" method="post">
+                <table class="table table-bordered">
+                    <tr>
+                        <th></th>
+                        <th>Comp. Principal</th>
+                        <th>Perc. Variância</th>
+                        <th>Perc. Acumulado</th>
+                    </tr>
+                    <tr>
+                        <td><input  id="" name="" type="checkbox" /></td>
+                        <td>CP 3</td>
+                        <td>11,0%</td>
+                        <td>11,0%</td>
+                    </tr>
+                    <tr>
+                        <td><input id="" name="" type="checkbox" /></td>
+                        <td>CP 4</td>
+                        <td>3,0%</td>
+                        <td>14,0%</td>
+                    </tr>
+                    <tr>
+                        <td><input id="" name="" type="checkbox" /></td>
+                        <td>CP 5</td>
+                        <td>14,0%</td>
+                        <td>15,0%</td>
+                    </tr>
+                </table> 
+                <hr>
+                <div class="">
+                    <center>
+                        <button class="btn btn-large btn-primary" type="submit">Interpolar CPs</button>
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
 
 </div>
+
+
+
+
 
 <%@include file="../template/footer.jsp" %>
 
