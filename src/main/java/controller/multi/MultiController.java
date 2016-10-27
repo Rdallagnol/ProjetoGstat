@@ -30,4 +30,9 @@ public class MultiController {
     public void sele_var() {
 
     }
+    
+    @Path("/sele_agru")
+    public void sele_agru() {
+
+    }
 }
