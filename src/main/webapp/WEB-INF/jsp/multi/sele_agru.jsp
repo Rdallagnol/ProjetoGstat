@@ -41,7 +41,7 @@
                     <div class="span3">
                         <label for="metodo">Métodos de agrupamento de dados</label>
 
-                        <select multiple size="10" >
+                        <select multiple size="12" style="width: 300px">
                             <option value="a1">Average Linkage</option>
                             <option value="a2">Bagged Clustering</option>
                             <option value="a3">Centroid Linkage</option>
@@ -60,7 +60,19 @@
                 <div  id="var_disp"  class="row-fluid">
                     <div class="span3"  >
                         <label for="var">Variáveis disponíveis</label>
-                        <select multiple size="7" >
+                        <select multiple size="11" >
+                            
+                        </select> 
+                        <br>
+                        <button class="btn btn-min" type="button"><i class="icon-plus-sign"></i></button>
+
+                    </div>
+
+                    <div class="span3" >
+                        <label for="var">Variáveis selecionadas</label>
+                        <select multiple size="11" >
+                            <option value="CPE1">CPE1</option>
+                            <option value="CPE2">CPE2</option>
                             <option value="declividade">CP1</option>
                             <option value="densidade">CP2</option>
                             <option value="prodsoja">CP3</option>
@@ -70,17 +82,6 @@
                             <option value="silte">Produtividade de Soja</option>
                             <option value="silte">RSP 0,1 - 0,2 m</option>
                             <option value="silte">RSP 0,3 - 0,4 m</option>
-                        </select> 
-                        <br>
-                        <button class="btn btn-min" type="button"><i class="icon-plus-sign"></i></button>
-
-                    </div>
-
-                    <div class="span3" >
-                        <label for="var">Variáveis selecionadas</label>
-                        <select multiple size="7" >
-                            <option value="CPE1">CPE1</option>
-                            <option value="CPE2">CPE2</option>
             
                         </select>
                         <br>
@@ -101,9 +102,9 @@
                         </div>
                     </div>
                      <div class="span3" >
-                         <div id="maxInter_dv">
-                            <label for="maxInter">Quantidade máxima de Interações</label>
-                            <input id="maxInter" type="number" name="maxInter" value="500"class="input-mini" />
+                         <div id="maxIter_dv">
+                            <label for="maxIter">Quantidade máxima de Iterações</label>
+                            <input id="maxIter" type="number" name="maxIter" value="500"class="input-mini" />
                         </div>
                     </div>
 

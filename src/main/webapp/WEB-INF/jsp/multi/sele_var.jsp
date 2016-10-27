@@ -41,7 +41,7 @@
                     <div class="span3">
                         <label for="metodo">Métodos de seleção de variáveis</label>
 
-                        <input type="checkbox" name="m1" value="m1"> Matriz de Correlação Espacial<br>
+                        <input type="checkbox" name="m1" value="m1"> Análise de Correlação Espacial<br>
                         <input type="checkbox" name="m2" value="m2"> MPCA-All<br>
                         <input type="checkbox" name="m3" value="m3" checked="true"> MPCA-SC<br>
                         <input type="checkbox" name="m4" value="m4"> PCA-All<br>
@@ -53,12 +53,7 @@
                     <div class="span3"  >
                         <label for="var">Variáveis disponíveis</label>
                         <select multiple size="10" >
-                            <option value="declividade">Declividade</option>
-                            <option value="densidade">Densidade</option>
-                            <option value="prodsoja">Produtividade de soja</option>
-                            <option value="rsp1">RSP 0,1 - 0,2 m</option>
-                            <option value="rsp2">RSP 0,2 - 0,3 m</option>
-                            <option value="silte">Silte</option>
+                            
                         </select> 
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-plus-sign"></i></button>
@@ -72,6 +67,12 @@
                             <option value="argila">Argila</option>
                             <option value="elevacao">Elevação</option>
                             <option value="rsp">RSP 0 - 0,1 m</option>
+                            <option value="declividade">Declividade</option>
+                            <option value="densidade">Densidade</option>
+                            <option value="prodsoja">Produtividade de soja</option>
+                            <option value="rsp1">RSP 0,1 - 0,2 m</option>
+                            <option value="rsp2">RSP 0,2 - 0,3 m</option>
+                            <option value="silte">Silte</option>
                         </select>
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-minus-sign"></i></button>
@@ -165,7 +166,7 @@
                         </tr>
                         <tr>
                             <td><input id="" name="" type="checkbox" /></td>
-                            <td>CPP2</td>    
+                            <td>CPE2</td>    
                             <td>29</td>  
                             <td>100</td> 
                         </tr>

@@ -438,8 +438,7 @@ while (j<nro_modelo)
 	}
 
 	
-	a= "aaaaaaaaaaaaaaaaaaaaa"
-        a
+
 	#popula matriz com informações do melhor ICE de cada modelo
 	matriz_ice<-rbind(matriz_ice,c(modelo, metodo, min_ice, melhor_contrib, melhor_alcance, melhor_vlr_kappa, j, melhor_em, melhor_dp_em))
 	
