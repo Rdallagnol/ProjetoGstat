@@ -41,11 +41,11 @@
                     <div class="span3">
                         <label for="metodo">Métodos de seleção de variáveis</label>
 
-                        <input type="checkbox" name="m1" value="m1"> Análise de Correlação Espacial<br>
-                        <input type="checkbox" name="m2" value="m2"> MPCA-All<br>
+                        <input type="checkbox" name="m1" value="m1" checked="true"> Análise de Correlação Espacial<br>
+                        <input type="checkbox" name="m2" value="m2" checked="true"> MPCA-All<br>
                         <input type="checkbox" name="m3" value="m3" checked="true"> MPCA-SC<br>
-                        <input type="checkbox" name="m4" value="m4"> PCA-All<br>
-                        <input type="checkbox" name="m5" value="m5"> PCA-SC<br>
+                        <input type="checkbox" name="m4" value="m4" checked="true"> PCA-All<br>
+                        <input type="checkbox" name="m5" value="m5" checked="true"> PCA-SC<br>
                     </div>
                 </div>
                 <hr>
