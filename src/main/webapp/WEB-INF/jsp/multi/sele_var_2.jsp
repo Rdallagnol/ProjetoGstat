@@ -42,10 +42,10 @@
                         <label for="metodo">Métodos de seleção de variáveis</label>
 
                         <input type="checkbox" name="m1" value="m1"> Análise de Correlação Espacial<br>
-                        <input type="checkbox" name="m2" value="m2" checked="true"> MPCA-All<br>
+                        <input type="checkbox" name="m2" value="m2" > MPCA-All<br>
                         <input type="checkbox" name="m3" value="m3" checked="true"> MPCA-SC<br>
-                        <input type="checkbox" name="m4" value="m4" checked="true"> PCA-All<br>
-                        <input type="checkbox" name="m5" value="m5" checked="true"> PCA-SC<br>
+                        <input type="checkbox" name="m4" value="m4" > PCA-All<br>
+                        <input type="checkbox" name="m5" value="m5"> PCA-SC<br>
                     </div>
                 </div>
                 <hr>
@@ -120,35 +120,6 @@
         <div class="bs-docs-example span12" >                       
             <div class="bs-docs-text "> Etapa 2 </div>
 
-            <table class="table table-bordered">
-                <tr>
-                    <th class="span1"></th>    
-                    <th class="span1">Classificação</th>
-                    <th>Método</th>           
-
-                </tr>
-                <tr>
-                    <td><input type="checkbox" checked="true" name="c1" value="c1"></td>
-                    <td>1º</td>
-                    <td>MPCA-SC</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="c2" value="c2"></td>
-                    <td>2º</td>
-                    <td>MPCA-All</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="c3" value="c3"></td>
-                    <td>3º</td>
-                    <td>PCA-SC</td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="c4" value="c4"></td>
-                    <td>4º</td>
-                    <td>PCA-All</td>
-                </tr>
-            </table> 
-            <hr>
             <div id="linha" >
                 <form action="" method="post">
                     <table class="table table-bordered">
