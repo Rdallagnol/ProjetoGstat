@@ -61,7 +61,15 @@
                     <div class="span3"  >
                         <label for="var">Variáveis disponíveis</label>
                         <select multiple size="11" >
-                            
+                            <option value="declividade">CP1</option>
+                            <option value="densidade">CP2</option>
+                            <option value="prodsoja">CP3</option>
+                            <option value="rsp1">CP4</option>
+                            <option value="rsp2">Declividade</option>
+                            <option value="silte">Densidade</option>
+                            <option value="silte">Produtividade de Soja</option>
+                            <option value="silte">RSP 0,1 - 0,2 m</option>
+                            <option value="silte">RSP 0,3 - 0,4 m</option>
                         </select> 
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-plus-sign"></i></button>
@@ -73,15 +81,7 @@
                         <select multiple size="11" >
                             <option value="CPE1">CPE1</option>
                             <option value="CPE2">CPE2</option>
-                            <option value="declividade">CP1</option>
-                            <option value="densidade">CP2</option>
-                            <option value="prodsoja">CP3</option>
-                            <option value="rsp1">CP4</option>
-                            <option value="rsp2">Declividade</option>
-                            <option value="silte">Densidade</option>
-                            <option value="silte">Produtividade de Soja</option>
-                            <option value="silte">RSP 0,1 - 0,2 m</option>
-                            <option value="silte">RSP 0,3 - 0,4 m</option>
+                            
             
                         </select>
                         <br>

@@ -53,7 +53,12 @@
                     <div class="span3"  >
                         <label for="var">Variáveis disponíveis</label>
                         <select multiple size="10" >
-                            
+                               <option value="declividade">Declividade</option>
+                            <option value="densidade">Densidade</option>
+                            <option value="prodsoja">Produtividade de soja</option>
+                            <option value="rsp1">RSP 0,1 - 0,2 m</option>
+                            <option value="rsp2">RSP 0,2 - 0,3 m</option>
+                            <option value="silte">Silte</option>
                         </select> 
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-plus-sign"></i></button>
@@ -67,12 +72,7 @@
                             <option value="argila">Argila</option>
                             <option value="elevacao">Elevação</option>
                             <option value="rsp">RSP 0 - 0,1 m</option>
-                            <option value="declividade">Declividade</option>
-                            <option value="densidade">Densidade</option>
-                            <option value="prodsoja">Produtividade de soja</option>
-                            <option value="rsp1">RSP 0,1 - 0,2 m</option>
-                            <option value="rsp2">RSP 0,2 - 0,3 m</option>
-                            <option value="silte">Silte</option>
+                         
                         </select>
                         <br>
                         <button class="btn btn-min" type="button"><i class="icon-minus-sign"></i></button>

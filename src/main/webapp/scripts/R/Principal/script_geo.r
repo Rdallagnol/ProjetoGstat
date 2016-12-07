@@ -80,6 +80,8 @@ library(data.table)
 require (gstat)
 require (nortest)
 
+
+options(encoding="ISO-8859-1")
 #############################################################################################
 ######## INICIO 1° ETAPA - VARIAVEIS ############
 
