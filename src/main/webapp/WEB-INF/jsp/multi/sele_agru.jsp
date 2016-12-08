@@ -1,7 +1,7 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" >
     <form action="" method="post">
-        <div class="row-fluid" style="">
+        <div class="row-fluid" style=""> 
 
             <div class="bs-docs-example">
                 <div class="bs-docs-text"> Informações </div>
