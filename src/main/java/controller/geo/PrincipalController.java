@@ -8,6 +8,7 @@ package controller.geo;
 import config.Constantes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,6 +37,14 @@ public class PrincipalController {
     }
 
     @Path("/funcaoGeo")
+    public void geoestatistica() {
+
+       
+    }
+    
+    
+    @Post
+    @Path("/funcaoGeo")    
     public void funcaoGeo() {
 
         if (request.getMethod().equals("POST")) {
@@ -87,6 +96,8 @@ public class PrincipalController {
 
         }
     }
+    
+    
 
     @Path("/visualizaGeo")
     public void visualizaGeo() {
