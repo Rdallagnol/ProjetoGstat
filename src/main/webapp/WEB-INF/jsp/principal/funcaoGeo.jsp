@@ -82,6 +82,12 @@
                                     <option value="true" selected="selected">Sim</option>
                                     <option value="false">Não</option>                                 
                                 </select>
+                                
+                                 <label for="estimador">Estimador</label>
+                                <select id="estimador" name="estimador" class="input-large">
+                                    <option value="classical" selected="selected">Matheron - Classical</option>
+                                    <option value="modulus">Cressie - Modulus</option>                                 
+                                </select>
                             </div>
                             <div class="span4">
                                 
@@ -93,11 +99,11 @@
                                  <label for="nro_pares">Nº De Pares</label>
                                 <input id="nro_pares" type="text" name="nro_pares" class="input-mini" value="30"/>
                                 
-                                 <label for="estimador">Estimador</label>
-                                <select id="estimador" name="estimador" class="input-large">
-                                    <option value="classical" selected="selected">Matheron - Classical</option>
-                                    <option value="modulus">Cressie - Modulus</option>                                 
-                                </select>
+                                <label for="nro_min_contr">Nº Mínimo Sequência Contribuição</label>
+                                <input id="nro_min_contr" type="text" name="nro_min_contr" class="input-mini" value="0"/>
+                                
+                                <label for="nro_min_alc">Nº Mínimo Sequência Alcance</label>
+                                <input id="nro_min_alc" type="text" name="nro_min_alc" class="input-mini" value="0"/>
                             </div>
                             <div class="span4">
                                

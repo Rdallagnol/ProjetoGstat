@@ -36,15 +36,8 @@ public class PrincipalController {
 
     }
 
+   
     @Path("/funcaoGeo")
-    public void geoestatistica() {
-
-       
-    }
-    
-    
-    @Post
-    @Path("/funcaoGeo")    
     public void funcaoGeo() {
 
         if (request.getMethod().equals("POST")) {
@@ -70,7 +63,10 @@ public class PrincipalController {
                                 + request.getParameter("tamy") + " "
                                 + request.getParameter("nro_intervalos_alc") + " "
                                 + request.getParameter("nro_intervalos_contr") + " "
-                                + request.getParameter("nro_pares") + " ");
+                                + request.getParameter("nro_pares") + " "
+                                + request.getParameter("nro_min_contr") + " "
+                                + request.getParameter("nro_min_alc") + " "
+                        );
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -85,9 +81,8 @@ public class PrincipalController {
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println(userID);
-                System.out.println(analiseDesc);
-                
+    
+
                 //result.redirectTo(PrincipalController.class).visualizaGeo();
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
@@ -96,12 +91,10 @@ public class PrincipalController {
 
         }
     }
-    
-    
 
     @Path("/visualizaGeo")
     public void visualizaGeo() {
-        if (request.getMethod().equals("POST")) {           
+        if (request.getMethod().equals("POST")) {
             result.include("userID", request.getParameter("userID"));
             result.include("analiseDesc", request.getParameter("analiseDesc"));
         }
