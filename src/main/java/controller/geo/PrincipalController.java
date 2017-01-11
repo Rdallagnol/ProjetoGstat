@@ -41,6 +41,8 @@ public class PrincipalController {
     public void funcaoGeo() {
 
         if (request.getMethod().equals("POST")) {
+            
+ 
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
                 String userID = request.getParameter("user");
