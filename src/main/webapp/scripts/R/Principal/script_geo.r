@@ -217,4 +217,201 @@ vetor_ice = c()  ### vetor para armazenar o menor ice de cada molelo
 j=0
 metodo="wl"
 
-metodo
+
+while (j < nro_modelo)
+{
+    #cria matriz para armazenar informações da validação cruzada
+    matriz_vc<-matrix(nrow=0,ncol=9, dimnames = list(c(),c("Modelo", "EM", "EMR", "DP_EM", "DP_EMR", "DP_EMR_1", "EA","Metodo", "SDAE")))
+    
+    #cria vetores para armazenar informações da validação cruzada
+    vetor_em = c()
+    vetor_emr = c()
+    vetor_dp_em = c()
+    vetor_dp_emr = c()
+    vetor_dp_emr_1 = c()
+    vetor_ea = c()
+    vetor_modelo = c()
+    vetor_metodo =c()
+    ice = c()
+    A = c()
+    B = c()
+    vetor_contr = c()
+    vetor_alcance = c()
+    vetor_vlr_kappa = c()
+    vetor_sdae=c()
+    j = j+1
+
+    modelo = t_modelos$V1[j]
+    vlr_kappa = as.numeric(t_kappa$V1[j])
+    cor_linha_ols = t_cor_linha_ols$V1[j]
+    metodo = t_metodo$V1[j]
+
+    i=0   
+    
+    t_cont = 0  # zera a variável que armazena o tamanho da tabela table_ice de cada modelo# bt 23/05/2016
+
+    while (i<cont)
+    {
+        i = i+1
+        contrib = as.numeric(vals$Var1[i])
+	alcance = as.numeric(vals$Var2[i])
+        
+        if (modelo=="matern"){
+            if (metodo=="ols"){
+		variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
+            } else {
+                variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
+            }
+	}else {
+            if (metodo=="ols"){
+            	variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, max.dist=vlr_cutoff)
+            } else {
+		variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, max.dist=vlr_cutoff)
+            }
+	}
+
+        lines(variograma.ols,col=cor_linha_ols)
+	variograma.ols
+	
+        #armazena informções da validação cruzada em variáveis
+	vc=xvalid(dados,model=variograma.ols,micro.scale=0)     
+    
+	emr=1
+	dp_emr =1
+	dp_emr_1 = 0
+
+        if ((mean (vc$std.error) != "NaN"))
+        {
+            emr = mean (vc$std.error) #erro médio reduzido
+            dp_emr = round(sd (vc$std.error),digits=20) #desvio padrão do erro médio reduzido
+            dp_emr_1 = ((sd (vc$std.error))-1) #desvio padrão do erro médio reduzido - 1
+	}
+        
+        vc$error
+        em = round(mean (vc$error),digits=20) #erro médio
+
+        nro_amostras = length(vc$error)   #conta o número de elementos
+	n = 0
+	somatorio = 0
+
+        while (n < nro_amostras)
+	{
+            n = n+1
+            somatorio = somatorio + (vc$error[n]*vc$error[n])
+	}
+        
+        media_em2 = somatorio / nro_amostras   	#média dos erros médios ao quadrado
+	dp_em = sqrt(media_em2)				#raiz quadrada da média dos erros médios ao quadrado
+	###########################################
+
+        ea=round(sum(abs(vc$predicted-vc$data)),digits=20)  	#armazenar informções do erro absoluto
+
+        ############# BT 09/06/2016 # ISI
+	vc$data
+	vc$predicted	
+	dif = (vc$data - vc$predicted)^2	
+	media_dif = mean(dif)	
+	sdae = sqrt(media_dif)
+	###################################
+
+        #popula vetores com informações da validação cruzada
+	vetor_em <- rbind(vetor_em,c(em))
+	vetor_emr = rbind(vetor_emr,c(emr))
+	vetor_dp_em = rbind(vetor_dp_em,c(dp_em))
+	vetor_dp_emr = rbind(vetor_dp_emr,c(dp_emr))
+	vetor_dp_emr_1 = rbind(vetor_dp_emr_1,c(dp_emr_1))
+	vetor_ea = rbind(vetor_ea,c(ea))
+	vetor_modelo = rbind(vetor_modelo,c(modelo))
+	vetor_metodo = rbind(vetor_metodo,c(metodo))
+	vetor_contr = rbind(vetor_contr,c(contrib)) 
+	vetor_alcance = rbind(vetor_alcance,c(alcance))
+	vetor_vlr_kappa = rbind(vetor_vlr_kappa,c(vlr_kappa))
+	vetor_sdae = rbind(vetor_sdae,c(sdae))
+
+        #popula matriz com informações da validação cruzada
+        matriz_vc<-rbind(matriz_vc,c(modelo,em,emr,dp_em,dp_emr,dp_emr_1,ea,metodo,sdae))
+
+        t_cont = t_cont +1    ###variável para armazenar o tamanho da tabela table_ice # bt 23/05/2016
+
+    }
+
+    ##########cálculo do ICE - 25/02/2016 - bt	
+    ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
+    if (ISI==TRUE)
+    {
+        ###################################
+	## bt 13/09/2016 - correção no cálculo do ISI ###
+	max_abs_em = max (abs(vetor_em))
+	min_sdae = min (vetor_sdae)
+	max_sdae = max (vetor_sdae)
+	A = (abs(vetor_em))/max_abs_em
+	B = ((vetor_sdae) - min_sdae)/ max_sdae
+    }else{
+	#####################
+	# calculo do ICE (Bazzi)
+	#####################
+	max_abs_emr = max (abs(vetor_emr))
+	max_abs_dp_emr_1 = max (abs(vetor_dp_emr_1))
+	max_abs_dp_emr_1
+	max_abs_emr		
+	A = (abs(vetor_emr))/max_abs_emr
+	B = (abs(vetor_dp_emr_1))/max_abs_dp_emr_1
+    }  
+
+    ice = round(A + B, digits=20)
+
+    ##################################################################
+    ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
+    ##################################################################
+    min_ice=min(ice)
+    
+    table_ice <- data.table(cbind(ice, vetor_contr, vetor_alcance, vetor_modelo, vetor_metodo, vetor_vlr_kappa, vetor_em, vetor_dp_em))
+
+    i=0
+
+    while (i<t_cont)
+    {
+	i= i+1
+	if (table_ice$V1[i] == min_ice) {
+            melhor_contrib = as.numeric(table_ice$V2[i])
+            melhor_alcance = as.numeric(table_ice$V3[i])
+            melhor_modelo = table_ice$V4[i]
+            melhor_metodo = table_ice$V5[i]
+            melhor_vlr_kappa = as.numeric(table_ice$V6[i])
+            melhor_em = as.numeric(table_ice$V7[i])
+            melhor_dp_em = as.numeric(table_ice$V8[i])
+            i=t_cont				
+	} 
+    }
+
+
+    #popula matriz com informações do melhor ICE de cada modelo
+    #14/09/2016 - bt
+    matriz_ice<-rbind(matriz_ice,c(modelo, metodo, min_ice, melhor_contrib, melhor_alcance, melhor_vlr_kappa, j))
+
+    vetor_ice = rbind(vetor_ice,c(min_ice))  ### vetor para armazenar o menor ice de cada molelo
+
+}
+dev.off()
+
+
+########################################
+########### BT 13/09/2016 ##############
+vetor_em_melhor = c()
+vetor_dp_em_melhor = c()
+
+matriz_isi<-matrix(nrow=0,ncol=3,
+dimnames = list(c(),c("em", "dpem", "isi")))
+isi = c("isi")
+A = c()
+B = c()
+
+########################################
+#### bt 16/06/2016 gráfico com o melhor semivariograma de cada modelo/metodo ###
+matriz_legenda<-matrix(nrow=0,ncol=3,
+dimnames = list(c(),c("modelo","metodo","vlr_kappa")))
+
+x=paste("semiv_melhores",".png",sep = "")
+png(x)
+plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semiariograma ajustado -",atributo) )
+dev.off()
