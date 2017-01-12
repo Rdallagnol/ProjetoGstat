@@ -68,8 +68,8 @@ ifelse(!dir.exists(file.path(mainDir, subDir)), dir.create(file.path(mainDir, su
 #AQUI DEFINE A PASTA QUE DEVE SER ARMAZENADO OS GRÁFICOS
 setwd(paste(paste(mainDir,"/",sep = ""),subDir,sep = ""))
 ############ FIM ETAPA DE DEFINIÇÃO DE CONFIGURAÇÃO #############################
-###### INICIO CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO #############
 
+###### INICIO CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO #############
 t_cor_linha_ols = data.table(rbind("GOLD", "PURPLE", "VIOLET", "YELLOW", "BLACK", "GREEN", "ORANGE", "PINK", "GRAY", "BROWN", "BLUE", "RED", "MAGENTA"))
 t_modelos = data.table(rbind("matern", "matern", "matern", "exp", "sph", "matern", "matern", "matern", "exp", "sph", "gaus", "gaus"))
 t_kappa = data.table(rbind(1.0, 1.5, 2.0, 0.5, 0.5, 1.0, 1.5, 2.0, 0.5, 0.5, 0.5, 0.5))
@@ -91,13 +91,21 @@ leg_y_pamostrais ="S - N"
 titulo_BoxPlot = "Gráfico Boxplot"
 titulo_PostPlot = "Gráfico Postplot"
 
-classes = 4  	#número de classe no mapa (intervalos) - só no R
+classes = 4  #número de classe no mapa (intervalos) - só no R
 
 ###### FIM CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO #############
 
 ###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
 atributo = "K:/ProjetoGstat/src/main/webapp/scripts/dados/elevacao.txt"
 local = 29182
+
+### link para trabalhar com postgre https://www.r-bloggers.com/r-and-postgresql-using-rpostgresql-and-sqldf/
+### http://stackoverflow.com/questions/39253497/updating-local-postgresql-database-with-r-using-update-or-insert
+### http://stackoverflow.com/questions/25391324/how-to-insert-all-the-records-in-a-data-frame-into-the-database-in-r
+### http://www.win-vector.com/blog/2016/02/using-postgresql-in-r/
+### https://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html
+### https://cran.r-project.org/web/packages/sqldf/sqldf.pdf
+
 ###### FIM CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############
 
 ###### INICIO DAS ANALISES  #############	 
@@ -137,13 +145,18 @@ resultados <- cbind(estt, valorp)
 rownames(resultados) <- testes
 colnames(resultados) <- c("Estatística", "p")
 print(resultados, digits = 4)
-
-
 ##############################################
 
 # Gráficos Descritivos 
+x=paste("plot_geral",".png",sep = "")
+png(x)
 plot(dados) 
-hist(dados$data)
+dev.off()
+
+x=paste("histograma",".png",sep = "")
+png(x)
+hist(dados$data, main='Histograma')
+dev.off()
 
 x=paste("box_plot",".png",sep = "")
 png(x)
@@ -152,7 +165,10 @@ dev.off()
 
 
 # ANÁLISE EXPLORATÓRIA ESPACIAL # Grafico Post-plot com legenda para o estudo de tendencia direcional.
+x=paste("grafico_pontos",".png",sep = "")
+png(x)
 points(dados,pt.div="quartile",col=c("yellow","green","red","blue"),main=titulo_PostPlot, xlab=leg_x_pamostrais, ylab=leg_y_pamostrais)
+dev.off()
 
 # ANÁLISE ESPACIAL
 # Calcular a maior e menor distancia da área considerando as coordenadas dados$coords para obter o cutoff de 50% da distancia maxima
@@ -168,7 +184,12 @@ dados.var <- variog(dados,coords=dados$coords, data=dados$data, uvec=seq(min_dis
 	 	estimator.type=estimador, max.dist=vlr_cutoff, pairs.min=nro_pares) 
 
 dados.var
+
+x=paste("semi_exp",".png",sep = "")
+png(x)
 plot(dados.var, xlab = legenda_x_semiv, ylab = legenda_y_semiv, main = titulo_semiv)  
+dev.off()
+
 # Informações do semivariograma experimental
 distancia <-  dados.var$u 
 semivariancia <- dados.var$v
