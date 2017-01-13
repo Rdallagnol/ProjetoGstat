@@ -96,7 +96,7 @@ classes = 4  #número de classe no mapa (intervalos) - só no R
 ###### FIM CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO #############
 
 ###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
-atributo = "K:/ProjetoGstat/src/main/webapp/scripts/dados/elevacao.txt"
+atributo = "D:/ProjetoGstat/src/main/webapp/scripts/dados/elevacao.txt"
 local = 29182
 
 ### link para trabalhar com postgre https://www.r-bloggers.com/r-and-postgresql-using-rpostgresql-and-sqldf/
@@ -436,3 +436,60 @@ x=paste("semiv_melhores",".png",sep = "")
 png(x)
 plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semiariograma ajustado -",atributo) )
 dev.off()
+
+i=0
+
+
+while (i<nro_modelo){
+    i= i+1
+    
+    modelo = matriz_ice[i,1]
+    metodo = matriz_ice[i,2]
+    contrib = as.numeric(matriz_ice[i,4])
+    alcance = as.numeric(matriz_ice[i,5])
+    vlr_kappa = as.numeric(matriz_ice[i,6])
+    cor_linha_ols = t_cor_linha_ols$V1[i]
+    if (modelo=="matern"){
+	if (metodo=="ols"){
+            variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
+	} else {
+            variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
+	}
+    } else {
+        if (metodo=="ols"){
+            variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, max.dist=vlr_cutoff)
+	} else {
+            variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, max.dist=vlr_cutoff)
+	}
+    }
+    lines(variograma.ols,col=cor_linha_ols)
+
+    ########### BT 13/09/2016 ##############
+    vc=xvalid(dados,model=variograma.ols,micro.scale=0)
+    vc$error
+    em_melhor = round(mean (vc$error),digits=20) #erro médio
+    vc$data
+    vc$predicted
+    dif = (vc$data - vc$predicted)^2
+    media_dif = mean(dif)
+    sdae = sqrt(media_dif)
+    vetor_em_melhor <- rbind(vetor_em_melhor,c(em_melhor))
+    vetor_dp_em_melhor = rbind(vetor_dp_em_melhor,c(sdae))
+}
+
+if (ISI==TRUE)
+{
+    max_abs_em_melhor = max (abs(vetor_em_melhor))
+    min_abs_sdae = min (vetor_dp_em_melhor)
+    max_abs_sdae = max (vetor_dp_em_melhor)
+    A = (abs(vetor_em_melhor))/max_abs_em_melhor
+    B = (vetor_dp_em_melhor - min_abs_sdae)/ max_abs_sdae
+}
+
+isi = round(A + B, digits=20)
+matriz_isi<-cbind(vetor_em_melhor,vetor_dp_em_melhor,isi)
+dev.off()
+
+nome_tab = paste0 ("tb_isi_",atributo)
+nome_arq = paste0 (atributo,".txt")
+write.table(matriz_isi_melhor,nome_tab)
