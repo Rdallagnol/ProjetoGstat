@@ -97,30 +97,30 @@ classes = 4  #número de classe no mapa (intervalos) - só no R
 
 ###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
 drv <- dbDriver("PostgreSQL")
-con <- dbConnect(drv, dbname=sdumOnline,host="localhost",port=5432,user="postgres",password="1")
+
+con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postgres",password="")
+con
 local = 29182
 id_amostra = 25
-atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),valor from pixelamostra where amostra_codigo = ", id_amostra  )
-frame_dados <- dbGetQuery(con,atrib)
-frame_dados
+atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),to_number(valor,'9999.999') from pixelamostra where amostra_codigo = ", id_amostra  )
+frame_dados <- dbGetQuery(con,atributo)
+
+insert = " INSERT INTO geo_analise_header(area_id, amostra_id, created_by, creation_date) VALUES (1, 1, 1, current_date) "
+teste <- dbGetQuery(con,insert)
+
+
+
 dados <- as.geodata(frame_dados)
 names(dados)
-dados
-
-
-
-
 ### link para trabalhar com postgre https://www.r-bloggers.com/r-and-postgresql-using-rpostgresql-and-sqldf/
 ### http://stackoverflow.com/questions/39253497/updating-local-postgresql-database-with-r-using-update-or-insert
 ### http://stackoverflow.com/questions/25391324/how-to-insert-all-the-records-in-a-data-frame-into-the-database-in-r
 ### http://www.win-vector.com/blog/2016/02/using-postgresql-in-r/
 ### https://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html
 ### https://cran.r-project.org/web/packages/sqldf/sqldf.pdf
-
 ###### FIM CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############
 
-###### INICIO DAS ANALISES  #############	 
-dados= read.geodata(atributo,head=T,coords.col=1:2,data.col=3) 
+###### INICIO DAS ANALISES  #############
 dados$coords
 dados$data
 
@@ -136,7 +136,6 @@ skewness(dados$data)
 kurtosis(dados$data)
 length(dados$data)
 
-
 # Gráfico de probabilidade (QQ)
 qqnorm(dados$data)  #, main = "", xlab = "Quantis teóricos N(0,1)", pch = 20,
 # ylab = "Velocidade (km/m)")
@@ -147,7 +146,6 @@ t1 <- ks.test(dados$data, "pnorm", mean(dados$data), sd(dados$data)) # KS
 t2 <- shapiro.test(dados$data) # Shapiro-Wilk
 #t3 <- ad.test(dados$data) # Anderson-Darling
 
-
 # Tabela de resultados
 testes <- c(t1$method, t2$method)
 estt <- as.numeric(c(t1$statistic, t2$statistic))
@@ -156,7 +154,6 @@ resultados <- cbind(estt, valorp)
 rownames(resultados) <- testes
 colnames(resultados) <- c("Estatística", "p")
 print(resultados, digits = 4)
-##############################################
 
 # Gráficos Descritivos 
 x=paste("plot_geral",".png",sep = "")
@@ -174,7 +171,6 @@ png(x)
 boxplot(dados$data,main=titulo_BoxPlot) #EXIBIR GRÁFICO (ARMAZENAR)
 dev.off()
 
-
 # ANÁLISE EXPLORATÓRIA ESPACIAL # Grafico Post-plot com legenda para o estudo de tendencia direcional.
 x=paste("grafico_pontos",".png",sep = "")
 png(x)
@@ -185,7 +181,7 @@ dev.off()
 # Calcular a maior e menor distancia da área considerando as coordenadas dados$coords para obter o cutoff de 50% da distancia maxima
 max_dist <- max(dist(dados$coords))
 min_dist <- min(dist(dados$coords))
-vlr_cutoff <- max_dist*cutoff/100 
+vlr_cutoff <- max_dist*cutoff/100
 
 if (auto_lags==TRUE){
     nro_lags = round(vlr_cutoff/min_dist)	## bt 8/6/2016 - menor distancia das variancias
@@ -193,8 +189,6 @@ if (auto_lags==TRUE){
 
 dados.var <- variog(dados,coords=dados$coords, data=dados$data, uvec=seq(min_dist,vlr_cutoff,l=nro_lags), lambda=v_lambda,
 	 	estimator.type=estimador, max.dist=vlr_cutoff, pairs.min=nro_pares) 
-
-dados.var
 
 x=paste("semi_exp",".png",sep = "")
 png(x)
@@ -207,7 +201,8 @@ semivariancia <- dados.var$v
 pares <- dados.var$n
 tabela <- cbind(distancia,semivariancia,pares)
 
-####################################
+
+###################################
 # envelopes --  bt 07/12/2016 ######
 #dados.env<-variog.mc.env(dados, obj.v=dados.var) #,nsim = 99)
 #plot(dados.var,env=dados.env,xlab="Distância", ylab="Semivariância")
@@ -226,7 +221,6 @@ if (min_seq_alc==0){
 if (min_seq_contr==0){
     min_seq_contr = min_var		## bt 13/07/2016
 }
-
 
 vals <- expand.grid(seq(min_seq_contr,max_var, l=nro_intervalos_contr), 
 # vals <- expand.grid(seq(min_var,max_var, l=nro_intervalos_contr), 
@@ -249,12 +243,10 @@ vetor_ice = c()  ### vetor para armazenar o menor ice de cada molelo
 j=0
 metodo="wl"
 
-
-while (j < nro_modelo)
-{
+while (j < nro_modelo){  
+   
     #cria matriz para armazenar informações da validação cruzada
     matriz_vc<-matrix(nrow=0,ncol=9, dimnames = list(c(),c("Modelo", "EM", "EMR", "DP_EM", "DP_EMR", "DP_EMR_1", "EA","Metodo", "SDAE")))
-    
     #cria vetores para armazenar informações da validação cruzada
     vetor_em = c()
     vetor_emr = c()
@@ -271,7 +263,8 @@ while (j < nro_modelo)
     vetor_alcance = c()
     vetor_vlr_kappa = c()
     vetor_sdae=c()
-    j = j+1
+   
+    j <- j+1 
 
     modelo = t_modelos$V1[j]
     vlr_kappa = as.numeric(t_kappa$V1[j])
@@ -284,34 +277,36 @@ while (j < nro_modelo)
 
     while (i<cont)
     {
-        i = i+1
+        i <- i+1
+        
         contrib = as.numeric(vals$Var1[i])
 	alcance = as.numeric(vals$Var2[i])
-        
-        if (modelo=="matern"){
-            if (metodo=="ols"){
-		variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
-            } else {
+
+        if (modelo == "matern"){
+
+            if (metodo == "ols"){
+                variograma.ols <- variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
+            }else {
                 variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
             }
-	}else {
+
+        }else {
             if (metodo=="ols"){
             	variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, max.dist=vlr_cutoff)
             } else {
 		variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, max.dist=vlr_cutoff)
             }
-	}
-
+        }
+       
         lines(variograma.ols,col=cor_linha_ols)
-	variograma.ols
+	
 	
         #armazena informções da validação cruzada em variáveis
 	vc=xvalid(dados,model=variograma.ols,micro.scale=0)     
     
-	emr=1
-	dp_emr =1
+	emr = 1
+	dp_emr = 1
 	dp_emr_1 = 0
-
         if ((mean (vc$std.error) != "NaN"))
         {
             emr = mean (vc$std.error) #erro médio reduzido
@@ -319,32 +314,34 @@ while (j < nro_modelo)
             dp_emr_1 = ((sd (vc$std.error))-1) #desvio padrão do erro médio reduzido - 1
 	}
         
-        vc$error
+      
         em = round(mean (vc$error),digits=20) #erro médio
-
+        
         nro_amostras = length(vc$error)   #conta o número de elementos
-	n = 0
+
+        n = 0
 	somatorio = 0
 
         while (n < nro_amostras)
 	{
             n = n+1
             somatorio = somatorio + (vc$error[n]*vc$error[n])
+       
 	}
-        
+     
         media_em2 = somatorio / nro_amostras   	#média dos erros médios ao quadrado
 	dp_em = sqrt(media_em2)				#raiz quadrada da média dos erros médios ao quadrado
-	###########################################
-
-        ea=round(sum(abs(vc$predicted-vc$data)),digits=20)  	#armazenar informções do erro absoluto
-
+	ea = round(sum(abs(vc$predicted-vc$data)),digits=20)  	#armazenar informções do erro absoluto
+        
         ############# BT 09/06/2016 # ISI
 	vc$data
 	vc$predicted	
 	dif = (vc$data - vc$predicted)^2	
 	media_dif = mean(dif)	
 	sdae = sqrt(media_dif)
-	###################################
+        
+
+        ###################################
 
         #popula vetores com informações da validação cruzada
 	vetor_em <- rbind(vetor_em,c(em))
@@ -364,13 +361,16 @@ while (j < nro_modelo)
         matriz_vc<-rbind(matriz_vc,c(modelo,em,emr,dp_em,dp_emr,dp_emr_1,ea,metodo,sdae))
 
         t_cont = t_cont +1    ###variável para armazenar o tamanho da tabela table_ice # bt 23/05/2016
+  
+    
+   }
 
-    }
 
-    ##########cálculo do ICE - 25/02/2016 - bt	
-    ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
-    if (ISI==TRUE)
-    {
+   ##########cálculo do ICE - 25/02/2016 - bt	
+   ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
+
+   if (ISI==TRUE)
+   {
         ###################################
 	## bt 13/09/2016 - correção no cálculo do ISI ###
 	max_abs_em = max (abs(vetor_em))
@@ -378,33 +378,31 @@ while (j < nro_modelo)
 	max_sdae = max (vetor_sdae)
 	A = (abs(vetor_em))/max_abs_em
 	B = ((vetor_sdae) - min_sdae)/ max_sdae
-    }else{
+     
+   }else{
 	#####################
 	# calculo do ICE (Bazzi)
 	#####################
 	max_abs_emr = max (abs(vetor_emr))
 	max_abs_dp_emr_1 = max (abs(vetor_dp_emr_1))
-	max_abs_dp_emr_1
-	max_abs_emr		
 	A = (abs(vetor_emr))/max_abs_emr
 	B = (abs(vetor_dp_emr_1))/max_abs_dp_emr_1
     }  
-
+   
     ice = round(A + B, digits=20)
-
+    
     ##################################################################
     ###### bt 06/07/2016 - retirei os indices, só deixei EM ##########
     ##################################################################
-    min_ice=min(ice)
+    min_ice = min(ice)
     
     table_ice <- data.table(cbind(ice, vetor_contr, vetor_alcance, vetor_modelo, vetor_metodo, vetor_vlr_kappa, vetor_em, vetor_dp_em))
-
     i=0
-
+    
     while (i<t_cont)
     {
-	i= i+1
-	if (table_ice$V1[i] == min_ice) {
+        i= i+1
+        if (table_ice$V1[i] == min_ice) {
             melhor_contrib = as.numeric(table_ice$V2[i])
             melhor_alcance = as.numeric(table_ice$V3[i])
             melhor_modelo = table_ice$V4[i]
@@ -412,9 +410,10 @@ while (j < nro_modelo)
             melhor_vlr_kappa = as.numeric(table_ice$V6[i])
             melhor_em = as.numeric(table_ice$V7[i])
             melhor_dp_em = as.numeric(table_ice$V8[i])
-            i=t_cont				
-	} 
+            i = t_cont
+        }
     }
+    
 
 
     #popula matriz com informações do melhor ICE de cada modelo
@@ -424,8 +423,8 @@ while (j < nro_modelo)
     vetor_ice = rbind(vetor_ice,c(min_ice))  ### vetor para armazenar o menor ice de cada molelo
 
 }
-dev.off()
 
+dev.off()
 
 ########################################
 ########### BT 13/09/2016 ##############
@@ -445,23 +444,23 @@ dimnames = list(c(),c("modelo","metodo","vlr_kappa")))
 
 x=paste("semiv_melhores",".png",sep = "")
 png(x)
-plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semiariograma ajustado -",atributo) )
+plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semivariograma ajustado -",atributo) )
 dev.off()
 
 i=0
 
-
 while (i<nro_modelo){
-    i= i+1
-    
+    i = i+1
+
     modelo = matriz_ice[i,1]
     metodo = matriz_ice[i,2]
     contrib = as.numeric(matriz_ice[i,4])
     alcance = as.numeric(matriz_ice[i,5])
     vlr_kappa = as.numeric(matriz_ice[i,6])
     cor_linha_ols = t_cor_linha_ols$V1[i]
+
     if (modelo=="matern"){
-	if (metodo=="ols"){
+        if (metodo=="ols"){
             variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),weights= "equal",cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
 	} else {
             variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, kappa= vlr_kappa, max.dist=vlr_cutoff)
@@ -472,7 +471,8 @@ while (i<nro_modelo){
 	} else {
             variograma.ols<-variofit(dados.var,ini=c(contrib,alcance),cov.model= modelo, max.dist=vlr_cutoff)
 	}
-    }
+    }   
+
     lines(variograma.ols,col=cor_linha_ols)
 
     ########### BT 13/09/2016 ##############
@@ -485,7 +485,8 @@ while (i<nro_modelo){
     media_dif = mean(dif)
     sdae = sqrt(media_dif)
     vetor_em_melhor <- rbind(vetor_em_melhor,c(em_melhor))
-    vetor_dp_em_melhor = rbind(vetor_dp_em_melhor,c(sdae))
+    vetor_dp_em_melhor = rbind(vetor_dp_em_melhor,c(sdae))  
+
 }
 
 if (ISI==TRUE)
@@ -499,8 +500,15 @@ if (ISI==TRUE)
 
 isi = round(A + B, digits=20)
 matriz_isi<-cbind(vetor_em_melhor,vetor_dp_em_melhor,isi)
+
+matriz_isi_melhor = cbind (matriz_ice, matriz_isi)
 dev.off()
 
-nome_tab = paste0 ("tb_isi_",atributo)
-nome_arq = paste0 (atributo,".txt")
-write.table(matriz_isi_melhor,nome_tab)
+nome_tab = paste0 ("tb_isi_","testes")
+
+dbWriteTable(con, nome_tab, as.data.table(matriz_isi_melhor), overwrite = T)
+dbDisconnect(con)
+
+print("##############")
+print(matriz_isi_melhor)
+dev.off()

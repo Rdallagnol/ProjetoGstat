@@ -104,6 +104,7 @@ local = 29182
 id_amostra = 25
 atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),to_number(valor,'9999.999') from pixelamostra where amostra_codigo = ", id_amostra  )
 frame_dados <- dbGetQuery(con,atributo)
+
 dados <- as.geodata(frame_dados)
 names(dados)
 ### link para trabalhar com postgre https://www.r-bloggers.com/r-and-postgresql-using-rpostgresql-and-sqldf/
@@ -501,6 +502,18 @@ dev.off()
 nome_tab = paste0 ("tb_isi_","testes")
 
 dbWriteTable(con, nome_tab, as.data.table(matriz_isi_melhor), overwrite = T)
+
+
+#### Registra analises e seus parametrôs ######
+seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
+insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date,status) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A')")
+registra <- dbGetQuery(con,insertHeader)
+
+
+
+
+
+
 dbDisconnect(con)
 
 print("##############")
