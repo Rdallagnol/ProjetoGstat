@@ -509,13 +509,12 @@ seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
 insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date,status) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A')")
 registra <- dbGetQuery(con,insertHeader)
 
-
-
-
-
+linhas = 1
+while (linhas <= nro_modelo){   
+    insertLines = paste0("INSERT INTO geo_analise_lines(analise_header_id, modelo, metodo, min_ice, melhor_contrib, melhor_alcance, melhor_val_kappa,created_by, creation_date, erro_medio, dp_erro_medio, isi)","VALUES (",seq_header,",'",matriz_isi_melhor[linhas,1],"','",matriz_isi_melhor[linhas,2],"',",matriz_isi_melhor[linhas,3],", ",matriz_isi_melhor[linhas,4],",",matriz_isi_melhor[linhas,5],", ",matriz_isi_melhor[linhas,6],", 1, current_date, ",matriz_isi_melhor[linhas,8],",",matriz_isi_melhor[linhas,9],", ",matriz_isi_melhor[linhas,10],")")
+    dbGetQuery(con,insertLines)
+    linhas <- linhas + 1
+}
 
 dbDisconnect(con)
-
-print("##############")
-print(matriz_isi_melhor)
 dev.off()

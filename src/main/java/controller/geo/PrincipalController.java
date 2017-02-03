@@ -39,7 +39,7 @@ public class PrincipalController {
    
     @Path("/funcaoGeo")
     public void funcaoGeo() {
-
+            
         if (request.getMethod().equals("POST")) {
             
  
