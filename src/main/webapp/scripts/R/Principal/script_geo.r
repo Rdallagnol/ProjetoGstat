@@ -98,7 +98,7 @@ classes = 4  #número de classe no mapa (intervalos) - só no R
 ###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
 drv <- dbDriver("PostgreSQL")
 
-con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postgres",password="")
+con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postgres",password="1")
 con
 local = 29182
 id_amostra = 25

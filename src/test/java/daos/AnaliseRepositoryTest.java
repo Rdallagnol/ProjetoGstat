@@ -21,12 +21,12 @@ public class AnaliseRepositoryTest {
     
     private AnaliseDao analiseDao = DaoFactory.analiseInstance();
     
-    @Test
+   /* @Test
     public void testFindAll(){
         List<AnaliseEntity> analises = this.analiseDao.findAll();
         LOGGER.info(analises);
   
-            System.out.println(analises.toString());
+        System.out.println(analises.toString());
     
-    }
+    } */
 }

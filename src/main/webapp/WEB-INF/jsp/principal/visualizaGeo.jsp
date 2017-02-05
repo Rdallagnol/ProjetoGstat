@@ -1,5 +1,49 @@
 <%@include file="../template/header.jsp" %>
+<div class="row-fluid" style="">
+
+    <div class="bs-docs-example">
+        <div class="bs-docs-text"> Analises Realizadas </div>
+
+  
+        <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Área</th>
+        <th>Amostra</th>
+        <th>Usuário</th>
+        <th>Data</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="analise" items="${analises}">
+            <tr>
+                <td>${analise.analise_header_id}</td>
+                <td>${analise.descricao_analise}</td>
+                <td>${analise.area_id}</td>
+                <td>${analise.amostra_id}</td>
+                <td>${analise.created_by}</td>
+                <td>${analise.creation_date}</td>
+                <td>${analise.status}</td>
+            </tr>
+        </c:forEach>
+      
+    </tbody>
+  </table>
+
+    </div>
+</div>
 <div class="row-fluid bs-docs-example" >
+
+
+
+ 
+
+
+
+    <hr>
     <form action="visualizaGeo" method="post">
 
         <div>  

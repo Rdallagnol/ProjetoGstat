@@ -6,6 +6,7 @@
 package dao;
 
 import entity.AnaliseEntity;
+import java.util.List;
 import utils.GenericDao;
 
 /**
@@ -15,7 +16,8 @@ import utils.GenericDao;
 public class AnaliseDao extends GenericDao<AnaliseEntity, Long>{
     
     
-    public void consultaEspecifica(){
-        executeQuery("", "");
+    public List<AnaliseEntity> findById(Long id){
+        List<AnaliseEntity> analises = (List<AnaliseEntity>) this.executeQuery("select a from AnaliseEntity a where a.analise_header_id = ?0", id);        
+        return analises;
     }
 }
