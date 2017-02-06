@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import utils.BaseBean;
@@ -26,25 +28,39 @@ public class AnaliseEntity extends BaseBean {
     @SequenceGenerator(name = "geo_analise_header_seq", sequenceName = "geo_analise_header_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "geo_analise_header_seq")
     private Long analise_header_id;
-    private Long area_id;
+
     private Long amostra_id;
     private Date creation_date;
     private Long created_by;
     private String descricao_analise;
     private String status;
 
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private AreaEntity area_id;
+
+    public AreaEntity getArea_id() {
+        return area_id;
+    }
+
+    public void setArea_id(AreaEntity area_id) {
+        this.area_id = area_id;
+    }
+
     public AnaliseEntity() {
     }
 
-    public AnaliseEntity(Long analise_header_id, Long area_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status) {
+    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, AreaEntity area_id) {
         this.analise_header_id = analise_header_id;
-        this.area_id = area_id;
         this.amostra_id = amostra_id;
         this.creation_date = creation_date;
         this.created_by = created_by;
         this.descricao_analise = descricao_analise;
         this.status = status;
+        this.area_id = area_id;
     }
+
+
 
     public Long getAnalise_header_id() {
         return analise_header_id;
@@ -52,14 +68,6 @@ public class AnaliseEntity extends BaseBean {
 
     public void setAnalise_header_id(Long analise_header_id) {
         this.analise_header_id = analise_header_id;
-    }
-
-    public Long getArea_id() {
-        return area_id;
-    }
-
-    public void setArea_id(Long area_id) {
-        this.area_id = area_id;
     }
 
     public Long getAmostra_id() {
@@ -101,7 +109,5 @@ public class AnaliseEntity extends BaseBean {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    
 
 }

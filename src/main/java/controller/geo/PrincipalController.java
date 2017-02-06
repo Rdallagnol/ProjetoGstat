@@ -8,10 +8,12 @@ package controller.geo;
 import config.Constantes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
+
 import br.com.caelum.vraptor.Result;
 import dao.AnaliseDao;
+
 import entity.AnaliseEntity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,13 +41,11 @@ public class PrincipalController {
 
     }
 
-   
     @Path("/funcaoGeo")
     public void funcaoGeo() {
-            
+
         if (request.getMethod().equals("POST")) {
-            
- 
+
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
                 String userID = request.getParameter("user");
@@ -86,7 +86,6 @@ public class PrincipalController {
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }
-    
 
                 //result.redirectTo(PrincipalController.class).visualizaGeo();
             } catch (IOException e1) {
@@ -99,15 +98,24 @@ public class PrincipalController {
 
     @Path("/visualizaGeo")
     public void visualizaGeo() {
-        
+        String descricao = null;
+        Long userId = null;
+
         AnaliseDao analiseDao = DaoFactory.analiseInstance();
-        List<AnaliseEntity> analises = analiseDao.findById(74L);
-      
+        List<AnaliseEntity> analises = analiseDao.findAll();
         result.include("analises", analises);
-        
+
         if (request.getMethod().equals("POST")) {
-            result.include("userID", request.getParameter("userID"));
-            result.include("analiseDesc", request.getParameter("analiseDesc"));
+
+            Long idFind = Long.parseLong(request.getParameter("analiseId"));
+            List<AnaliseEntity> analise = analiseDao.findById(idFind);
+            for (AnaliseEntity analiseEntity : analise) {
+                descricao = analiseEntity.getDescricao_analise();
+                userId = analiseEntity.getCreated_by();
+            }
+
+            result.include("userID", userId);
+            result.include("analiseDesc", descricao);
         }
     }
 

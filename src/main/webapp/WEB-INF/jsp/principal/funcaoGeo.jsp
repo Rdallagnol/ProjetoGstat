@@ -16,9 +16,9 @@
                         <div class="span3">
                             <label for="area">Área:</label>
                             <select name="area">
-                                <option value="1">A</option>
-                                <option value="2">B</option>
-                                <option value="3">C</option>
+                                <option value="131">A</option>
+                                <option value="207">B</option>
+                                <option value="249">C</option>
                             </select> 
                         </div>
                         <div class="span3">

@@ -51,7 +51,9 @@ library(data.table)
 require (gstat)
 require (nortest)
 
-options(encoding="ISO-8859-1")
+options(encoding="UTF8")
+
+
 
 #### FIM BIBLIOTECAS UTILIZADAS #####
 
@@ -224,7 +226,7 @@ seq(min_seq_alc, vlr_cutoff, l=nro_intervalos_alc))
 
 x=paste("semi_geral",".png",sep = "")
 png(x)
-plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semivariograma ajustado -",atributo) )
+plot(dados.var,xlab='Distância',ylab='Semivariância',main= "Semivariograma ajustado" )
 dev.off()
 
 cont = nro_intervalos_contr * nro_intervalos_alc
@@ -439,7 +441,7 @@ dimnames = list(c(),c("modelo","metodo","vlr_kappa")))
 
 x=paste("semiv_melhores",".png",sep = "")
 png(x)
-plot(dados.var,xlab='Distância',ylab='Semivariância',main= paste ("Semivariograma ajustado -",atributo) )
+plot(dados.var,xlab='Distância',ylab='Semivariância',main= "Semivariograma ajustado" )
 dev.off()
 
 i=0

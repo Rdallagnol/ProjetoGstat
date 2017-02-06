@@ -6,6 +6,7 @@
 package utils;
 
 import dao.AnaliseDao;
+import dao.AreaDao;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -44,5 +45,18 @@ public final class DaoFactory {
            analiseDaoInstance = new AnaliseDao();
         }
         return analiseDaoInstance;
+    }
+    
+    
+    /////////////////////////////
+    /// Area
+    /////////////////////////////
+    private static AreaDao areaDaoInstance;
+    
+    public static AreaDao areaDaoInstance(){
+        if(areaDaoInstance == null){
+           areaDaoInstance = new AreaDao();
+        }
+        return areaDaoInstance;
     }
 }
