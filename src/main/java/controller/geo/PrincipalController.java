@@ -11,10 +11,10 @@ import br.com.caelum.vraptor.Path;
 
 import br.com.caelum.vraptor.Result;
 import dao.AnaliseDao;
-import dao.AreaDao;
+import dao.AnaliseLineDao;
 
 import entity.AnaliseEntity;
-import entity.AreaEntity;
+import entity.AnaliseLinesEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -103,17 +103,22 @@ public class PrincipalController {
         String descricao = null;
         Long userId = null;
 
-        AnaliseDao analiseDao = DaoFactory.analiseInstance();
+        AnaliseDao analiseDao = DaoFactory.analiseInstance();     
+        
         List<AnaliseEntity> analises = analiseDao.findAll();
         result.include("analises", analises);
 
-        
         /* AreaDao aDao = DaoFactory.areaDaoInstance();
         AreaEntity a = aDao.findById(131L); */
-       
         if (request.getMethod().equals("POST")) {
 
             Long idFind = Long.parseLong(request.getParameter("analiseId"));
+
+            AnaliseLineDao analiseLineDao = DaoFactory.analiseLineInstance();
+            List<AnaliseLinesEntity> analiseLines = analiseLineDao.findByArea(idFind);            
+            result.include("analiseLines", analiseLines);
+            
+            
             List<AnaliseEntity> analise = analiseDao.findById(idFind);
             for (AnaliseEntity analiseEntity : analise) {
                 descricao = analiseEntity.getDescricao_analise();

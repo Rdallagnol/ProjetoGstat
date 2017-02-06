@@ -6,14 +6,18 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import utils.BaseBean;
 
 /**
@@ -30,11 +34,16 @@ public class AnaliseEntity extends BaseBean {
     private Long analise_header_id;
 
     private Long amostra_id;
+    
+    @Temporal(TemporalType.DATE)
     private Date creation_date;
     private Long created_by;
     private String descricao_analise;
     private String status;
 
+    @OneToMany(mappedBy = "analiseHeader")
+    private List<AnaliseLinesEntity> analisesLines;
+    
     @ManyToOne
     @JoinColumn(name = "area_id")
     private AreaEntity area;
@@ -42,14 +51,23 @@ public class AnaliseEntity extends BaseBean {
     public AnaliseEntity() {
     }
 
-    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, AreaEntity area) {
+    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, List<AnaliseLinesEntity> analisesLines, AreaEntity area) {
         this.analise_header_id = analise_header_id;
         this.amostra_id = amostra_id;
         this.creation_date = creation_date;
         this.created_by = created_by;
         this.descricao_analise = descricao_analise;
         this.status = status;
+        this.analisesLines = analisesLines;
         this.area = area;
+    }
+
+    public List<AnaliseLinesEntity> getAnalisesLines() {
+        return analisesLines;
+    }
+
+    public void setAnalisesLines(List<AnaliseLinesEntity> analisesLines) {
+        this.analisesLines = analisesLines;
     }
 
     public AreaEntity getArea() {
