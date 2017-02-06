@@ -25,7 +25,7 @@
                     <input id="analiseId" type="hidden" name="analiseId"  value="${analise.analise_header_id}" />
                     <td>${analise.analise_header_id}</td>
                     <td>${analise.descricao_analise}</td>
-                    <td>${analise.area_id.nome}</td>
+                    <td>${analise.area.nome}</td>
                     <td>${analise.amostra_id}</td>
                     <td>${analise.created_by}</td>
                     <td>${analise.creation_date}</td>

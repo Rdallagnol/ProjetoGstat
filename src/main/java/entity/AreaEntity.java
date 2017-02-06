@@ -31,25 +31,25 @@ public class AreaEntity extends BaseBean {
     private String nome;
     private Float tamanho;
 
-    @OneToMany(mappedBy = "area_id")
-    private List<AnaliseEntity> analiseEntitys;
+    @OneToMany(mappedBy = "area")
+    private List<AnaliseEntity> analises;
 
     public AreaEntity() {
     }
 
-    public AreaEntity(Long codigo, String nome, Float tamanho, List<AnaliseEntity> analiseEntitys) {
+    public AreaEntity(Long codigo, String nome, Float tamanho, List<AnaliseEntity> analises) {
         this.codigo = codigo;
         this.nome = nome;
         this.tamanho = tamanho;
-        this.analiseEntitys = analiseEntitys;
+        this.analises = analises;
     }
 
-    public List<AnaliseEntity> getAnaliseEntitys() {
-        return analiseEntitys;
+    public List<AnaliseEntity> getAnalises() {
+        return analises;
     }
 
-    public void setAnaliseEntitys(List<AnaliseEntity> analiseEntitys) {
-        this.analiseEntitys = analiseEntitys;
+    public void setAnalises(List<AnaliseEntity> analises) {
+        this.analises = analises;
     }
 
     public Long getCodigo() {

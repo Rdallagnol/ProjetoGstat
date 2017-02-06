@@ -37,30 +37,28 @@ public class AnaliseEntity extends BaseBean {
 
     @ManyToOne
     @JoinColumn(name = "area_id")
-    private AreaEntity area_id;
-
-    public AreaEntity getArea_id() {
-        return area_id;
-    }
-
-    public void setArea_id(AreaEntity area_id) {
-        this.area_id = area_id;
-    }
+    private AreaEntity area;
 
     public AnaliseEntity() {
     }
 
-    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, AreaEntity area_id) {
+    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, AreaEntity area) {
         this.analise_header_id = analise_header_id;
         this.amostra_id = amostra_id;
         this.creation_date = creation_date;
         this.created_by = created_by;
         this.descricao_analise = descricao_analise;
         this.status = status;
-        this.area_id = area_id;
+        this.area = area;
     }
 
+    public AreaEntity getArea() {
+        return area;
+    }
 
+    public void setArea(AreaEntity area) {
+        this.area = area;
+    }
 
     public Long getAnalise_header_id() {
         return analise_header_id;
