@@ -107,9 +107,7 @@ public class PrincipalController {
         
         List<AnaliseEntity> analises = analiseDao.findAll();
         result.include("analises", analises);
-
-        /* AreaDao aDao = DaoFactory.areaDaoInstance();
-        AreaEntity a = aDao.findById(131L); */
+   
         if (request.getMethod().equals("POST")) {
 
             Long idFind = Long.parseLong(request.getParameter("analiseId"));

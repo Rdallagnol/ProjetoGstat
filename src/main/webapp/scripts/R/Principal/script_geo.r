@@ -103,8 +103,8 @@ drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postgres",password="1")
 con
 local = 29182
-id_amostra = 25
-atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),to_number(valor,'9999.999') from pixelamostra where amostra_codigo = ", id_amostra  )
+
+atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),to_number(valor,'9999.999') from pixelamostra where amostra_codigo = ", amostra  )
 frame_dados <- dbGetQuery(con,atributo)
 
 dados <- as.geodata(frame_dados)

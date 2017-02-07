@@ -17,16 +17,16 @@
                             <label for="area">Área:</label>
                             <select name="area">
                                 <option value="131">A</option>
-                                <option value="207">B</option>
+                                <option value="217">B</option>
                                 <option value="249">C</option>
                             </select> 
                         </div>
                         <div class="span3">
                             <label for="amostra">Amostra:</label>
                             <select name="amostra">
-                                <option value="1">Cálcio</option>
-                                <option value="2">Produção</option>
-                                <option value="3">PH</option>
+                                <option value="25"> A - Prod. Soja</option>
+                                <option value="22"> B - Areia</option>
+                                <option value="23"> B - Argila</option>
                             </select>
                         </div>
                     </div>               

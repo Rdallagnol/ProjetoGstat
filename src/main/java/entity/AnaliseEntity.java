@@ -34,7 +34,6 @@ public class AnaliseEntity extends BaseBean {
     private Long analise_header_id;
 
     private Long amostra_id;
-    
     @Temporal(TemporalType.DATE)
     private Date creation_date;
     private Long created_by;
@@ -43,10 +42,11 @@ public class AnaliseEntity extends BaseBean {
 
     @OneToMany(mappedBy = "analiseHeader")
     private List<AnaliseLinesEntity> analisesLines;
-    
+
     @ManyToOne
     @JoinColumn(name = "area_id")
     private AreaEntity area;
+
 
     public AnaliseEntity() {
     }
@@ -61,6 +61,16 @@ public class AnaliseEntity extends BaseBean {
         this.analisesLines = analisesLines;
         this.area = area;
     }
+
+    public Long getAmostra_id() {
+        return amostra_id;
+    }
+
+    public void setAmostra_id(Long amostra_id) {
+        this.amostra_id = amostra_id;
+    }
+
+   
 
     public List<AnaliseLinesEntity> getAnalisesLines() {
         return analisesLines;
@@ -86,13 +96,7 @@ public class AnaliseEntity extends BaseBean {
         this.analise_header_id = analise_header_id;
     }
 
-    public Long getAmostra_id() {
-        return amostra_id;
-    }
-
-    public void setAmostra_id(Long amostra_id) {
-        this.amostra_id = amostra_id;
-    }
+  
 
     public Date getCreation_date() {
         return creation_date;
