@@ -80,8 +80,8 @@ nro_modelo=12
 vlr_kappa=0
 
 #Constante para gráfico Semivariograma
-legenda_x_semiv = "Distância"
-legenda_y_semiv = "Semivariância"
+legenda_x_semiv = iconv("Distância", to="latin1", from="utf-8")
+legenda_y_semiv = iconv("Semivariância", to="latin1", from="utf-8")
 titulo_semiv = "Semivariograma experimental"
 
 #Constante do gráfico Mapa de dispersão dos pontos amostrais
@@ -92,6 +92,9 @@ leg_y_pamostrais ="S - N"
 
 titulo_BoxPlot = "Gráfico Boxplot"
 titulo_PostPlot = "Gráfico Postplot"
+
+titulo_BoxPlot = iconv(titulo_BoxPlot, to="latin1", from="utf-8")
+titulo_PostPlot = iconv(titulo_PostPlot, to="latin1", from="utf-8")
 
 classes = 4  #número de classe no mapa (intervalos) - só no R
 
@@ -226,7 +229,7 @@ seq(min_seq_alc, vlr_cutoff, l=nro_intervalos_alc))
 
 x=paste("semi_geral",".png",sep = "")
 png(x)
-plot(dados.var,xlab='Distância',ylab='Semivariância',main= "Semivariograma ajustado" )
+plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main= "Semivariograma ajustado" )
 dev.off()
 
 cont = nro_intervalos_contr * nro_intervalos_alc
@@ -441,7 +444,7 @@ dimnames = list(c(),c("modelo","metodo","vlr_kappa")))
 
 x=paste("semiv_melhores",".png",sep = "")
 png(x)
-plot(dados.var,xlab='Distância',ylab='Semivariância',main= "Semivariograma ajustado" )
+plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main= "Semivariograma ajustado" )
 dev.off()
 
 i=0
