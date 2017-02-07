@@ -25,7 +25,7 @@
                             <td>${analise.analise_header_id}</td>
                             <td>${analise.descricao_analise}</td>
                             <td>${analise.area.nome}</td>
-                            <td>${analise.amostra_id}</td>
+                            <td>${analise.amostra.descricao}</td>
                             <td>${analise.created_by}</td>
                             <td>${analise.creation_date}</td>
                             <td>${analise.status}</td>

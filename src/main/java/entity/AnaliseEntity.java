@@ -33,7 +33,6 @@ public class AnaliseEntity extends BaseBean {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "geo_analise_header_seq")
     private Long analise_header_id;
 
-    private Long amostra_id;
     @Temporal(TemporalType.DATE)
     private Date creation_date;
     private Long created_by;
@@ -47,30 +46,31 @@ public class AnaliseEntity extends BaseBean {
     @JoinColumn(name = "area_id")
     private AreaEntity area;
 
+    @ManyToOne
+    @JoinColumn(name = "amostra_id")
+    private AmostraEntity amostra;
 
     public AnaliseEntity() {
     }
 
-    public AnaliseEntity(Long analise_header_id, Long amostra_id, Date creation_date, Long created_by, String descricao_analise, String status, List<AnaliseLinesEntity> analisesLines, AreaEntity area) {
+    public AnaliseEntity(Long analise_header_id, Date creation_date, Long created_by, String descricao_analise, String status, List<AnaliseLinesEntity> analisesLines, AreaEntity area, AmostraEntity amostra) {
         this.analise_header_id = analise_header_id;
-        this.amostra_id = amostra_id;
         this.creation_date = creation_date;
         this.created_by = created_by;
         this.descricao_analise = descricao_analise;
         this.status = status;
         this.analisesLines = analisesLines;
         this.area = area;
+        this.amostra = amostra;
     }
 
-    public Long getAmostra_id() {
-        return amostra_id;
+    public AmostraEntity getAmostra() {
+        return amostra;
     }
 
-    public void setAmostra_id(Long amostra_id) {
-        this.amostra_id = amostra_id;
+    public void setAmostra(AmostraEntity amostra) {
+        this.amostra = amostra;
     }
-
-   
 
     public List<AnaliseLinesEntity> getAnalisesLines() {
         return analisesLines;
@@ -95,8 +95,6 @@ public class AnaliseEntity extends BaseBean {
     public void setAnalise_header_id(Long analise_header_id) {
         this.analise_header_id = analise_header_id;
     }
-
-  
 
     public Date getCreation_date() {
         return creation_date;
