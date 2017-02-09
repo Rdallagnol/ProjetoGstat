@@ -109,7 +109,7 @@ public class PrincipalController {
 
         AnaliseDao analiseDao = DaoFactory.analiseInstance();     
         
-        List<AnaliseEntity> analises = analiseDao.findAll();
+        List<AnaliseEntity> analises = analiseDao.findAllOrdenado();
         result.include("analises", analises);
    
         if (request.getMethod().equals("POST")) {

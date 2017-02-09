@@ -22,4 +22,11 @@ public class AnaliseDao extends GenericDao<AnaliseEntity, Long>{
         List<AnaliseEntity> analises = (List<AnaliseEntity>) this.executeQuery("select a from AnaliseEntity a where a.analise_header_id = ?0", id);        
         return analises;
     }
+
+    
+    public List<AnaliseEntity> findAllOrdenado() {
+        List<AnaliseEntity> analises = (List<AnaliseEntity>) this.executeQuery("from AnaliseEntity order by 1 desc");
+        return analises;
+    }
+
 }
