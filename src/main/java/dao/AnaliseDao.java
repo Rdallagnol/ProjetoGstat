@@ -7,12 +7,14 @@ package dao;
 
 import entity.AnaliseEntity;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import utils.GenericDao;
 
 /**
  *
  * @author Dallagnol
  */
+@RequestScoped
 public class AnaliseDao extends GenericDao<AnaliseEntity, Long>{
     
     

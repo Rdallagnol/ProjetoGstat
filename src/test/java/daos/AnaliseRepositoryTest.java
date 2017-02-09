@@ -17,7 +17,7 @@ import utils.DaoFactory;
  * @author Dallagnol
  */
 public class AnaliseRepositoryTest {
-    private static final Logger LOGGER = Logger.getLogger(AnaliseRepositoryTest.class);
+  /*  private static final Logger LOGGER = Logger.getLogger(AnaliseRepositoryTest.class);
     
     private AnaliseDao analiseDao = DaoFactory.analiseInstance();
     

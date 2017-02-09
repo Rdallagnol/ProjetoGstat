@@ -83,8 +83,12 @@ public class PrincipalController {
                         listaRetorno.add(line);
                         System.out.println(line);
                     }
+                    
                     result.include("retorno", listaRetorno);
                     reader.close();
+                    
+                    result.include("mensagemOK", "Análise realizada com sucesso!");
+                    result.redirectTo(this).visualizaGeo();
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }

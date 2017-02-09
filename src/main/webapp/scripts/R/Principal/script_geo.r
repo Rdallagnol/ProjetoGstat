@@ -504,11 +504,6 @@ matriz_isi<-cbind(vetor_em_melhor,vetor_dp_em_melhor,isi)
 matriz_isi_melhor = cbind (matriz_ice, matriz_isi)
 dev.off()
 
-nome_tab = paste0 ("tb_isi_","testes")
-
-dbWriteTable(con, nome_tab, as.data.table(matriz_isi_melhor), overwrite = T)
-
-
 #### Registra analises e seus parametrôs ######
 seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
 insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date,status) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A')")

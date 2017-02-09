@@ -39,7 +39,7 @@
                                 <li>
                                     <div style="padding: 4px;"> <img src="./img/logoMenu.png">  </div> </li>
                                 <li class="active">
-                                    <a href="<c:url value="/"/>">Início</a>
+                                    <a href="${linkTo[PrincipalController].index()}">Início</a>
 
                                 </li>
                             </ul>
@@ -71,28 +71,6 @@
                                     </div>
                                 </ul>
                             </div>   
-
-
-<!--                            <button type="button" class="btn btn-block" data-toggle="collapse" style="border: 1px solid silver" data-target="#menuZ">
-                                <li class="nav-header">X</li>
-                            </button>
-                            <div class="menu-fundo" style="padding-top: 15px;">
-
-                                <ul class="nav nav-pills ">
-                                    <div id="menuZ"  class="collapse in ">                                       
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/sele_var"/>">X</a>
-                                        </li>
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/sele_agru"/>">X</a>
-                                        </li>
-                                        <li class="nav-header"  style="border-bottom: 1px solid silver; border-right: 1px solid silver">
-                                            <a href="<c:url value="/p2"/>">X</a>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </div>  -->
-
                         </div>
                     </div>
 

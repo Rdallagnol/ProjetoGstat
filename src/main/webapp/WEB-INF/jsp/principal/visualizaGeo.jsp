@@ -1,10 +1,17 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" style="">
 
+    <c:if test="${mensagemOK != null}"> 
+        <div class="alert alert-success alert-block">      
+            <h4>Sucesso!</h4>
+            ${mensagemOK}
+        </div>
+    </c:if>
+
     <div class="bs-docs-example">
         <div class="bs-docs-text"> Analises Realizadas </div>
-        <div class="table-responsive" style="overflow: auto;">
-            <table class="table-bordered table-striped table-hover table-condensed" style="">
+        <div class="table-responsive " style="overflow: auto; max-height: 300px; overflow-y: auto ">
+            <table class="table table-bordered table-striped table-hover table-condensed" style="">
                 <thead>
                     <tr>
 
@@ -30,7 +37,7 @@
                             <td>${analise.creation_date}</td>
                             <td>${analise.status}</td>
                             <td> 
-                                <form action="visualizaGeo" method="post" > 
+                                <form action="visualizaGeo" method="post" class="btn btn-link" > 
                                     <input id="analiseId" type="hidden" name="analiseId"  value="${analise.analise_header_id}" />
                                     <button class="btn btn-mini btn-primary" type="submit">Visualizar</button>
                                 </form>
@@ -46,8 +53,8 @@
     <c:if test="${not empty analiseLines}">
         <div class="bs-docs-example">
             <div class="bs-docs-text"> Linhas da Analise </div>
-            <div class="table-responsive" style="overflow: auto;">
-                <table class="table-bordered  table-hover table-condensed">
+            <div class="table-responsive" style="overflow: auto; max-height: 300px; overflow-y: auto ">
+                <table class="table table-bordered  table-hover table-condensed">
                     <thead>
                         <tr>
                             <th>Código</th>

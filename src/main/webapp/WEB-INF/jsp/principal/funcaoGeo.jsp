@@ -1,4 +1,5 @@
-<%@include file="../template/header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/WEB-INF/jsp/template/header.jsp"/>
 <div class="row-fluid" >
     <form action="funcaoGeo" method="post">
         <div class="row-fluid" style="">
@@ -144,7 +145,7 @@
 
 </div>
 
-<%@include file="../template/footer.jsp" %>
+<c:import url="/WEB-INF/jsp/template/footer.jsp"/>
 
 
 

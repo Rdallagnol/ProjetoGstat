@@ -7,6 +7,7 @@ package utils;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -28,7 +29,6 @@ public abstract class GenericDao<T, PK> {
         this(DaoFactory.entityManagerFactoryInstance());
     }
 
-    
     public GenericDao(EntityManagerFactory factory) {
         this.factory = factory;
         this.entityManager = factory.createEntityManager();
@@ -38,22 +38,20 @@ public abstract class GenericDao<T, PK> {
     /////////////////////////////////////
     // CRUD Methods
     ////////////////////////////////////
-    
-    public Object executeQuery(String query, Object... params){
+    public Object executeQuery(String query, Object... params) {
         Query createdQuery = this.entityManager.createQuery(query);
-        
+
         for (int i = 0; i < params.length; i++) {
             createdQuery.setParameter(i, params[i]);
         }
-        
+
         return createdQuery.getResultList();
     }
-    
-    public List<T> findAll(){
+
+    public List<T> findAll() {
         return this.entityManager.createQuery(("from " + this.clazz.getName())).getResultList();
     }
-    
-    
+
     public void update(T entity) {
         try {
             this.beginTransaction();
