@@ -112,12 +112,6 @@ frame_dados <- dbGetQuery(con,atributo)
 
 dados <- as.geodata(frame_dados)
 names(dados)
-### link para trabalhar com postgre https://www.r-bloggers.com/r-and-postgresql-using-rpostgresql-and-sqldf/
-### http://stackoverflow.com/questions/39253497/updating-local-postgresql-database-with-r-using-update-or-insert
-### http://stackoverflow.com/questions/25391324/how-to-insert-all-the-records-in-a-data-frame-into-the-database-in-r
-### http://www.win-vector.com/blog/2016/02/using-postgresql-in-r/
-### https://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html
-### https://cran.r-project.org/web/packages/sqldf/sqldf.pdf
 ###### FIM CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############
 
 ###### INICIO DAS ANALISES  #############

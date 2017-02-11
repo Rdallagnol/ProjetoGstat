@@ -18,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import utils.BaseBean;
 
 /**
@@ -36,6 +37,8 @@ public class AnaliseEntity extends BaseBean {
     @Temporal(TemporalType.DATE)
     private Date creation_date;
     private Long created_by;
+    
+    @NotNull
     private String descricao_analise;
     private String status;
 
@@ -47,6 +50,7 @@ public class AnaliseEntity extends BaseBean {
     private AreaEntity area;
 
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "amostra_id")
     private AmostraEntity amostra;
 

@@ -7,14 +7,20 @@ package controller.geo;
 
 import config.Constantes;
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
+import dao.AmostraDao;
 import dao.AnaliseDao;
 import dao.AnaliseLineDao;
+import dao.AreaDao;
+import entity.AmostraEntity;
 
 import entity.AnaliseEntity;
 import entity.AnaliseLinesEntity;
+import entity.AreaEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,8 +52,11 @@ public class PrincipalController {
     @Path("/funcaoGeo")
     public void funcaoGeo() {
 
-        if (request.getMethod().equals("POST")) {
+        AreaDao areaDao = DaoFactory.areaDaoInstance();
+        List<AreaEntity> areas = areaDao.findAll();
+        result.include("areas", areas);
 
+        if (request.getMethod().equals("POST")) {
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
                 String userID = request.getParameter("user");
@@ -83,23 +92,24 @@ public class PrincipalController {
                         listaRetorno.add(line);
                         System.out.println(line);
                     }
-                    
-                    result.include("retorno", listaRetorno);
                     reader.close();
-                    
-                    result.include("mensagemOK", "Análise realizada com sucesso!");
+                    result.include("mensagemOK", "Análise será processada, tempo estimado 10 minutos !");
                     result.redirectTo(this).visualizaGeo();
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }
-
-                //result.redirectTo(PrincipalController.class).visualizaGeo();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
         }
+    }
+
+    @Get("/buscaAmostrasDaArea")
+    public void buscaAmostrasDaArea(Long idArea) {
+        AmostraDao amostraDao = DaoFactory.amostraDaoInstance();
+        List<AmostraEntity> amostras = amostraDao.findByIdArea(idArea);
+        result.use(Results.json()).withoutRoot().from(amostras).serialize();
     }
 
     @Path("/visualizaGeo")
@@ -107,20 +117,19 @@ public class PrincipalController {
         String descricao = null;
         Long userId = null;
 
-        AnaliseDao analiseDao = DaoFactory.analiseInstance();     
-        
+        AnaliseDao analiseDao = DaoFactory.analiseInstance();
+
         List<AnaliseEntity> analises = analiseDao.findAllOrdenado();
         result.include("analises", analises);
-   
+
         if (request.getMethod().equals("POST")) {
 
             Long idFind = Long.parseLong(request.getParameter("analiseId"));
 
             AnaliseLineDao analiseLineDao = DaoFactory.analiseLineInstance();
-            List<AnaliseLinesEntity> analiseLines = analiseLineDao.findByArea(idFind);            
+            List<AnaliseLinesEntity> analiseLines = analiseLineDao.findByArea(idFind);
             result.include("analiseLines", analiseLines);
-            
-            
+
             List<AnaliseEntity> analise = analiseDao.findById(idFind);
             for (AnaliseEntity analiseEntity : analise) {
                 descricao = analiseEntity.getDescricao_analise();

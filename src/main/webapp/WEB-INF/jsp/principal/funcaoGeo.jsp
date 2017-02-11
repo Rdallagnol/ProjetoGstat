@@ -1,5 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/jsp/template/header.jsp"/>
+
+
 <div class="row-fluid" >
     <form action="funcaoGeo" method="post">
         <div class="row-fluid" style="">
@@ -16,19 +18,17 @@
                     <div class="">
                         <div class="span3">
                             <label for="area">Área:</label>
-                            <select name="area">
-                                <option value="131">A</option>
-                                <option value="217">B</option>
-                                <option value="249">C</option>
+                            <select name="area" id="area" class="area" required="true">
+                                <option value="">Selecione uma Área</option>
+                                <c:forEach var="area" items="${areas}">
+                                    <option value="${area.codigo}">${area.nome}</option>
+                                </c:forEach>
+                               
                             </select> 
                         </div>
                         <div class="span3">
                             <label for="amostra">Amostra:</label>
-                            <select name="amostra">
-                                <option value="25"> A - Prod. Soja</option>
-                                <option value="22"> B - Areia</option>
-                                <option value="23"> B - Argila</option>
-                            </select>
+                            <select name="amostra" id="amostra" required="true"></select>                        
                         </div>
                     </div>               
                 </div>

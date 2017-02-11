@@ -5,6 +5,7 @@
  */
 package utils;
 
+import dao.AmostraDao;
 import dao.AnaliseDao;
 import dao.AnaliseLineDao;
 import dao.AreaDao;
@@ -69,5 +70,17 @@ public final class DaoFactory {
             areaDaoInstance = new AreaDao();
         }
         return areaDaoInstance;
+    }
+    
+    /////////////////////////////
+    /// Amostra
+    /////////////////////////////
+    private static AmostraDao amostraDaoInstance;
+
+    public static AmostraDao amostraDaoInstance() {
+        if (amostraDaoInstance == null) {
+            amostraDaoInstance = new AmostraDao();
+        }
+        return amostraDaoInstance;
     }
 }
