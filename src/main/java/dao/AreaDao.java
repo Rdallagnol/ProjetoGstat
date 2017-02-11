@@ -5,7 +5,7 @@
  */
 package dao;
 
-import entity.AnaliseEntity;
+
 import entity.AreaEntity;
 import java.util.List;
 import utils.GenericDao;

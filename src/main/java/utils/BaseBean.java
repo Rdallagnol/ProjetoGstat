@@ -26,4 +26,12 @@ public abstract class BaseBean implements Serializable {
         return EqualsBuilder.reflectionEquals(this, obj);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+  
+
 }
