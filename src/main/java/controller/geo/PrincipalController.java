@@ -84,15 +84,15 @@ public class PrincipalController {
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line = null;
-                    List<String> listaRetorno = new ArrayList<>();
+                    String line = null;                  
                     while ((line = reader.readLine()) != null) {
-                        listaRetorno.add(line);
                         System.out.println(line);
                     }
-                    reader.close();
+                
+                    reader.close();                   
                     result.include("mensagemOK", "Análise será processada, tempo estimado 10 minutos !");
                     result.redirectTo(this).visualizaGeo();
+                
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }

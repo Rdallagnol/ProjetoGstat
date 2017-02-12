@@ -37,7 +37,7 @@
                             <td>${analise.creation_date}</td>
                             <td>${analise.status}</td>
                             <td> 
-                                <form action="visualizaGeo" method="post" class="btn btn-link" > 
+                                <form action="${linkTo[PrincipalController].visualizaGeo()}" method="post" class="btn btn-link" > 
                                     <input id="analiseId" type="hidden" name="analiseId"  value="${analise.analise_header_id}" />
                                     <button class="btn btn-mini btn-primary" type="submit">Visualizar</button>
                                 </form>
