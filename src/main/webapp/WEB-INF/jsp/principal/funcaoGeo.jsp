@@ -3,7 +3,10 @@
 
 
 <div class="row-fluid" >
-    <form action="funcaoGeo" method="post">
+    <div class="center">
+        <img src="img/gif-image.gif" alt="spinner" id="spinner" />
+    </div>
+    <form action="funcaoGeo" method="post" name="formGeo" id="formGeo">
         <div class="row-fluid" style="">
 
             <div class="bs-docs-example">
@@ -18,17 +21,17 @@
                     <div class="">
                         <div class="span3">
                             <label for="area">Área:</label>
-                            <select name="area" id="area" class="area" required="true">
+                            <select name="area" id="area" class="area required" required="true">
                                 <option value="">Selecione uma Área</option>
                                 <c:forEach var="area" items="${areas}">
                                     <option value="${area.codigo}">${area.nome}</option>
                                 </c:forEach>
-                               
+
                             </select> 
                         </div>
                         <div class="span3">
                             <label for="amostra">Amostra:</label>
-                            <select name="amostra" id="amostra" required="true"></select>                        
+                            <select name="amostra" id="amostra" class="required" required="true"></select>                        
                         </div>
                     </div>               
                 </div>
@@ -36,12 +39,11 @@
                 <div class="row-fluid">
                     <div class="span3">
                         <label for="desc">Descrição:</label>
-                        <input id="desc" type="text" name="desc" class="input-xxlarge" required="true"/>
+                        <input id="desc" type="text" name="desc" class="input-xxlarge required" required="true"/>
                     </div> 
                 </div>
             </div>
         </div>
-
 
         <div class="row-fluid" style="">
             <div class="bs-docs-example span12" >                       
@@ -123,9 +125,6 @@
                                 <input id="nro_intervalos_contr" type="text" name="nro_intervalos_contr" class="input-mini" value="3"/>
 
                             </div>
-
-
-
                         </div>
                     </div>                 
                 </div>
@@ -136,7 +135,7 @@
         <div class="btn span11" style="visibility: hidden"></div>
         <div class="navbar navbar-fixed-bottom">
             <center>
-                <button class="btn btn-large btn-primary" type="submit">Enviar</button>
+                <button class="btn btn-large btn-primary" type="submit" id="btnEnviar" name="btnEnviar">Enviar</button>
             </center>
         </div>
 
@@ -144,6 +143,9 @@
 
 
 </div>
+
+
+
 
 <c:import url="/WEB-INF/jsp/template/footer.jsp"/>
 

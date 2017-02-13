@@ -89,8 +89,7 @@ public class PrincipalController {
                         System.out.println(line);
                     }
                 
-                    reader.close();                   
-                    result.include("mensagemOK", "Análise será processada, tempo estimado 10 minutos !");
+                    reader.close();                
                     result.redirectTo(this).visualizaGeo();
                 
                 } catch (final Exception e) {

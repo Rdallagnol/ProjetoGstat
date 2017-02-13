@@ -23,6 +23,7 @@
       
         <link href="<c:url value="./css/bootstrap.min.css"/>" rel="stylesheet"/>
         <link href="<c:url value="./css/bootstrap-responsive.css"/>" rel="stylesheet"/>
+        <link href="<c:url value="./css/loader.css"/>" rel="stylesheet"/>
         <link rel="shortcut icon" href="./img/favicon.ico">
     </head>
 
