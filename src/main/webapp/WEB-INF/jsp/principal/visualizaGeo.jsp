@@ -57,15 +57,15 @@
                 <table class="table table-bordered  table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <!--<th>Código</th>-->
                             <th>Modelo</th>                   
                             <th>Método</th>
                             <th>Min. ICE</th>                   
-                            <th>Melhor Contribuição</th>
-                            <th>Melhor Alcance</th>                   
-                            <th>Melhor Valor Kappa</th>
-                            <th>EM</th>
-                            <th>Desvio Padrão EM</th>
+                            <th>Contribuição</th>
+                            <th>Alcance</th>                   
+                            <th>Val. Kappa</th>
+                            <!--<th>EM</th>-->
+                            <!--<th>Desvio Padrão EM</th>-->
                             <th>ISI</th>
                             <th>Opções</th>
 
@@ -78,17 +78,17 @@
                             <c:if test="${myIndex.index == 0}">  
                                 <tr style="background-color: #25d366">
 
-                                    <td class="">${analiseLine.analise_lines_id}</td>
+                                    <!--<td class="">${analiseLine.analise_lines_id}</td>-->
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>
                                     <td>${analiseLine.melhor_contrib}</td>
                                     <td>${analiseLine.melhor_alcance}</td>
                                     <td>${analiseLine.melhor_val_kappa}</td>
-                                    <td>${analiseLine.erro_medio}</td>
-                                    <td>${analiseLine.dp_erro_medio}</td>
+                                    <!--<td>${analiseLine.erro_medio}</td>-->
+                                    <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
-                                    <td>
+                                    <td class="">
 
                                         <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
                                     </td>
@@ -96,17 +96,17 @@
                             </c:if>
                             <c:if test="${myIndex.index != 0}">   
                                 <tr>
-                                    <td class="">${analiseLine.analise_lines_id}</td>
+                                    <!--<td class="">${analiseLine.analise_lines_id}</td>-->
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>
                                     <td>${analiseLine.melhor_contrib}</td>
                                     <td>${analiseLine.melhor_alcance}</td>
                                     <td>${analiseLine.melhor_val_kappa}</td>
-                                    <td>${analiseLine.erro_medio}</td>
-                                    <td>${analiseLine.dp_erro_medio}</td>
+                                    <!--<td>${analiseLine.erro_medio}</td>-->
+                                    <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
-                                    <td>
+                                    <td class="">
                                         <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
                                     </td>
                                 </tr>
