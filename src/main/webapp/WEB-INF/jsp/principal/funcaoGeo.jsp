@@ -3,9 +3,7 @@
 
 
 <div class="row-fluid" >
-    <div class="center">
-        <img src="img/gif-image.gif" alt="spinner" id="spinner" />
-    </div>
+
     <form action="funcaoGeo" method="post" name="formGeo" id="formGeo">
         <div class="row-fluid" style="">
 
@@ -44,6 +42,13 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div class=" row-fluid" id="spinner">
+            <center><span class="alert alert-info"><strong>Processando </strong><img src="img/gif-image.gif" alt="spinner" /> </span></center>
+        </div>
+
 
         <div class="row-fluid" style="">
             <div class="bs-docs-example span12" >                       
