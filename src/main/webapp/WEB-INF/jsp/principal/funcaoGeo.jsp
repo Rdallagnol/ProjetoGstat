@@ -1,9 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/jsp/template/header.jsp"/>
 
-
 <div class="row-fluid" >
-
     <form action="funcaoGeo" method="post" name="formGeo" id="formGeo">
         <div class="row-fluid" style="">
 
@@ -143,10 +141,7 @@
                 <button class="btn btn-large btn-primary" type="submit" id="btnEnviar" name="btnEnviar">Enviar</button>
             </center>
         </div>
-
     </form>
-
-
 </div>
 
 
