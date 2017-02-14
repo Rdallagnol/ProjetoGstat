@@ -32,6 +32,9 @@ if (auto_lags == "true") {
 } else {
    auto_lags <- FALSE
 }
+seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
+insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date, status, isi, v_lambda, auto_lags) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A', ",ISI,",",v_lambda,",",auto_lags,")")
+
 
 #### FIM BLOCO QUE RECEBERA OS ARGUMENTOS DA TELA E REALIZARA OS TRATAMENTOS ####
 
@@ -115,12 +118,6 @@ names(dados)
 ###### FIM CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############
 
 ###### INICIO DAS ANALISES  #############
-
-#### Cria a SQL da analise #####
-seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
-insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date, status, isi, v_lambda, auto_lags, nro_lags, estimador, cutoff,tam_pixel_x,tam_pixel_y,nro_intervalos_alc,nro_intervalos_contr,nro_pares,min_seq_contr,min_seq_alc) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A', ",ISI,",",v_lambda,",",auto_lags,",",nro_lags,",'",estimador,"',",cutoff,",",tam_pixel_x,",",tam_pixel_y,",",nro_intervalos_alc,",",nro_intervalos_contr,",",nro_pares,",",min_seq_contr,",",min_seq_alc,")")
-
-#### Inicia as analises estatísticas
 dados$coords
 dados$data
 
@@ -505,10 +502,8 @@ matriz_isi_melhor = cbind (matriz_ice, matriz_isi)
 dev.off()
 
 #### Registra analises e seus parametrôs ######
-#### Cria a analise #####
-registra <- dbGetQuery(con,insertHeader)
 
-#### Cria as linhas da analise #####
+registra <- dbGetQuery(con,insertHeader)
 linhas = 1
 while (linhas <= nro_modelo){   
     insertLines = paste0("INSERT INTO geo_analise_lines(analise_header_id, modelo, metodo, min_ice, melhor_contrib, melhor_alcance, melhor_val_kappa,created_by, creation_date, erro_medio, dp_erro_medio, isi)","VALUES (",seq_header,",'",matriz_isi_melhor[linhas,1],"','",matriz_isi_melhor[linhas,2],"',",matriz_isi_melhor[linhas,3],", ",matriz_isi_melhor[linhas,4],",",matriz_isi_melhor[linhas,5],", ",matriz_isi_melhor[linhas,6],", 1, current_date, ",matriz_isi_melhor[linhas,8],",",matriz_isi_melhor[linhas,9],", ",matriz_isi_melhor[linhas,10],")")
@@ -516,11 +511,6 @@ while (linhas <= nro_modelo){
     linhas <- linhas + 1
 }
 
-9999
 dbDisconnect(con)
-
-
-
 dev.off()
-
 

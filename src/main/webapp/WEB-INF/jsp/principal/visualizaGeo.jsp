@@ -111,22 +111,15 @@
                                     </td>
                                 </tr>
                             </c:if>
-
-
-
-
                         </c:forEach>
-
                     </tbody>
                 </table>
             </div>
         </div>
-
     </c:if>
 
     <c:if test="${not empty userID}">
         <div class="row-fluid bs-docs-example" >
-
             <div class="row-fluid bs-docs-example">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/box_plot.png">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/grafico_pontos.png">
@@ -136,7 +129,6 @@
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/semi_geral.png">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/semiv_melhores.png">
             </div>
-
         </div>
     </c:if>
 </div>

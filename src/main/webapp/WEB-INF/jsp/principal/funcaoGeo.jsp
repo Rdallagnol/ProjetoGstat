@@ -1,6 +1,21 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="/WEB-INF/jsp/template/header.jsp"/>
 
+
+<div class=" row-fluid" id="spinner">
+    <center><div class="alert alert-info"><strong>Processando </strong><img src="img/gif-image.gif" alt="spinner" /> </div></center>
+</div>
+
+<c:if test="${not empty errorMsg}">
+    <div class=" row-fluid" id="msgError">
+
+        <center> <div class="alert alert-error" ><strong>${errorMsg}</strong></div></center>
+
+    </div>
+</c:if>
+
+
+
 <div class="row-fluid" >
     <form action="funcaoGeo" method="post" name="formGeo" id="formGeo">
         <div class="row-fluid" style="">
@@ -43,9 +58,6 @@
 
 
 
-        <div class=" row-fluid" id="spinner">
-            <center><span class="alert alert-info"><strong>Processando </strong><img src="img/gif-image.gif" alt="spinner" /> </span></center>
-        </div>
 
 
         <div class="row-fluid" style="">

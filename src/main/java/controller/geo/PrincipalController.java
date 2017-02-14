@@ -58,7 +58,7 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
-                System.out.println(Constantes.ENDERECO_FILE);               
+                System.out.println(Constantes.ENDERECO_FILE);
 
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S
@@ -84,14 +84,22 @@ public class PrincipalController {
 
                 try {
                     final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line = null;                  
+                    String line = null;
+                    String ok = null;
                     while ((line = reader.readLine()) != null) {
                         System.out.println(line);
+                        if (line.equals("[1] 9999")) {
+                            ok = "OK";
+                        }
                     }
-                
-                    reader.close();                
-                    result.redirectTo(this).visualizaGeo();
-                
+                    
+                    reader.close();
+
+                    if (ok != null) {
+                        result.redirectTo(this).visualizaGeo();
+                    } else {
+                        result.include("errorMsg", "Não foi possível realizar a analise favor verificar dados !");
+                    }
                 } catch (final Exception e) {
                     e.printStackTrace();
                 }

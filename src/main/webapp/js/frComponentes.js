@@ -39,5 +39,6 @@ $('.area').change(function () {
 });
 
 $('#formGeo').submit(function () {
+    $('#msgError').hide();
     $('#spinner').show();
 });
