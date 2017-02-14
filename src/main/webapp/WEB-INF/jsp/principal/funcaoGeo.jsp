@@ -14,8 +14,6 @@
     </div>
 </c:if>
 
-
-
 <div class="row-fluid" >
     <form action="funcaoGeo" method="post" name="formGeo" id="formGeo">
         <div class="row-fluid" style="">
