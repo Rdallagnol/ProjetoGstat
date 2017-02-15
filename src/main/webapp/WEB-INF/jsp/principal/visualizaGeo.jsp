@@ -57,7 +57,7 @@
                 <table class="table table-bordered  table-hover table-condensed">
                     <thead>
                         <tr>
-                            <!--<th>Código</th>-->
+                            <th>Código</th>
                             <th>Modelo</th>                   
                             <th>Método</th>
                             <th>Min. ICE</th>                   
@@ -78,7 +78,7 @@
                             <c:if test="${myIndex.index == 0}">  
                                 <tr style="background-color: #25d366">
 
-                                    <!--<td class="">${analiseLine.analise_lines_id}</td>-->
+                                    <td class="">${analiseLine.analise_lines_id}</td>
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>
@@ -96,7 +96,7 @@
                             </c:if>
                             <c:if test="${myIndex.index != 0}">   
                                 <tr>
-                                    <!--<td class="">${analiseLine.analise_lines_id}</td>-->
+                                    <td class="">${analiseLine.analise_lines_id}</td>
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>

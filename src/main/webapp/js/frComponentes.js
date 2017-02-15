@@ -41,4 +41,5 @@ $('.area').change(function () {
 $('#formGeo').submit(function () {
     $('#msgError').hide();
     $('#spinner').show();
+    $('html, body').animate({scrollTop:0}, 'slow');
 });

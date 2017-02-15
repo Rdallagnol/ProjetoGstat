@@ -54,10 +54,6 @@
             </div>
         </div>
 
-
-
-
-
         <div class="row-fluid" style="">
             <div class="bs-docs-example span12" >                       
                 <div class="bs-docs-text "> Configurações </div>
@@ -143,8 +139,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="btn span11" style="visibility: hidden"></div>
         <div class="navbar navbar-fixed-bottom">
             <center>

@@ -506,6 +506,7 @@ dev.off()
 
 #### Registra analises e seus parametrôs ######
 #### Cria a analise #####
+
 registra <- dbGetQuery(con,insertHeader)
 
 #### Cria as linhas da analise #####
@@ -516,11 +517,9 @@ while (linhas <= nro_modelo){
     linhas <- linhas + 1
 }
 
+### Código 9999 que avisa que o processamento foi concluido com sucesso
 9999
 dbDisconnect(con)
-
-
-
 dev.off()
 
 
