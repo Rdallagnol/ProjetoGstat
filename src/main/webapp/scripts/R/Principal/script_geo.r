@@ -107,7 +107,7 @@ con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postg
 con
 local = 29182
 
-atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),to_number(valor,'9999.999') from pixelamostra where amostra_codigo = ", amostra  )
+atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),CAST(valor AS double precision) from pixelamostra where amostra_codigo = ", amostra  )
 frame_dados <- dbGetQuery(con,atributo)
 
 dados <- as.geodata(frame_dados)
@@ -244,7 +244,8 @@ j=0
 metodo="wl"
 
 while (j < nro_modelo){  
-   
+
+ 
     #cria matriz para armazenar informações da validação cruzada
     matriz_vc<-matrix(nrow=0,ncol=9, dimnames = list(c(),c("Modelo", "EM", "EMR", "DP_EM", "DP_EMR", "DP_EMR_1", "EA","Metodo", "SDAE")))
     #cria vetores para armazenar informações da validação cruzada
@@ -278,10 +279,10 @@ while (j < nro_modelo){
     while (i<cont)
     {
         i <- i+1
-        
+    
         contrib = as.numeric(vals$Var1[i])
 	alcance = as.numeric(vals$Var2[i])
-
+        
         if (modelo == "matern"){
 
             if (metodo == "ols"){

@@ -20,7 +20,10 @@ public class Constantes {
     
     public static final String ENDERECO_GEO_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";  
     //public static final String ENDERECO_GEO_S = "K:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";    
-     
+    
+    /** ENDEREÇO DO SCRIPT DE KRIGAGEM ORDINÁRIA */
+    public static final String ENDERECO_KRIG_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";  
+    
     /** ENDEREÇO DA PASTA DE GRAVAÇÃO DOS ARQUIVOS */
      
     public static final String ENDERECO_FILE = "D:/ProjetoGstat/src/main/webapp/file";
