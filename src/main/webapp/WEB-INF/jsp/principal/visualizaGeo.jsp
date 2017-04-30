@@ -89,8 +89,9 @@
                                     <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
                                     <td class="">
-
+                                         <form action="funcaoKrigagem" method="post" name="funcaoKrigagem" id="formGeo">
                                         <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:if>

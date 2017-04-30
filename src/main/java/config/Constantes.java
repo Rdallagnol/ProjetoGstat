@@ -11,6 +11,13 @@ package config;
  */
 public class Constantes {
     
+    
+    public static final String DATA_BASE_HOST = "localhost";
+    public static final String DATA_BASE_PORT = "5432";
+    public static final String DATA_BASE_NAME = "sdumOnlinev2";    
+    public static final String DATA_BASE_USER = "postgres";
+    public static final String DATA_BASE_PASSWORD = "1";
+    
     /** ENDEREÇO DO R NO SERVIDOR */
     
     public static final String ENDERECO_R = "C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe ";
@@ -27,5 +34,6 @@ public class Constantes {
     /** ENDEREÇO DA PASTA DE GRAVAÇÃO DOS ARQUIVOS */
      
     public static final String ENDERECO_FILE = "D:/ProjetoGstat/src/main/webapp/file";
+    public static final String ENDERECO_MAPA = "D:/ProjetoGstat/src/main/webapp/mapa";
     //public static final String ENDERECO_FILE = "K:/ProjetoGstat/src/main/webapp/file";
 }

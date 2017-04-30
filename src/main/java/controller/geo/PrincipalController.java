@@ -63,6 +63,11 @@ public class PrincipalController {
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S
                                 + Constantes.ENDERECO_FILE + " "
+                                + Constantes.DATA_BASE_NAME + " "
+                                + Constantes.DATA_BASE_HOST + " "
+                                + Constantes.DATA_BASE_USER + " "
+                                + Constantes.DATA_BASE_PASSWORD + " "
+                                + Constantes.DATA_BASE_PORT + " "
                                 + request.getParameter("user") + " "
                                 + request.getParameter("area") + " "
                                 + request.getParameter("amostra") + " "
@@ -110,6 +115,54 @@ public class PrincipalController {
         }
     }
 
+    
+    @Path("/funcaoKrigagem")
+    public void funcaoKrigagem() {
+
+       
+
+        if (request.getMethod().equals("POST")) {
+            try {
+                System.out.println(Constantes.ENDERECO_FILE);
+
+                Process process = Runtime.getRuntime()
+                        .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_KRIG_S
+                                + Constantes.ENDERECO_MAPA + " "
+                            //    + request.getParameter("user") + " "                         
+                            //    + request.getParameter("amostra") + " "
+                            //    + '"' + request.getParameter("desc") + '"' + " "
+                            //    + request.getParameter("isi") + " "                          
+                            //    + request.getParameter("nro_min_alc") + " "
+                        );
+
+                try {
+                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    String ok = null;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                        if (line.equals("[1] 9999")) {
+                            ok = "OK";
+                        }
+                    }                    
+                    reader.close();
+                    if (ok != null) {
+                        result.redirectTo(this).visualizaGeo();
+                    } else {
+                        result.include("errorMsg", "Não foi possível realizar a analise favor verificar dados !");
+                    }
+                } catch (final Exception e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+    }
+    
+    
+    
     @Get("/buscaAmostrasDaArea")
     public void buscaAmostrasDaArea(Long idArea) {
         AmostraDao amostraDao = DaoFactory.amostraDaoInstance();

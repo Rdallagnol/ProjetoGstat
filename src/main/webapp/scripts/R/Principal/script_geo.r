@@ -4,23 +4,29 @@ args<-commandArgs(TRUE)
 #ENDERECO DA PASTA DE ARQUIVOS
 
 mainDir<-args[1]
-usuario<-as.numeric(args[2])
-area<-as.numeric(args[3])
-amostra<-as.numeric(args[4])
-desc<-args[5]
-ISI<-args[6]
-v_lambda<-as.numeric(args[7])
-auto_lags<-args[8]
-nro_lags<-as.numeric(args[9])
-estimador<-args[10]
-cutoff<-as.numeric(args[11])
-tam_pixel_x<-as.numeric(args[12])
-tam_pixel_y<-as.numeric(args[13])
-nro_intervalos_alc<-as.numeric(args[14])
-nro_intervalos_contr<-as.numeric(args[15])
-nro_pares<-as.numeric(args[16])
-min_seq_contr<-as.numeric(args[17]) 
-min_seq_alc<-as.numeric(args[18])  
+dataBaseName<-args[2]
+dataBaseHost<-args[3]
+dataBaseUser<-args[4]
+dataBasePassword<-args[5]
+dataBasePort<-args[6]
+
+usuario<-as.numeric(args[7])
+area<-as.numeric(args[8])
+amostra<-as.numeric(args[9])
+desc<-args[10]
+ISI<-args[11]
+v_lambda<-as.numeric(args[12])
+auto_lags<-args[13]
+nro_lags<-as.numeric(args[14])
+estimador<-args[15]
+cutoff<-as.numeric(args[16])
+tam_pixel_x<-as.numeric(args[17])
+tam_pixel_y<-as.numeric(args[18])
+nro_intervalos_alc<-as.numeric(args[19])
+nro_intervalos_contr<-as.numeric(args[20])
+nro_pares<-as.numeric(args[21])
+min_seq_contr<-as.numeric(args[22]) 
+min_seq_alc<-as.numeric(args[23])  
 
 if (ISI == "true") {
    ISI <- TRUE
@@ -103,7 +109,7 @@ classes = 4  #número de classe no mapa (intervalos) - só no R
 ###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
 drv <- dbDriver("PostgreSQL")
 
-con <- dbConnect(drv, dbname="sdumOnline",host="localhost",port=5432,user="postgres",password="1")
+con <- dbConnect(drv, dbname=dataBaseName,host=dataBaseHost,port=dataBasePort,user=dataBaseUser,password=dataBasePassword)
 con
 local = 29182
 
