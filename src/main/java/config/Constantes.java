@@ -11,7 +11,7 @@ package config;
  */
 public class Constantes {
     
-    
+    /** INFORMAÇÕES DA BASE DE DADOS **/
     public static final String DATA_BASE_HOST = "localhost";
     public static final String DATA_BASE_PORT = "5432";
     public static final String DATA_BASE_NAME = "sdumOnlinev2";    

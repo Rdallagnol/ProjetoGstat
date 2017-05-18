@@ -124,10 +124,20 @@ public class PrincipalController {
         if (request.getMethod().equals("POST")) {
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
+                
+                
 
                 Process process = Runtime.getRuntime()
-                        .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_KRIG_S
-                                + Constantes.ENDERECO_MAPA + " "
+                        .exec(Constantes.ENDERECO_R + 
+                              Constantes.ENDERECO_KRIG_S +
+                              Constantes.ENDERECO_MAPA + " " +
+                              Constantes.DATA_BASE_NAME + " "
+                              + Constantes.DATA_BASE_HOST + " "
+                              + Constantes.DATA_BASE_USER + " "
+                              + Constantes.DATA_BASE_PASSWORD + " "
+                              + Constantes.DATA_BASE_PORT + " "
+                              + request.getParameter("user") + " "
+                              + request.getParameter("analise_line_id") + " "
                             //    + request.getParameter("user") + " "                         
                             //    + request.getParameter("amostra") + " "
                             //    + '"' + request.getParameter("desc") + '"' + " "

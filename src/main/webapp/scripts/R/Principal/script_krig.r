@@ -1,7 +1,13 @@
 args<-commandArgs(TRUE) 
 mainDir<-args[1]
-usuario<-872
-desc<- "teste"
+dataBaseName<-args[2]
+dataBaseHost<-args[3]
+dataBaseUser<-args[4]
+dataBasePassword<-args[5]
+dataBasePort<-args[6]
+usuario<-as.numeric(args[7])
+
+desc =paste0("Mapa_",args[8])
 
 require(geoR)
 require(splancs)
@@ -32,6 +38,5 @@ ifelse(!dir.exists(file.path(mainDir, subDir)), dir.create(file.path(mainDir, su
 #AQUI DEFINE A PASTA QUE DEVE SER ARMAZENADO OS GRÁFICOS
 setwd(paste(paste(mainDir,"/",sep = ""),subDir,sep = ""))
 ############ FIM ETAPA DE DEFINIÇÃO DE CONFIGURAÇÃO #############################
-
 
 9999
