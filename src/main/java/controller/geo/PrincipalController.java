@@ -97,8 +97,8 @@ public class PrincipalController {
                             ok = "OK";
                         }
                     }
-                    
-                    reader.close();
+
+                    reader.close();               
 
                     if (ok != null) {
                         result.redirectTo(this).visualizaGeo();
@@ -115,34 +115,29 @@ public class PrincipalController {
         }
     }
 
-    
     @Path("/funcaoKrigagem")
     public void funcaoKrigagem() {
-
-       
 
         if (request.getMethod().equals("POST")) {
             try {
                 System.out.println(Constantes.ENDERECO_FILE);
-                
-                
 
                 Process process = Runtime.getRuntime()
-                        .exec(Constantes.ENDERECO_R + 
-                              Constantes.ENDERECO_KRIG_S +
-                              Constantes.ENDERECO_MAPA + " " +
-                              Constantes.DATA_BASE_NAME + " "
-                              + Constantes.DATA_BASE_HOST + " "
-                              + Constantes.DATA_BASE_USER + " "
-                              + Constantes.DATA_BASE_PASSWORD + " "
-                              + Constantes.DATA_BASE_PORT + " "
-                              + request.getParameter("user") + " "
-                              + request.getParameter("analise_line_id") + " "
-                            //    + request.getParameter("user") + " "                         
-                            //    + request.getParameter("amostra") + " "
-                            //    + '"' + request.getParameter("desc") + '"' + " "
-                            //    + request.getParameter("isi") + " "                          
-                            //    + request.getParameter("nro_min_alc") + " "
+                        .exec(Constantes.ENDERECO_R
+                                + Constantes.ENDERECO_KRIG_S
+                                + Constantes.ENDERECO_MAPA + " "
+                                + Constantes.DATA_BASE_NAME + " "
+                                + Constantes.DATA_BASE_HOST + " "
+                                + Constantes.DATA_BASE_USER + " "
+                                + Constantes.DATA_BASE_PASSWORD + " "
+                                + Constantes.DATA_BASE_PORT + " "
+                                + request.getParameter("user") + " "
+                                + request.getParameter("analise_line_id") + " "
+                        //    + request.getParameter("user") + " "                         
+                        //    + request.getParameter("amostra") + " "
+                        //    + '"' + request.getParameter("desc") + '"' + " "
+                        //    + request.getParameter("isi") + " "                          
+                        //    + request.getParameter("nro_min_alc") + " "
                         );
 
                 try {
@@ -154,7 +149,7 @@ public class PrincipalController {
                         if (line.equals("[1] 9999")) {
                             ok = "OK";
                         }
-                    }                    
+                    }
                     reader.close();
                     if (ok != null) {
                         result.redirectTo(this).visualizaGeo();
@@ -170,9 +165,7 @@ public class PrincipalController {
 
         }
     }
-    
-    
-    
+
     @Get("/buscaAmostrasDaArea")
     public void buscaAmostrasDaArea(Long idArea) {
         AmostraDao amostraDao = DaoFactory.amostraDaoInstance();

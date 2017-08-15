@@ -14,7 +14,7 @@ public class Constantes {
     /** INFORMAÇÕES DA BASE DE DADOS **/
     public static final String DATA_BASE_HOST = "localhost";
     public static final String DATA_BASE_PORT = "5432";
-    public static final String DATA_BASE_NAME = "sdumOnlinev2";    
+    public static final String DATA_BASE_NAME = "sdumOnlinev3";    
     public static final String DATA_BASE_USER = "postgres";
     public static final String DATA_BASE_PASSWORD = "1";
     
@@ -29,7 +29,7 @@ public class Constantes {
     //public static final String ENDERECO_GEO_S = "K:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";    
     
     /** ENDEREÇO DO SCRIPT DE KRIGAGEM ORDINÁRIA */
-    public static final String ENDERECO_KRIG_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";  
+    public static final String ENDERECO_KRIG_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";    
     
     /** ENDEREÇO DA PASTA DE GRAVAÇÃO DOS ARQUIVOS */
      

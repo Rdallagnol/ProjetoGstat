@@ -114,6 +114,8 @@ con
 local = 29182
 
 atributo = paste("select st_x(st_transform(geometry,29182)), st_y(st_transform(geometry, 29182)),CAST(valor AS double precision) from pixelamostra where amostra_codigo = ", amostra  )
+
+
 frame_dados <- dbGetQuery(con,atributo)
 
 dados <- as.geodata(frame_dados)
@@ -123,7 +125,9 @@ names(dados)
 ###### INICIO DAS ANALISES  #############
 
 #### Cria a SQL da analise #####
+
 seq_header = dbGetQuery(con, " select nextval('geo_analise_header_seq') ")
+
 insertHeader = paste0("INSERT INTO geo_analise_header(analise_header_id, descricao_analise,area_id, amostra_id, created_by, creation_date, status, isi, v_lambda, auto_lags, nro_lags, estimador, cutoff,tam_pixel_x,tam_pixel_y,nro_intervalos_alc,nro_intervalos_contr,nro_pares,min_seq_contr,min_seq_alc) ", "VALUES(",seq_header,",'",desc,"',",area,",",amostra,",",usuario,", current_date, 'A', ",ISI,",",v_lambda,",",auto_lags,",",nro_lags,",'",estimador,"',",cutoff,",",tam_pixel_x,",",tam_pixel_y,",",nro_intervalos_alc,",",nro_intervalos_contr,",",nro_pares,",",min_seq_contr,",",min_seq_alc,")")
 
 #### Inicia as analises estatísticas
@@ -514,6 +518,7 @@ dev.off()
 #### Registra analises e seus parametrôs ######
 #### Cria a analise #####
 
+
 registra <- dbGetQuery(con,insertHeader)
 
 #### Cria as linhas da analise #####
@@ -526,7 +531,5 @@ while (linhas <= nro_modelo){
 
 ### Código 9999 que avisa que o processamento foi concluido com sucesso
 9999
-dbDisconnect(con)
 dev.off()
-
-
+dbDisconnect(con)
