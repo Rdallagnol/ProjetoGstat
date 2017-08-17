@@ -65,105 +65,94 @@ setwd(paste(paste(mainDir,"/",sep = ""),subDir,sep = ""))
 
 # -- INICIO CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO  -- #
 t_cor_linha_ols = data.table(
-						rbind(
-							"GOLD", 
-							"PURPLE", 
-							"VIOLET", 
-							"YELLOW", 
-							"BLACK", 
-							"GREEN", 
-							"ORANGE", 
-							"PINK", 
-							"GRAY",
-							"BROWN",
-							"BLUE", 
-							"RED", 
-							"MAGENTA"
-							)
-						)
+			rbind(
+				"GOLD", 
+				"PURPLE", 
+				"VIOLET", 
+				"YELLOW", 
+				"BLACK", 
+				"GREEN", 
+				"ORANGE", 
+				"PINK", 
+				"GRAY",
+				"BROWN",
+				"BLUE", 
+				"RED", 
+				"MAGENTA"
+				)
+			)
 						
 t_modelos = data.table(
-					rbind(
-						"matern", 
-						"matern",
-						"matern",
-						"exp", 
-						"sph",
-						"gaus",
-						"matern",
-						"matern",
-						"matern",
-						"exp", 
-						"sph",
-						"gaus")
-					)
+			rbind(
+                            "matern", 
+                            "matern",
+			    "matern",
+                            "exp", 
+                            "sph",
+			    "gaus",
+			    "matern",
+			    "matern",
+			    "matern",
+			    "exp", 
+			    "sph",
+			    "gaus")
+			)
 					
 t_kappa = data.table(
-					rbind(
-						1.0, 
-						1.5, 
-						2.0, 
-						0.5, 
-						0.5,
-						0.5,
-						1.0, 
-						1.5, 
-						2.0, 
-						0.5, 
-						0.5, 
-						0.5)
-					)
+                    rbind(
+                        1.0, 
+			1.5, 
+			2.0, 
+			0.5, 
+			0.5,
+			0.5,
+			1.0, 
+			1.5, 
+			2.0, 
+			0.5, 
+			0.5, 
+			0.5
+                     )
+                    )
 					
 t_metodo = data.table(
-					rbind(
-						"ols",
-						"ols", 
-						"ols", 
-						"ols", 
-						"ols",
-						"ols", 		
-						"wl", 
-						"wl", 
-						"wl", 
-						"wl", 
-						"wl", 
-						"wl"
-						)
-					)
+                    rbind(
+			"ols",
+			"ols", 
+			"ols", 
+			"ols", 
+			"ols",
+			"ols", 		
+			"wl", 
+			"wl", 
+			"wl", 
+			"wl", 
+			"wl", 
+			"wl"
+                    )
+		)
 # ---- #
 
 nro_modelo = length(t_modelos$V1)	
 vlr_kappa=0
 
-#Constante para gráfico Semivariograma
-legenda_x_semiv = iconv("Distância", to="latin1", from="utf-8")
-legenda_y_semiv = iconv("Semivariância", to="latin1", from="utf-8")
-titulo_semiv = "Semivariograma experimental"
-
-#Constante do gráfico Mapa de dispersão dos pontos amostrais
-titulo_pamostrais = "Mapa de dispersão dos pontos amostrais"
-fonte_pamostrais = 3
+# -- INFORMAÇÕES PARA GRÁFICO  -- #
 leg_x_pamostrais ="O - L"
 leg_y_pamostrais ="S - N"
-
 titulo_BoxPlot = "Gráfico Boxplot"
 titulo_PostPlot = "Gráfico Postplot"
-
 titulo_BoxPlot = iconv(titulo_BoxPlot, to="latin1", from="utf-8")
 titulo_PostPlot = iconv(titulo_PostPlot, to="latin1", from="utf-8")
+# ---- #
 
-
-
-###### FIM CONFIGURAÇÕES DO SEMIVARIOGRAMA E INICIO DO PROCESSO GEOESTATÍSTICO #############
-
-###### INICIO CONFIGURAÇÕES DE CONEXÃO E BUSCA DE DADOS  #############	
+# -- BUSCAR DADOS DA AMOSTRA NA BASE DE DADOS E REALIZAR TRANSFORMAÇÃO EM OBJETO GEODATA  -- #
 drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv, dbname=dataBaseName,host=dataBaseHost,port=dataBasePort,user=dataBaseUser,password=dataBasePassword)
 local = 29182
 atributo = paste("select st_x(st_transform(geometry, 29182)), 
-						 st_y(st_transform(geometry, 29182)),
-						 CAST(valor AS numeric) 
-				   from pixelamostra where amostra_codigo = ", amostra  )
+			 st_y(st_transform(geometry, 29182)),
+			 CAST(valor AS numeric) 
+	         from pixelamostra where amostra_codigo = ", amostra  )
 
 frame_dados <- dbGetQuery(con,atributo)
 dados <- as.geodata(frame_dados)
@@ -216,14 +205,15 @@ if (auto_lags==TRUE){
 
 # Gera o variograma inicial
 dados.var <- variog(
-			dados,
-			coords=dados$coords, 
-			data=dados$data, 
-			uvec=seq(min_dist,vlr_cutoff,l=nro_lags), 
-			lambda=v_lambda,
-			estimator.type=estimador, 
-			max.dist=vlr_cutoff, 
-			pairs.min=nro_pares) 
+        	dados,
+		coords=dados$coords, 
+		data=dados$data, 
+		uvec=seq(min_dist,vlr_cutoff,l=nro_lags), 
+		lambda=v_lambda,
+		estimator.type=estimador, 
+		max.dist=vlr_cutoff, 
+		pairs.min=nro_pares
+            ) 
 
 # Informações do variograma inicial
 distancia <-  dados.var$u 
@@ -241,23 +231,23 @@ if (min_seq_contr==0){
 }
 
 vals <- expand.grid(
-					seq(min_seq_contr,max_var, l=nro_intervalos_contr), 
-					seq(min_seq_alc, vlr_cutoff, l=nro_intervalos_alc)
-				   )
+		seq(min_seq_contr,max_var, l=nro_intervalos_contr), 
+		seq(min_seq_alc, vlr_cutoff, l=nro_intervalos_alc)
+		)
 
 
 cont = nro_intervalos_contr * nro_intervalos_alc
 
 #cria matriz para armazenar informações do ice
 matriz_ice<-matrix(
-				  nrow=0,
-				  ncol=7, 
-				  dimnames = list
-					  (
-						  c(),
-						  c("modelo","metodo","min_ice", "melhor_contrib", "melhor_alcance", "melhor_vlr_kappa", "gid" )
-					  )
-				  )
+		 nrow=0,
+		 ncol=7, 
+		 dimnames = list
+                    (
+			c(),
+		        c("modelo","metodo","min_ice", "melhor_contrib", "melhor_alcance", "melhor_vlr_kappa", "gid" )
+		    )
+		 )
 
 vetor_ice = c()  ### vetor para armazenar o menor ice de cada modelo
 j=0
@@ -266,15 +256,15 @@ j=0
 while (j < nro_modelo){  
 
  
-     #cria matriz para armazenar informações da validação cruzada
+    #cria matriz para armazenar informações da validação cruzada
     matriz_vc<-matrix(
-					nrow=0,
-					ncol=9, 
-					dimnames = list
-						(
-							c(),
-							c("Modelo", "EM", "EMR", "DP_EM", "DP_EMR", "DP_EMR_1", "EA","Metodo", "SDAE")
-						)
+		nrow=0,
+		ncol=9, 
+		dimnames = list
+		(
+                    c(),
+                    c("Modelo", "EM", "EMR", "DP_EM", "DP_EMR", "DP_EMR_1", "EA","Metodo", "SDAE")
+		)
 					)
     #cria vetores para armazenar informações da validação cruzada
     vetor_em = c()
@@ -315,59 +305,58 @@ while (j < nro_modelo){
 
             if (metodo == "ols"){
                 variograma.ols <- variofit(
-										   dados.var,
-										   ini=c(contrib,alcance),
-										   weights= "equal",
-										   cov.model= modelo, 
-										   kappa= vlr_kappa, 
-										   max.dist=vlr_cutoff
-										   )
+                            dados.var,
+                            ini=c(contrib,alcance),
+                            weights= "equal",
+                            cov.model= modelo, 
+                            kappa= vlr_kappa, 
+                            max.dist=vlr_cutoff
+			  )
             }else {
                 variograma.ols<-variofit(
-										 dados.var,
-										 ini=c(contrib,alcance),
-										 cov.model= modelo, 
-										 kappa= vlr_kappa, 
-										 max.dist=vlr_cutoff
-										 )
+                            dados.var,
+                            ini=c(contrib,alcance),
+                            cov.model= modelo, 
+                            kappa= vlr_kappa, 
+                            max.dist=vlr_cutoff
+			)
             }
 
         }else {
             if (metodo=="ols"){
             	variograma.ols<-variofit(
-										dados.var,
-										ini=c(contrib,alcance),
-										weights= "equal",
-										cov.model= modelo, 
-										max.dist=vlr_cutoff
-										)
+			    dados.var,
+			    ini=c(contrib,alcance),
+			    weights= "equal",
+			    cov.model= modelo, 
+			    max.dist=vlr_cutoff
+			)
             } else {
-				variograma.ols<-variofit(
-										 dados.var,
-										 ini=c(contrib,alcance),
-										 cov.model= modelo, 
-										 max.dist=vlr_cutoff
-										 )
+		variograma.ols<-variofit(
+			    dados.var,
+			    ini=c(contrib,alcance),
+			    cov.model= modelo, 
+			    max.dist=vlr_cutoff
+			)
             }
         }
        
         lines(
-			variograma.ols,
-			col=cor_linha_ols
-			)
+            variograma.ols,
+            col=cor_linha_ols
+	)
 	    
 
-		#armazena informções da validação cruzada em variáveis
-		vc = xvalid(
-					dados,
-					model=variograma.ols,
-					micro.scale=0
-				  )     
+	#armazena informções da validação cruzada em variáveis
+	vc = xvalid(
+            dados,
+	    model=variograma.ols,
+	    micro.scale=0
+	)     
 
-		emr = 1
-		dp_emr = 1
-		dp_emr_1 = 0
-		
+	emr = 1
+	dp_emr = 1
+	dp_emr_1 = 0
 		
 	
         if ((mean (vc$std.error) != "NaN"))
@@ -375,22 +364,19 @@ while (j < nro_modelo){
             emr = mean (vc$std.error) #erro médio reduzido
             dp_emr = round(sd(vc$std.error),digits=20) #desvio padrão do erro médio reduzido
             dp_emr_1 = ((sd (vc$std.error))-1) #desvio padrão do erro médio reduzido - 1
-		}
-        
-      
-        em = round(mean(vc$error),digits=20) #erro médio
-        
+	}
+              
+        em = round(mean(vc$error),digits=20) #erro médio        
         nro_amostras = length(vc$error)   #conta o número de elementos
-
         n = 0
-		somatorio = 0
+	somatorio = 0
 
         while (n < nro_amostras)
-		{
+	{
             n = n+1
             somatorio = somatorio + (vc$error[n]*vc$error[n])
        
-		}
+	}
      
         media_em2 = somatorio / nro_amostras   	#média dos erros médios ao quadrado
 		dp_em = sqrt(media_em2)				#raiz quadrada da média dos erros médios ao quadrado
