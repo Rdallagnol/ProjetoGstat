@@ -58,8 +58,8 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
-                System.out.println(Constantes.ENDERECO_FILE);
-
+                
+         
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S
                                 + Constantes.ENDERECO_FILE + " "
