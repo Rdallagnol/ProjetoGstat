@@ -424,17 +424,17 @@ while (j < nro_modelo){
     ice = round(A + B, digits=20)   
     min_ice = min(ice)    
     table_ice <- data.table(
-						cbind(
-							  ice, 
-							  vetor_contr,
-							  vetor_alcance, 
-							  vetor_modelo,
-							  vetor_metodo, 
-							  vetor_vlr_kappa,
-							  vetor_em, 
-							  vetor_dp_em
-							  )
-						)
+                    cbind(
+			  ice, 
+                          vetor_contr,
+			  vetor_alcance, 
+			  vetor_modelo,
+			  vetor_metodo, 
+			  vetor_vlr_kappa,
+			  vetor_em, 
+			  vetor_dp_em
+			)
+		)
     i=0
     
     while (i<t_cont)
@@ -457,15 +457,15 @@ while (j < nro_modelo){
     #popula matriz com informações do melhor ICE de cada modelo e metodo
    
     matriz_ice<-rbind(matriz_ice,c(
-								   modelo, 
-								   metodo, 
-								   min_ice, 
-								   melhor_contrib, 
-								   melhor_alcance, 
-								   melhor_vlr_kappa, 
-								   j
-								  )
-					  )
+                        	   modelo, 
+				   metodo, 
+				   min_ice, 
+				   melhor_contrib, 
+				   melhor_alcance, 
+                                   melhor_vlr_kappa, 
+                                   j
+				 )
+			)
 
     vetor_ice = rbind(vetor_ice,c(min_ice))  ### vetor para armazenar o menor ice de cada modelo e metodo
 
@@ -500,41 +500,41 @@ while (i<nro_modelo){
 	
         if (metodo=="ols"){
             variograma.ols<-variofit(
-								dados.var,
-								ini=c(contrib,alcance),
-								weights= "equal",
-								cov.model= modelo, 
-								kappa= vlr_kappa, 
-								max.dist=vlr_cutoff
-								)
-		} else {
+				dados.var,
+				ini=c(contrib,alcance),
+				weights= "equal",
+				cov.model= modelo, 
+                                kappa= vlr_kappa, 
+				max.dist=vlr_cutoff
+				)
+	} else {
             variograma.ols<-variofit(
-								dados.var,
-								ini=c(contrib,alcance),
-								cov.model= modelo, 
-								kappa= vlr_kappa, 
-								max.dist=vlr_cutoff
-								)
-		}
+				dados.var,
+				ini=c(contrib,alcance),
+				cov.model= modelo, 
+				kappa= vlr_kappa, 
+				max.dist=vlr_cutoff
+				)
+	}
 		
     } else {
 	
         if (metodo=="ols"){
             variograma.ols<-variofit(
-								dados.var,
-								ini=c(contrib,alcance),
-								weights= "equal",
-								cov.model= modelo, 
-								max.dist=vlr_cutoff
-								)
-		} else {
+				dados.var,
+				ini=c(contrib,alcance),
+				weights= "equal",
+				cov.model= modelo, 
+				max.dist=vlr_cutoff
+			)
+	} else {
             variograma.ols<-variofit(
-								dados.var,
-								ini=c(contrib,alcance),
-								cov.model= modelo, 
-								max.dist=vlr_cutoff
-								)
-		 }
+				dados.var,
+				ini=c(contrib,alcance),
+				cov.model= modelo, 
+				max.dist=vlr_cutoff
+			)
+	}
     }   
 
     lines(variograma.ols,col=cor_linha_ols, lwd=2)
@@ -548,6 +548,7 @@ while (i<nro_modelo){
     vetor_dp_em_melhor = rbind(vetor_dp_em_melhor,c(sdae))  
 
 }
+
 dev.off()
 
 if (ISI==TRUE)
@@ -568,19 +569,21 @@ registra <- dbGetQuery(con,insertHeader)
 linhas = 1
 while (linhas <= nro_modelo){   
     insertLines = paste0("INSERT INTO geo_analise_lines(
-									  analise_header_id, modelo, metodo, min_ice, melhor_contrib, 
-									  melhor_alcance, melhor_val_kappa,created_by, creation_date, erro_medio, dp_erro_medio, isi)",
-						 "VALUES (",seq_header,",'",matriz_isi_melhor[linhas,1],"','",matriz_isi_melhor[linhas,2],
-								  "',",matriz_isi_melhor[linhas,3],", ",matriz_isi_melhor[linhas,4],","
-								   ,matriz_isi_melhor[linhas,5],", ",matriz_isi_melhor[linhas,6],
-								   ", 1, current_date, ",matriz_isi_melhor[linhas,8],",",matriz_isi_melhor[linhas,9],
-								   ", ",matriz_isi_melhor[linhas,10],")")
-	matriz_isi_melhor[linhas,10]
+				  analise_header_id, modelo, metodo, min_ice, melhor_contrib, 
+				  melhor_alcance, melhor_val_kappa,created_by, creation_date, erro_medio, dp_erro_medio, isi)",
+			"VALUES (  ",seq_header,",'",matriz_isi_melhor[linhas,1],"','",matriz_isi_melhor[linhas,2],
+				   "',",matriz_isi_melhor[linhas,3],", ",matriz_isi_melhor[linhas,4],","
+				   ,matriz_isi_melhor[linhas,5],", ",matriz_isi_melhor[linhas,6],
+				   ", 1, current_date, ",matriz_isi_melhor[linhas,8],",",matriz_isi_melhor[linhas,9],
+				   ", ",matriz_isi_melhor[linhas,10],")")
+
+    matriz_isi_melhor[linhas,10]
     dbGetQuery(con,insertLines)
     linhas <- linhas + 1
 }
+# ---- #
 
-## -----------------------------------------------------------------------------------------
+## Gera a representação gráfica do melhor modelo ##
 melhores = 0
 atual_melhor = 0;
 while (melhores < length(matriz_isi_melhor[,10])){  
@@ -595,19 +598,29 @@ while (melhores < length(matriz_isi_melhor[,10])){
 	
 }
 
-variograma.ols<-variofit(
-								dados.var,
-								ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
-								cov.model= matriz_isi_melhor[gid_melhor,1], 
-								max.dist=vlr_cutoff
-								)
+if(matriz_isi_melhor[gid_melhor,1] == "ols"){
+            variograma.ols<-variofit(
+            dados.var,
+            ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
+            cov.model= matriz_isi_melhor[gid_melhor,1], 
+            max.dist=vlr_cutoff,
+            wei="equal"
+	)
+}else{
+	variograma.ols<-variofit(
+            dados.var,
+            ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
+            cov.model= matriz_isi_melhor[gid_melhor,1], 
+            max.dist=vlr_cutoff
+	)
+}
+
 x=paste("melhor_modelo",".png",sep = "")
 png(x)
-plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main= "Semivariograma variancias" )
+legenda = paste(paste("Melhor modelo é", variograma.ols$cov.model), paste("com ajuste " , variograma.ols$method))
+plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main=iconv(legenda,to="latin1", from="utf-8") )
 lines(variograma.ols,col="GREEN", lwd=2)
 dev.off()								
-
-	
 
 dbDisconnect(con)
 dev.off()

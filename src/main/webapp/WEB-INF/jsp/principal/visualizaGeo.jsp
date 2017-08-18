@@ -127,10 +127,9 @@
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/box_plot.png">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/grafico_pontos.png">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/histograma.png">
-                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/plot_geral.png">
-                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/semi_exp.png">
-                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/semi_geral.png">
-                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/semiv_melhores.png">
+                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/plot_geral.png">              
+                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/modelos.png">
+                <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/melhor_modelo.png">
             </div>
         </div>
     </c:if>
