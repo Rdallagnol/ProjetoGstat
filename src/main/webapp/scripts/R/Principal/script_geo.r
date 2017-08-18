@@ -576,8 +576,7 @@ while (linhas <= nro_modelo){
 				   ,matriz_isi_melhor[linhas,5],", ",matriz_isi_melhor[linhas,6],
 				   ", 1, current_date, ",matriz_isi_melhor[linhas,8],",",matriz_isi_melhor[linhas,9],
 				   ", ",matriz_isi_melhor[linhas,10],")")
-
-    matriz_isi_melhor[linhas,10]
+   
     dbGetQuery(con,insertLines)
     linhas <- linhas + 1
 }
@@ -619,7 +618,7 @@ x=paste("melhor_modelo",".png",sep = "")
 png(x)
 legenda = paste(paste("Melhor modelo é", variograma.ols$cov.model), paste("com ajuste " , variograma.ols$method))
 plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main=iconv(legenda,to="latin1", from="utf-8") )
-lines(variograma.ols,col="GREEN", lwd=2)
+lines(variograma.ols,col="ORANGE", lwd=2)
 dev.off()								
 
 dbDisconnect(con)
