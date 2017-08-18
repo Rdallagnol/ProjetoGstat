@@ -298,7 +298,7 @@ while (j < nro_modelo){
         i <- i+1
     
         contrib = as.numeric(vals$Var1[i])
-		alcance = as.numeric(vals$Var2[i])
+        alcance = as.numeric(vals$Var2[i])
 	
 	
         if (modelo == "matern"){
@@ -475,8 +475,9 @@ while (j < nro_modelo){
 # bloco para verificar qual é o melhor de todos
 vetor_em_melhor = c()
 vetor_dp_em_melhor = c()
+vetor_cor_linha = c()
 
-matriz_isi<-matrix(nrow=0,ncol=3,dimnames = list(c(),c("em", "dpem", "isi")))
+matriz_isi<-matrix(nrow=0,ncol=4,dimnames = list(c(),c("em", "dpem", "isi","cor_linha")))
 isi = c("isi")
 A = c()
 B = c()
@@ -546,6 +547,7 @@ while (i<nro_modelo){
     sdae = sqrt(media_dif)
     vetor_em_melhor <- rbind(vetor_em_melhor,c(em_melhor))
     vetor_dp_em_melhor = rbind(vetor_dp_em_melhor,c(sdae))  
+    vetor_cor_linha = rbind(vetor_cor_linha,c(cor_linha_ols))		
 
 }
 
@@ -561,7 +563,7 @@ if (ISI==TRUE)
 }
 
 isi = round(A + B, digits=20)
-matriz_isi<-cbind(vetor_em_melhor,vetor_dp_em_melhor,isi)
+matriz_isi<-cbind(vetor_em_melhor,vetor_dp_em_melhor,isi,vetor_cor_linha)
 matriz_isi_melhor = cbind (matriz_ice, matriz_isi)
 
 #### Registra analises e seus parametrôs ######
@@ -597,7 +599,7 @@ while (melhores < length(matriz_isi_melhor[,10])){
 	
 }
 
-if(matriz_isi_melhor[gid_melhor,1] == "ols"){
+if( matriz_isi_melhor[gid_melhor,1] == "ols" ){
             variograma.ols<-variofit(
             dados.var,
             ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
@@ -605,7 +607,7 @@ if(matriz_isi_melhor[gid_melhor,1] == "ols"){
             max.dist=vlr_cutoff,
             wei="equal"
 	)
-}else{
+} else {
 	variograma.ols<-variofit(
             dados.var,
             ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
@@ -618,7 +620,7 @@ x=paste("melhor_modelo",".png",sep = "")
 png(x)
 legenda = paste(paste("Melhor modelo é", variograma.ols$cov.model), paste("com ajuste " , variograma.ols$method))
 plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main=iconv(legenda,to="latin1", from="utf-8") )
-lines(variograma.ols,col="ORANGE", lwd=2)
+lines(variograma.ols,col=matriz_isi_melhor[gid_melhor,11], lwd=2)
 dev.off()								
 
 dbDisconnect(con)
