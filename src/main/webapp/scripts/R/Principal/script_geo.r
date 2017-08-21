@@ -622,7 +622,7 @@ legenda = paste(paste("Melhor modelo é", variograma.ols$cov.model), paste("com 
 plot(dados.var,xlab=iconv("Distância", to="latin1", from="utf-8"),ylab=iconv("Semivariância", to="latin1", from="utf-8"),main=iconv(legenda,to="latin1", from="utf-8") )
 lines(variograma.ols,col=matriz_isi_melhor[gid_melhor,11], lwd=2)
 dev.off()								
-
+# ---- #
 dbDisconnect(con)
 dev.off()
 ### Código 9999 que avisa que o processamento foi concluido com sucesso
