@@ -599,7 +599,7 @@ while (melhores < length(matriz_isi_melhor[,10])){
 	
 }
 
-if( matriz_isi_melhor[gid_melhor,1] == "ols" ){
+if( matriz_isi_melhor[gid_melhor,2] == "ols" ){
             variograma.ols<-variofit(
             dados.var,
             ini=c(as.numeric(matriz_isi_melhor[gid_melhor,4]),as.numeric(matriz_isi_melhor[gid_melhor,5])),
