@@ -7,7 +7,7 @@ dataBasePassword<-args[5]
 dataBasePort<-args[6]
 usuario<-as.numeric(args[7])
 
-desc =paste0("Mapa_",args[8])
+desc = paste0("Mapa_",args[8])
 
 require(geoR)
 require(splancs)
