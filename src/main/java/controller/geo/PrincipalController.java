@@ -58,8 +58,7 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
-                
-         
+               
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S
                                 + Constantes.ENDERECO_FILE + " "
@@ -120,8 +119,7 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
-                System.out.println(Constantes.ENDERECO_FILE);
-
+      
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R
                                 + Constantes.ENDERECO_KRIG_S
@@ -132,12 +130,7 @@ public class PrincipalController {
                                 + Constantes.DATA_BASE_PASSWORD + " "
                                 + Constantes.DATA_BASE_PORT + " "
                                 + request.getParameter("user") + " "
-                                + request.getParameter("analise_line_id") + " "
-                        //    + request.getParameter("user") + " "                         
-                        //    + request.getParameter("amostra") + " "
-                        //    + '"' + request.getParameter("desc") + '"' + " "
-                        //    + request.getParameter("isi") + " "                          
-                        //    + request.getParameter("nro_min_alc") + " "
+                                + request.getParameter("analise_line_id") + " "                
                         );
 
                 try {
@@ -199,45 +192,7 @@ public class PrincipalController {
 
             result.include("userID", userId);
             result.include("analiseDesc", descricao);
-        }
-    }
-
-    @Path("/funcaoPrincipal")
-    public void funcaoPrincipal() {
-
-        try {
-
-            Process process = Runtime.getRuntime()
-                    .exec("C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe "
-                            + "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\script_KO.r");
-
-            try {
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line = null;
-                List<String> listaRetorno = new ArrayList<>();
-
-                while ((line = reader.readLine()) != null) {
-
-                    /**
-                     * Função que remove indentificador string
-                     */
-                    int inicioString = line.indexOf("[");
-                    int fimString = line.indexOf("]");
-                    String textSubs = "";
-                    String alterarPor = line.substring(inicioString, fimString + 1);
-
-                    listaRetorno.add(line.replace(alterarPor, textSubs));
-                    System.out.println("LINE " + line.replace(alterarPor, textSubs));
-
-                }
-                result.include("mensagem", listaRetorno);
-                reader.close();
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+       
         }
     }
 

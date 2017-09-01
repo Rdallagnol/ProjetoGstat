@@ -1,6 +1,6 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" style="">
-
+    <h1>teste ${analiseLineId}</h1>
     <c:if test="${mensagemOK != null}"> 
         <div class="alert alert-success alert-block">      
             <h4>Sucesso!</h4>
@@ -130,6 +130,7 @@
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/plot_geral.png">              
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/modelos.png">
                 <img src="${pageContext.servletContext.contextPath}/file/${userID}/${analiseDesc}/melhor_modelo.png">
+                
             </div>
         </div>
     </c:if>

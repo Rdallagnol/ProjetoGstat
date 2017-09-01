@@ -34,6 +34,6 @@ public class Constantes {
     /** ENDEREÇO DA PASTA DE GRAVAÇÃO DOS ARQUIVOS */
      
     //public static final String ENDERECO_FILE = "D:/ProjetoGstat/src/main/webapp/file";
-    public static final String ENDERECO_MAPA = "D:/ProjetoGstat/src/main/webapp/mapa";
+    public static final String ENDERECO_MAPA = "O:/ProjetoGstat/src/main/webapp/mapa";
     public static final String ENDERECO_FILE = "O:/ProjetoGstat/src/main/webapp/file";
 }
