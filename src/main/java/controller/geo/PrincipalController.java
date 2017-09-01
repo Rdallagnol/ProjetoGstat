@@ -145,7 +145,7 @@ public class PrincipalController {
                     }
                     reader.close();
                     if (ok != null) {
-                        result.redirectTo(this).visualizaGeo();
+                        result.redirectTo(this).visualizaMapa(request.getParameter("analise_line_id"),request.getParameter("user"));
                     } else {
                         result.include("errorMsg", "Não foi possível realizar a analise favor verificar dados !");
                     }
@@ -196,4 +196,9 @@ public class PrincipalController {
         }
     }
 
+    @Path("/visualizaMapa")
+    public void visualizaMapa(String lineId, String userID) {   
+        result.include("userID", userID);      
+        result.include("lineId", lineId);      
+    }
 }

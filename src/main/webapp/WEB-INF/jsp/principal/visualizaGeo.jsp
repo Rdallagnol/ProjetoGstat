@@ -1,6 +1,6 @@
 <%@include file="../template/header.jsp" %>
 <div class="row-fluid" style="">
-    <h1>teste ${analiseLineId}</h1>
+  
     <c:if test="${mensagemOK != null}"> 
         <div class="alert alert-success alert-block">      
             <h4>Sucesso!</h4>
@@ -110,7 +110,11 @@
                                     <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
                                     <td class="">
+                                        <form action="funcaoKrigagem" method="post" name="funcaoKrigagem" id="formGeo">
+                                            <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
+                                            <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
                                         <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:if>
