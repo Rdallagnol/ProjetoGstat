@@ -264,5 +264,5 @@ linhas = 1
 	registra <- dbGetQuery(con,insertInterpol)
     linhas <- linhas + 1
 #}
-
+dev.off()
 9999
