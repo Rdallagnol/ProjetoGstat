@@ -43,14 +43,14 @@ drv <- dbDriver("PostgreSQL")
 con <- dbConnect(drv, dbname=dataBaseName,host=dataBaseHost,port=dataBasePort,user=dataBaseUser,password=dataBasePassword)
 
 sqlAnaliseGeral = paste("select ah.*,
-								al.*, 
-								a.descricao desc_amostra 
-								from   geo_analise_lines al, 
-								geo_analise_header ah, 
-								amostra a 
-							 where a.codigo = ah.amostra_id 
-							    and ah.analise_header_id = al.analise_header_id 
-							    and al.analise_lines_id = ", idLines)
+                                al.*, 
+				a.descricao desc_amostra 
+			 from   geo_analise_lines al, 
+				geo_analise_header ah, 
+				amostra a 
+			 where a.codigo = ah.amostra_id 
+			    and ah.analise_header_id = al.analise_header_id 
+			    and al.analise_lines_id = ", idLines)
 						 
 frame_dados <- dbGetQuery(con,sqlAnaliseGeral)
 analise_id = frame_dados$analise_header_id
@@ -94,20 +94,19 @@ local = 29182
 
 frame_dados$area_id
 sqlSelect = paste("SELECT   
-		     	    st_x(ST_Transform(ST_SetSRID((dp).geom, 4326),29182)) x ,
-		     		st_y(ST_Transform(ST_SetSRID((dp).geom, 4326),29182)) y								          
+		     	st_x(ST_Transform(ST_SetSRID((dp).geom, 4326),29182)) x ,
+		     	st_y(ST_Transform(ST_SetSRID((dp).geom, 4326),29182)) y								          
 	          FROM (SELECT ST_DumpPoints(ST_GeomFromText((SELECT ST_AsText(ST_Boundary(geometry)) geom FROM AREA WHERE CODIGO  = ", analise_area_id, "))) AS dp) As xy")
+
 borda <- dbGetQuery(con,sqlSelect)  #em utm
 frame_dados$amostra_id
 
-atrib = paste(
-		"select 
-			st_x(st_transform(geometry, 29182)) x, 
-			st_y(st_transform(geometry, 29182 )) y, 
-			CAST(valor AS numeric) 
-	     from  pixelamostra 
-		where amostra_codigo = ",analise_amostra_id
-		)
+atrib = paste("select 
+                    st_x(st_transform(geometry, 29182)) x, 
+                    st_y(st_transform(geometry, 29182 )) y, 
+                    CAST(valor AS numeric) 
+	     from   pixelamostra 
+	       where amostra_codigo = ",analise_amostra_id)
 				
 frame_dados <- dbGetQuery(con,atrib)
 dados <- as.geodata(frame_dados)
@@ -117,7 +116,7 @@ names(dados)
 ## GERA REPRESENTAÇÃO GRÁFICA DA BORDA ##
 x=paste("borda_pontos",".png",sep = "")
 png(x)
-plot(borda,	xlab=leg_x_pamostrais, ylab=leg_y_pamostrais)
+plot(borda,xlab=leg_x_pamostrais, ylab=leg_y_pamostrais)
 polygon(borda)
 points(dados, add=T)
 dev.off()
