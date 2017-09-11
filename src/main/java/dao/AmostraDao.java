@@ -15,8 +15,8 @@ import utils.GenericDao;
  */
 public class AmostraDao extends GenericDao<AmostraEntity, Long>{
     
-    public List<AmostraEntity> findByIdArea(Long id){
-        List<AmostraEntity> amostras = (List<AmostraEntity>) this.executeQuery("select a from AmostraEntity a where a.area_codigo = ?0", id);        
-        return amostras;
+    @SuppressWarnings("unchecked")
+    public List<AmostraEntity> findByIdArea(Long id){               
+        return (List<AmostraEntity>) this.executeQuery("select a from AmostraEntity a where a.area_codigo = ?0", id);
     }
 }

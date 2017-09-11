@@ -102,12 +102,8 @@
                                         </form>
                                             
                                          <c:if test="${analiseLine.mapa_gerado == 1}">     
-                                         <form action="visualizaMapa" method="post" >
-                                            <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
-                                            <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
-                                            <button class="btn btn-warning" type="submit"><i class="icon-globe"></i></button>
-                                        </form>   
-                                        </c:if>   
+                                                <a href="${linkTo[PrincipalController].visualizaMapa(analiseLine.analise_lines_id,872)}" class="btn btn-warning"><i class="icon-globe"></i></a>
+                                         </c:if>   
                                          
                                     </td>
                                 </tr>
@@ -135,11 +131,7 @@
                                             
                                             
                                         <c:if test="${analiseLine.mapa_gerado == 1}">     
-                                         <form action="visualizaMapa" method="post" >
-                                            <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
-                                            <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
-                                            <button class="btn btn-warning" type="submit"><i class="icon-globe"></i></button>
-                                        </form>   
+                                           <a href="${linkTo[PrincipalController].visualizaMapa(analiseLine.analise_lines_id,872)}" class="btn btn-warning"><i class="icon-globe"></i></a>                                        
                                         </c:if> 
                                             
                                          

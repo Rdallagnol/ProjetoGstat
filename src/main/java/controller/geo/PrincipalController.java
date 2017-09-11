@@ -9,22 +9,15 @@ import config.Constantes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import dao.AmostraDao;
-
-import dao.AreaDao;
 import entity.AmostraEntity;
-
 import entity.AnaliseEntity;
-
-import entity.AreaEntity;
-
+import entity.AnaliseLinesEntity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +85,7 @@ public class PrincipalController {
                     String line = null;
                     
                     while ((line = reader.readLine()) != null) {
-                        System.out.println(line);
+                        //System.out.println(line);
                         if (line.equals("[1] 9999")) {
                             ok = "OK";
                         }
@@ -137,7 +130,7 @@ public class PrincipalController {
                     String line = null;
                     String ok = null;
                     while ((line = reader.readLine()) != null) {
-                        System.out.println(line);
+                       // System.out.println(line);
                         if (line.equals("[1] 9999")) {
                             ok = "OK";
                         }
@@ -173,8 +166,8 @@ public class PrincipalController {
         if (request.getMethod().equals("POST")) {
 
             String descricao = null;
-            Long userId = null;
-
+            Long userId = null;   
+            
             result.include("analiseLines",
                     DaoFactory.analiseLineInstance()
                             .findByArea(Long.parseLong(request.getParameter("analiseId"))));
@@ -190,13 +183,15 @@ public class PrincipalController {
 
             result.include("userID", userId);
             result.include("analiseDesc", descricao);
-
+            
         }
     }
 
     @Path("/visualizaMapa")
     public void visualizaMapa(String lineId, String userID) {
-
+        System.out.println(lineId);   
+        System.out.println(userID);   
+        
         result.include("userID", userID);
         result.include("lineId", lineId);
     }

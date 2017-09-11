@@ -38,12 +38,14 @@ public abstract class GenericDao<T, PK> {
     // CRUD Methods
     ////////////////////////////////////
     public Object executeQuery(String query, Object... params) {
+        
+        
         Query createdQuery = this.entityManager.createQuery(query);
 
         for (int i = 0; i < params.length; i++) {
             createdQuery.setParameter(i, params[i]);
         }
-
+      
         return createdQuery.getResultList();
     }
 

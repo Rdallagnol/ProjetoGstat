@@ -17,16 +17,14 @@ import utils.GenericDao;
 @RequestScoped
 public class AnaliseDao extends GenericDao<AnaliseEntity, Long>{
     
-    
+    @SuppressWarnings("unchecked")
     public List<AnaliseEntity> findById(Long id){
-        List<AnaliseEntity> analises = (List<AnaliseEntity>) this.executeQuery("select a from AnaliseEntity a where a.analise_header_id = ?0", id);        
-        return analises;
+        return  (List<AnaliseEntity>) this.executeQuery("select a from AnaliseEntity a where a.analise_header_id = ?0", id);
     }
 
-    
-    public List<AnaliseEntity> findAllOrdenado() {
-        List<AnaliseEntity> analises = (List<AnaliseEntity>) this.executeQuery("from AnaliseEntity order by 1 desc");
-        return analises;
+    @SuppressWarnings("unchecked")
+    public List<AnaliseEntity> findAllOrdenado() {   
+        return (List<AnaliseEntity>) this.executeQuery("from AnaliseEntity order by 1 desc");
     }
 
 }

@@ -265,9 +265,7 @@ linhas = 1
 #}
 
 atualizaLine = paste0(" UPDATE GEO_ANALISE_LINES SET MAPA_GERADO = 1 WHERE ANALISE_LINES_ID = ", idLines)
-atualizaLine
 registra <- dbGetQuery(con,atualizaLine)
-
 dev.off()
 dbDisconnect(con)
 9999

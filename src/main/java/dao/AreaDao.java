@@ -22,6 +22,7 @@ public class AreaDao extends GenericDao<AreaEntity, Long>{
         List<AreaEntity> areas = (List<AreaEntity>) this.executeQuery("select a from AreaEntity a where a.codigo = ?0", id);   
         for (AreaEntity area : areas) {
             a = area;
+            System.out.println(area);
         }
         return a;
     }

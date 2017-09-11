@@ -15,8 +15,8 @@ import utils.GenericDao;
  */
 public class AnaliseLineDao extends GenericDao<AnaliseLinesEntity, Long> {
 
+    @SuppressWarnings("unchecked")
     public List<AnaliseLinesEntity> findByArea(Long areaId) {
-        List<AnaliseLinesEntity> analisesLines = (List<AnaliseLinesEntity>) this.executeQuery(" select a from AnaliseLinesEntity a where a.analiseHeader.analise_header_id = ?0 order by a.isi ", areaId);
-        return analisesLines;
+        return (List<AnaliseLinesEntity>) this.executeQuery(" select a from AnaliseLinesEntity a where a.analiseHeader.analise_header_id = ?0 order by a.isi ", areaId);
     }
 }
