@@ -625,6 +625,7 @@ dev.off()
 # ---- #
 dbDisconnect(con)
 dev.off()
+
 ### Código 9999 que avisa que o processamento foi concluido com sucesso
 9999
-
+dev.off()

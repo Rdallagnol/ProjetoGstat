@@ -13,19 +13,18 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
 import dao.AmostraDao;
-import dao.AnaliseDao;
-import dao.AnaliseLineDao;
+
 import dao.AreaDao;
 import entity.AmostraEntity;
 
 import entity.AnaliseEntity;
-import entity.AnaliseLinesEntity;
+
 import entity.AreaEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -52,15 +51,15 @@ public class PrincipalController {
     @Path("/funcaoGeo")
     public void funcaoGeo() {
 
-        AreaDao areaDao = DaoFactory.areaDaoInstance();
-        List<AreaEntity> areas = areaDao.findAll();
-        result.include("areas", areas);
+        result.include("areas",
+                DaoFactory.areaDaoInstance().findAll());
 
         if (request.getMethod().equals("POST")) {
             try {
-               
+
                 Process process = Runtime.getRuntime()
-                        .exec(Constantes.ENDERECO_R + Constantes.ENDERECO_GEO_S
+                        .exec(Constantes.ENDERECO_R
+                                + Constantes.ENDERECO_GEO_S
                                 + Constantes.ENDERECO_FILE + " "
                                 + Constantes.DATA_BASE_NAME + " "
                                 + Constantes.DATA_BASE_HOST + " "
@@ -87,9 +86,11 @@ public class PrincipalController {
                         );
 
                 try {
-                    final BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    String line = null;
                     String ok = null;
+                    
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    String line = null;
+                    
                     while ((line = reader.readLine()) != null) {
                         System.out.println(line);
                         if (line.equals("[1] 9999")) {
@@ -97,14 +98,12 @@ public class PrincipalController {
                         }
                     }
 
-                    reader.close();               
-
                     if (ok != null) {
                         result.redirectTo(this).visualizaGeo();
                     } else {
                         result.include("errorMsg", "Não foi possível realizar a analise favor verificar dados !");
                     }
-                } catch (final Exception e) {
+                } catch (final IOException e) {
                     e.printStackTrace();
                 }
             } catch (IOException e1) {
@@ -119,7 +118,7 @@ public class PrincipalController {
 
         if (request.getMethod().equals("POST")) {
             try {
-      
+
                 Process process = Runtime.getRuntime()
                         .exec(Constantes.ENDERECO_R
                                 + Constantes.ENDERECO_KRIG_S
@@ -130,7 +129,7 @@ public class PrincipalController {
                                 + Constantes.DATA_BASE_PASSWORD + " "
                                 + Constantes.DATA_BASE_PORT + " "
                                 + request.getParameter("user") + " "
-                                + request.getParameter("analise_line_id") + " "                
+                                + request.getParameter("analise_line_id") + " "
                         );
 
                 try {
@@ -145,7 +144,7 @@ public class PrincipalController {
                     }
                     reader.close();
                     if (ok != null) {
-                        result.redirectTo(this).visualizaMapa(request.getParameter("analise_line_id"),request.getParameter("user"));
+                        result.redirectTo(this).visualizaMapa(request.getParameter("analise_line_id"), request.getParameter("user"));
                     } else {
                         result.include("errorMsg", "Não foi possível realizar a analise favor verificar dados !");
                     }
@@ -168,23 +167,22 @@ public class PrincipalController {
 
     @Path("/visualizaGeo")
     public void visualizaGeo() {
-        String descricao = null;
-        Long userId = null;
 
-        AnaliseDao analiseDao = DaoFactory.analiseInstance();
-
-        List<AnaliseEntity> analises = analiseDao.findAllOrdenado();
-        result.include("analises", analises);
+        result.include("analises", DaoFactory.analiseInstance().findAllOrdenado());
 
         if (request.getMethod().equals("POST")) {
 
-            Long idFind = Long.parseLong(request.getParameter("analiseId"));
+            String descricao = null;
+            Long userId = null;
 
-            AnaliseLineDao analiseLineDao = DaoFactory.analiseLineInstance();
-            List<AnaliseLinesEntity> analiseLines = analiseLineDao.findByArea(idFind);
-            result.include("analiseLines", analiseLines);
+            result.include("analiseLines",
+                    DaoFactory.analiseLineInstance()
+                            .findByArea(Long.parseLong(request.getParameter("analiseId"))));
 
-            List<AnaliseEntity> analise = analiseDao.findById(idFind);
+            List<AnaliseEntity> analise
+                    = DaoFactory.analiseInstance()
+                            .findById(Long.parseLong(request.getParameter("analiseId")));
+
             for (AnaliseEntity analiseEntity : analise) {
                 descricao = analiseEntity.getDescricao_analise();
                 userId = analiseEntity.getCreated_by();
@@ -192,13 +190,14 @@ public class PrincipalController {
 
             result.include("userID", userId);
             result.include("analiseDesc", descricao);
-       
+
         }
     }
 
     @Path("/visualizaMapa")
-    public void visualizaMapa(String lineId, String userID) {   
-        result.include("userID", userID);      
-        result.include("lineId", lineId);      
+    public void visualizaMapa(String lineId, String userID) {
+
+        result.include("userID", userID);
+        result.include("lineId", lineId);
     }
 }

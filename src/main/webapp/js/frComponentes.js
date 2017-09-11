@@ -20,3 +20,9 @@ $('#formGeo').submit(function () {
     $('#spinner').show();
     $('html, body').animate({scrollTop:0}, 'slow');
 });
+ 
+$('#formKrig').submit(function () {  
+    $('#msgError').hide();
+    $('#spinner').show();
+    $('html, body').animate({scrollTop:0}, 'slow');
+});

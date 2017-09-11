@@ -1,6 +1,11 @@
 <%@include file="../template/header.jsp" %>
+
+    
 <div class="row-fluid" style="">
-  
+    
+    <div class="row-fluid" id="spinner">
+        <center><div class="alert alert-info"><strong>Processando </strong><img src="img/gif-image.gif" alt="spinner" /> </div></center>
+    </div>
     <c:if test="${mensagemOK != null}"> 
         <div class="alert alert-success alert-block">      
             <h4>Sucesso!</h4>
@@ -66,19 +71,19 @@
                             <th>Val. Kappa</th>
                             <!--<th>EM</th>-->
                             <!--<th>Desvio Padrão EM</th>-->
-                            <th>ISI</th>
+                            <th>ISI</th>                         
                             <th>Opções</th>
 
                         </tr>
                     </thead>
                     <tbody >
                         <c:forEach var="analiseLine" items="${analiseLines}" varStatus="myIndex">
-
+ 
 
                             <c:if test="${myIndex.index == 0}">  
                                 <tr style="background-color: #25d366">
 
-                                    <td class="">${analiseLine.analise_lines_id}</td>
+                                    <td class="">${analiseLine.analise_lines_id}  </td>
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>
@@ -88,18 +93,28 @@
                                     <!--<td>${analiseLine.erro_medio}</td>-->
                                     <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
+                                  
                                     <td class="">
-                                         <form action="funcaoKrigagem" method="post" name="funcaoKrigagem" id="formGeo">
+                                         <form action="funcaoKrigagem" method="post" name="formKrig" id="formKrig">
                                             <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
                                             <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
                                         <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
                                         </form>
+                                            
+                                         <c:if test="${analiseLine.mapa_gerado == 1}">     
+                                         <form action="visualizaMapa" method="post" >
+                                            <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
+                                            <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
+                                            <button class="btn btn-warning" type="submit"><i class="icon-globe"></i></button>
+                                        </form>   
+                                        </c:if>   
+                                         
                                     </td>
                                 </tr>
                             </c:if>
                             <c:if test="${myIndex.index != 0}">   
                                 <tr>
-                                    <td class="">${analiseLine.analise_lines_id}</td>
+                                    <td class="">${analiseLine.analise_lines_id} </td>
                                     <td>${analiseLine.modelo}</td>
                                     <td>${analiseLine.metodo}</td>
                                     <td>${analiseLine.min_ice}</td>
@@ -109,12 +124,25 @@
                                     <!--<td>${analiseLine.erro_medio}</td>-->
                                     <!--<td>${analiseLine.dp_erro_medio}</td>-->
                                     <td>${analiseLine.isi}</td>
+                               
                                     <td class="">
-                                        <form action="funcaoKrigagem" method="post" name="funcaoKrigagem" id="formGeo">
+                                        
+                                        <form action="funcaoKrigagem" method="post" name="formKrig" id="formKrig">
                                             <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
                                             <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
-                                        <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
+                                            <button class="btn btn-mini btn-primary" type="submit">Gerar Mapa</button>
                                         </form>
+                                            
+                                            
+                                        <c:if test="${analiseLine.mapa_gerado == 1}">     
+                                         <form action="visualizaMapa" method="post" >
+                                            <input id="analise_line_id" type="hidden" name="analise_line_id" value="${analiseLine.analise_lines_id}" class="input-mini"/>    
+                                            <input id="user" type="hidden" name="user" value="872" class="input-mini"/>
+                                            <button class="btn btn-warning" type="submit"><i class="icon-globe"></i></button>
+                                        </form>   
+                                        </c:if> 
+                                            
+                                         
                                     </td>
                                 </tr>
                             </c:if>

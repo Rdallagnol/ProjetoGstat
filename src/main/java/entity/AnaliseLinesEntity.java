@@ -44,6 +44,7 @@ public class AnaliseLinesEntity extends BaseBean {
     private Double erro_medio;
     private Double dp_erro_medio;
     private Double isi;
+    private Long mapa_gerado;
     
     @Temporal(TemporalType.DATE)
     private Date creation_date;
@@ -51,7 +52,10 @@ public class AnaliseLinesEntity extends BaseBean {
 
     public AnaliseLinesEntity() {}
 
-    public AnaliseLinesEntity(Long analise_lines_id, AnaliseEntity analiseHeader, String modelo, String metodo, Double min_ice, Double melhor_contrib, Double melhor_alcance, Double melhor_val_kappa, Double erro_medio, Double dp_erro_medio, Double isi, Date creation_date, Long created_by) {
+    public AnaliseLinesEntity(Long analise_lines_id, AnaliseEntity analiseHeader, String modelo, 
+                              String metodo, Double min_ice, Double melhor_contrib, Double melhor_alcance, 
+                              Double melhor_val_kappa, Double erro_medio, Double dp_erro_medio, Double isi,
+                              Date creation_date, Long created_by, Long mapa_gerado) {
         this.analise_lines_id = analise_lines_id;
         this.analiseHeader = analiseHeader;
         this.modelo = modelo;
@@ -65,6 +69,7 @@ public class AnaliseLinesEntity extends BaseBean {
         this.isi = isi;
         this.creation_date = creation_date;
         this.created_by = created_by;
+        this.mapa_gerado = mapa_gerado;
     }
 
     public AnaliseEntity getAnaliseHeader() {
@@ -170,5 +175,19 @@ public class AnaliseLinesEntity extends BaseBean {
     public void setCreated_by(Long created_by) {
         this.created_by = created_by;
     }    
+
+    public void setMapa_gerado(Long mapa_gerado) {
+        this.mapa_gerado = mapa_gerado;
+    }
+
+    public Long getMapa_gerado() {
+        return mapa_gerado;
+    }
+
+   
+  
+
+    
+    
     
 }

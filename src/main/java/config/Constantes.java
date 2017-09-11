@@ -13,27 +13,30 @@ public class Constantes {
     
     /** INFORMAÇÕES DA BASE DE DADOS **/
     public static final String DATA_BASE_HOST = "localhost";
-    public static final String DATA_BASE_PORT = "5432";
+    public static final String DATA_BASE_PORT = "5433";
     public static final String DATA_BASE_NAME = "sdumOnlinev3";    
     public static final String DATA_BASE_USER = "postgres";
     public static final String DATA_BASE_PASSWORD = "1";
     
     /** ENDEREÇO DO R NO SERVIDOR */
     
-    //public static final String ENDERECO_R = "C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe ";
-    public static final String ENDERECO_R = "C:\\Program Files\\R\\R-3.4.1\\bin\\i386\\Rscript.exe ";
+    public static final String ENDERECO_R = "C:\\Program Files\\R\\R-3.2.5\\bin\\x64\\Rscript.exe ";
+    //public static final String ENDERECO_R = "C:\\Program Files\\R\\R-3.4.1\\bin\\i386\\Rscript.exe ";
     
     /** ENDEREÇO DO SCRIPT DE GEOESTATÍSTICA */
     
-    //public static final String ENDERECO_GEO_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";  
-    public static final String ENDERECO_GEO_S = "O:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";    
+    public static final String ENDERECO_GEO_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";  
+    //public static final String ENDERECO_GEO_S = "O:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_geo.r ";    
     
     /** ENDEREÇO DO SCRIPT DE KRIGAGEM ORDINÁRIA */
-    public static final String ENDERECO_KRIG_S = "O:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";  
-    
+    //public static final String ENDERECO_KRIG_S = "O:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";  
+    public static final String ENDERECO_KRIG_S = "D:\\ProjetoGstat\\src\\main\\webapp\\scripts\\R\\Principal\\script_krig.r ";  
+   
     /** ENDEREÇO DA PASTA DE GRAVAÇÃO DOS ARQUIVOS */
      
-    //public static final String ENDERECO_FILE = "D:/ProjetoGstat/src/main/webapp/file";
-    public static final String ENDERECO_MAPA = "O:/ProjetoGstat/src/main/webapp/mapa";
-    public static final String ENDERECO_FILE = "O:/ProjetoGstat/src/main/webapp/file";
+    public static final String ENDERECO_FILE = "D:/ProjetoGstat/src/main/webapp/file";
+    public static final String ENDERECO_MAPA = "D:/ProjetoGstat/src/main/webapp/mapa";
+    
+    //public static final String ENDERECO_MAPA = "O:/ProjetoGstat/src/main/webapp/mapa";
+    //public static final String ENDERECO_FILE = "O:/ProjetoGstat/src/main/webapp/file";
 }
